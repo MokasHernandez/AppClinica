@@ -1,5 +1,4 @@
 # AppClinica
 Mi Proyecto Android
 
-Etapa de pruebas de cambios en el proyecto Android y el como poder guardar los cambios
-localmente
+Esta será nuestro proyecto base, el cuál se irá integrando cuando todo sea funcional
