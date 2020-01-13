@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "14289419554",
+    "firebase_url": "https://appclnica.firebaseio.com",
+    "project_id": "appclnica",
+    "storage_bucket": "appclnica.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14289419554:android:507220af6359a1668ff97b",
+        "android_client_info": {
+          "package_name": "com.example.appclnica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14289419554-ptls0b8ao4clsg7uh7cis4ov17791tim.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appclnica",
+            "certificate_hash": "dc33d2e85afce50f507670a21956a7e735f67acb"
+          }
+        },
+        {
+          "client_id": "14289419554-ui5smiq1ons1irbmdkft4nidneomgd19.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtkXw7n6R4L5SF9PkKA7DnxruETfngYuQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14289419554-ui5smiq1ons1irbmdkft4nidneomgd19.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="179dp"
+        android:layout_height="58dp"
+        android:background="@drawable/btn_uno"
+        android:backgroundTint="@color/boton"
+        android:gravity="center"
+        android:text="Login"
+        android:textColor="@color/icons"
+        tools:layout_editor_absoluteX="59dp"
+        tools:layout_editor_absoluteY="360dp" />
+
+    <EditText
+        android:id="@+id/editTextUsuario"
+        android:layout_width="216dp"
+        android:layout_height="40dp"
+        android:background="@drawable/txt"
+        android:ems="10"
+        android:gravity="center"
+        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteY="346dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="226dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/htds"
+        tools:layout_editor_absoluteX="93dp"
+        tools:layout_editor_absoluteY="67dp" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="213dp"
+        android:layout_height="40dp"
+        android:background="@drawable/txt"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="346dp" />
+
+    <TextView
+        android:id="@+id/textViewPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contraseña"
+        android:textSize="18sp"
+        app:fontFamily="@font/montserratlight"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="372dp" />
+
+    <TextView
+        android:id="@+id/textViewUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuario"
+        android:textSize="18sp"
+        app:fontFamily="@font/montserratlight"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="366dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

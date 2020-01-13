@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Opciones">
+        <menu>
+            <item
+                android:id="@+id/nav_home"
+                android:icon="@drawable/home"
+                android:title="Inicio" />
+            <item
+                android:id="@+id/nav_qr"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="QR" />
+            <item
+                android:id="@+id/nav_mantenimiento"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Mantenimiento"/>
+            <item
+                android:id="@+id/nav_prueba"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Prueba"/>
+            <item
+                android:id="@+id/nav_salir"
+                android:icon="@drawable/salir"
+                android:title="Salir" />
+        </menu>
+    </item>
+</menu>
