@@ -4,33 +4,41 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appclnica.MyAdapter;
 import com.example.appclnica.R;
+
+import java.util.ArrayList;
 
 public class MantenimientoFragment extends Fragment {
 
-    private MantenimientoViewModel toolsViewModel;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(MantenimientoViewModel.class);
+    private RecyclerView Lista;
+    private RecyclerView.Adapter adapter;
+    private TextView Prueba;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_mantenimiento, container, false);
-        final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        Prueba = root.findViewById(R.id.text_tools);
+        Lista = root.findViewById(R.id.recylcer);
+        Prueba.setText("Selecciona una opción");
+
+        String[] contactos = new String[200];
+        contactos[0] = "Item1";
+        contactos[1] = "Item2";
+        contactos[2] = "Item3";
+        adapter = new MyAdapter(contactos);
+        Lista.setAdapter(adapter);
+
+
         return root;
     }
 }

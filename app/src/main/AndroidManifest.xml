@@ -17,7 +17,7 @@
             android:name=".ActivityRegistro"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:taskAffinity=""></activity>
+            android:taskAffinity="" />
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"
@@ -41,7 +41,6 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:resource="@string/default_notification_channel_id" />
 
-        <activity android:name=".ActivityPrueba" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
