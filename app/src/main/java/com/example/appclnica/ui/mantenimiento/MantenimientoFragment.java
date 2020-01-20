@@ -38,7 +38,6 @@ public class MantenimientoFragment extends Fragment {
         adapter = new MyAdapter(contactos);
         Lista.setAdapter(adapter);
 
-
         return root;
     }
 }
