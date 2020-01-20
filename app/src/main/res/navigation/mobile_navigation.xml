@@ -9,18 +9,15 @@
         android:id="@+id/nav_home"
         android:name="com.example.appclnica.ui.home.HomeFragment"
         android:label="@string/menu_home" />
-    <fragment
+    <activity
         android:id="@+id/nav_qr"
-        android:name="com.example.appclnica.ui.qr.QRFragment"
-        android:label="@string/menu_qr"
-        tools:layout="@layout/fragment_qr" />
+        android:name="com.example.appclnica.MainQR"
+        android:label="@string/menu_qr" />
     <fragment
         android:id="@+id/nav_mantenimiento"
         android:name="com.example.appclnica.ui.mantenimiento.MantenimientoFragment"
-        android:label="@string/menu_mantenimiento"
-        tools:layout="@layout/fragment_mantenimiento" />
+        android:label="@string/menu_mantenimiento" />
     <fragment
         android:id="@+id/nav_salir"
-        android:name="com.example.appclnica.ui.Salir"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.example.appclnica.Salir" />
 </navigation>

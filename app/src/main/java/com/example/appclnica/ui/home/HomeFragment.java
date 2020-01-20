@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        Login("http://asesoresconsultoreslabs.com/App_Android/Notificacion_Recursos.php");
+        //Login("http://asesoresconsultoreslabs.com/App_Android/Notificacion_Recursos.php");
         return root;
     }
 

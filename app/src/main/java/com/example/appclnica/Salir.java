@@ -1,4 +1,4 @@
-package com.example.appclnica.ui;
+package com.example.appclnica;
 
 import android.content.Context;
 import android.content.Intent;
