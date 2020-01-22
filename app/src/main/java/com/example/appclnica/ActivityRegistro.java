@@ -58,7 +58,7 @@ public class ActivityRegistro extends AppCompatActivity {
 
     private void enviarTokenToServer(final String token, final String Usuario) {
         StringRequest request = new StringRequest(Request.Method.POST,
-                "https://asesoresconsultoreslabs.com/App_Android/RegistrarToken.php",
+                "https://asesoresconsultoreslabs.com/asesores/App_Android/RegistrarToken.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

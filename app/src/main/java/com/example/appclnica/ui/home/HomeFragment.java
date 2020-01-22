@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private RequestQueue requestQueue;
     private String ID;
-    private String Message;
+    private static String Message;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,15 +54,15 @@ public class HomeFragment extends Fragment {
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                    textView.setText("Bienvenido " + Message);
+                textView.setText("Bienvenido/a: " + Message);
             }
         });
 
-        Login("https://asesoresconsultoreslabs.com/App_Android/Notificacion_Corres.php?ID_Usuario="+ID+"");
+        Consulta("https://asesoresconsultoreslabs.com/asesores/App_Android/Notificacion_Corres.php?ID_Usuario=" + ID + "");
         return root;
     }
 
-    private void Login(String URL){
+    private void Consulta(String URL){
         JsonArrayRequest Array = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
