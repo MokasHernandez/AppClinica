@@ -4,7 +4,7 @@
 
   <item
       android:id="@+id/action_call"
-      android:icon="@android:drawable/ic_menu_call"
+      android:icon="@drawable/baseline_code_white_24dp"
       android:title="Make call"
       app:showAsAction="ifRoom" />
 
