@@ -33,14 +33,14 @@ public class StatusFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_status) {
             Toast.makeText(getActivity(), "Clicked on " + item.getTitle(), Toast.LENGTH_SHORT).show();
-
+            goToAttract();
         }
         return true;
     }
 
     public void goToAttract()
     {
-        Intent intent = new Intent(getActivity().getApplication(), MainQR.class);
+        Intent intent = new Intent(getActivity().getApplication(), Mantenimientos.class);
         startActivity(intent);
     }
 }

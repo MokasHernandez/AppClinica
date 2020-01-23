@@ -132,7 +132,6 @@
         android:fontFamily="@font/montserratlight"
         android:gravity="center_horizontal"
         android:text="Costo Refacciones :"
-        android:background="@drawable/txt"
         android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -322,7 +321,7 @@
         app:layout_constraintTop_toBottomOf="@+id/EDTDFALLA" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/BTNADD"
         android:layout_width="300dp"
         android:layout_height="45dp"
         android:layout_marginStart="50dp"
