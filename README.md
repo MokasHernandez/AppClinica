@@ -1,4 +1,4 @@
 # AppClinica
 Mi Proyecto Android
 
-Proyecto desde terminal Oswaldo
+Proyecto desde Base

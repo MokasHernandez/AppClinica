@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Login("https://asesoresconsultoreslabs.com/App_Android/select.php?id=" + txtUsuario.getText() + "&pass=" + txtPassword.getText() + "");
+                Login("https://asesoresconsultoreslabs.com/asesores/App_Android/select.php?id=" + txtUsuario.getText() + "&pass=" + txtPassword.getText() + "");
+                //Login("https://asesoresconsultoreslabs.com/asesores/App_Android/Notificacion_Corres.php?ID_Usuario=" + txtUsuario.getText() + "");
             }
         });
     }
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Login exitoso",Toast.LENGTH_SHORT).show();
                             Intent PasoPantalla = new Intent(MainActivity.this, NavigationActivity.class);
                             PasoPantalla.putExtra("Mensaje", Mensaje);
+                            PasoPantalla.putExtra("ID", obj.getString("id"));
                             startActivity(PasoPantalla);
                             txtPassword.setText("");
                         }

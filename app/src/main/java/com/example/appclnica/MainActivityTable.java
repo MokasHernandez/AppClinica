@@ -1,5 +1,6 @@
 package com.example.appclnica;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.appclnica.ui.home.HomeFragment;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
@@ -56,6 +58,13 @@ public class MainActivityTable extends AppCompatActivity {
             }
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent Return = new Intent(getApplicationContext(), NavigationActivity.class);
+        startActivity(Return);
     }
 }
 

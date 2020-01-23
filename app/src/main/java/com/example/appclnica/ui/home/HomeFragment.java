@@ -28,10 +28,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private RequestQueue requestQueue;
+    private String ID;
+    private static String Message;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,23 +45,24 @@ public class HomeFragment extends Fragment {
 
         final TextView textView = root.findViewById(R.id.text_home);
 
+        Bundle bundle = getActivity().getIntent().getExtras();
+        if (bundle != null) {
+            Message = bundle.getString("Mensaje");
+            ID = bundle.getString("ID");
+        }
+
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-
-                Bundle bundle = getActivity().getIntent().getExtras();
-                if (bundle != null){
-                    String Message = bundle.getString("Mensaje");
-                    textView.setText("Bienvenido " + Message);
-                }
+                textView.setText("Bienvenido/a: " + Message);
             }
         });
 
-        //Login("http://asesoresconsultoreslabs.com/App_Android/Notificacion_Recursos.php");
+        Consulta("https://asesoresconsultoreslabs.com/asesores/App_Android/Notificacion_Corres.php?ID_Usuario=" + ID + "");
         return root;
     }
 
-    private void Login(String URL){
+    private void Consulta(String URL){
         JsonArrayRequest Array = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

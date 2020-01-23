@@ -43,7 +43,7 @@ public class ChatFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
         Bundle bundle =  getActivity().getIntent().getExtras();
         final String IDQR = bundle.getString( "ID" );
-        TraerEquipo( "https://asesoresconsultoreslabs.com/App_Android/ConsultaB.php?id=" + IDQR + "");
+        TraerEquipo( "https://asesoresconsultoreslabs.com/asesores/App_Android/ConsultaB.php?id=" + IDQR + "");
         tableLayout = view.findViewById( R.id.Table );
         return  view;
 
