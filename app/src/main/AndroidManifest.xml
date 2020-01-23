@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Mantenimientos"></activity>
         <activity
             android:name=".ActivityRegistro"
             android:excludeFromRecents="true"
@@ -25,8 +26,8 @@
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainQR" />
-        <activity android:name=".MainActivityTable">
-        </activity>
+        <activity android:name=".MainActivityTable"></activity>
+
         <service
             android:name=".MyService"
             android:exported="false">
