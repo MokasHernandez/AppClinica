@@ -50,9 +50,9 @@
         android:layout_marginRight="116dp"
         android:background="@drawable/btn_uno"
         android:backgroundTint="@color/boton"
+        android:textColor="@color/icons"
         android:gravity="center"
         android:text="Login"
-        android:textColor="@color/icons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
