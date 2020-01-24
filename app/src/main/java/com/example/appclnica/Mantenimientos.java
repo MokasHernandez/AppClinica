@@ -82,7 +82,7 @@ public class Mantenimientos extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month=month+1;
-                        String date =day+"/"+month+"/"+year;
+                        String date =year+"/"+month+"/"+day;
                         EDTFECHA.setText( date );
                     }
                 },Year,Mont,Day);
@@ -115,13 +115,14 @@ public class Mantenimientos extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams() throws AuthFailureError{
                 Map<String,String> parametros=new HashMap<String, String>( );
+                String.valueOf(EDTFECHA);
                 parametros.put( "tipo_mant",EDTIPOM.getText().toString());
                 parametros.put( "empresa",EDTEMPRESA.getText().toString());
-                parametros.put( "fecha",EDTFECHA.getText().toString());
+                parametros.put( "fecha", EDTFECHA.getText().toString());
                 parametros.put( "horas_paro",EDTHORA.getText().toString() );
                 parametros.put( "equipo",EDTEQUIPO.getText().toString() );
-                parametros.put( "costo",EDTEMPRESA.getText().toString() );
-                parametros.put( "desc_falla",EDTEMPRESA.getText().toString() );
+                parametros.put( "costo",EDTCOSTOM.getText().toString() );
+                parametros.put( "desc_falla",EDTDFALLA.getText().toString() );
                 parametros.put("costoRefacciones",EDTREFACC.getText().toString());
                 return parametros;
             }
