@@ -171,14 +171,13 @@
         android:id="@+id/EDTIPOM"
         android:layout_width="100dp"
         android:layout_height="20dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
         android:background="@drawable/txt"
+        android:ems="10"
         android:fontFamily="@font/montserratlight"
         android:gravity="center_horizontal"
         android:textAlignment="center"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 

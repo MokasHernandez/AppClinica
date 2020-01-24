@@ -34,7 +34,10 @@ public class Mantenimientos extends AppCompatActivity {
     private EditText EDTIPOM,EDTEMPRESA,EDTFECHA,EDTHORA,EDTEQUIPO,EDTCOSTOM,EDTDFALLA,EDTREFACC;
     private int InYear,Inmonth,InDay,AyearIn,AmonthIn,AdayIn;
     DatePickerDialog.OnDateSetListener setListener;
+    ChatFragment chatFragment=new ChatFragment();
     String B;
+    String IDQR2=chatFragment.IDQR;
+
 
 
     @Override
@@ -116,11 +119,22 @@ public class Mantenimientos extends AppCompatActivity {
             protected Map<String,String> getParams() throws AuthFailureError{
                 Map<String,String> parametros=new HashMap<String, String>( );
                 String.valueOf(EDTFECHA);
-                parametros.put( "tipo_mant",EDTIPOM.getText().toString());
+                String Az="";
+
+                if(CheckCo.isChecked()){
+                     Az="correctivo";
+                   /* EDTIPOM.setText( Az );*/
+                }
+                else if (CheckPre.isChecked()){
+                    Az="preventivo";
+                   /* EDTIPOM.setText( Az );*/
+                }
+
+                parametros.put("tipo_mant",Az);
                 parametros.put( "empresa",EDTEMPRESA.getText().toString());
                 parametros.put( "fecha", EDTFECHA.getText().toString());
                 parametros.put( "horas_paro",EDTHORA.getText().toString() );
-                parametros.put( "equipo",EDTEQUIPO.getText().toString() );
+                parametros.put( "equipo",IDQR2 );
                 parametros.put( "costo",EDTCOSTOM.getText().toString() );
                 parametros.put( "desc_falla",EDTDFALLA.getText().toString() );
                 parametros.put("costoRefacciones",EDTREFACC.getText().toString());
@@ -129,5 +143,32 @@ public class Mantenimientos extends AppCompatActivity {
         };
         RequestQueue requestQueue= Volley.newRequestQueue( this );
         requestQueue.add( stringRequest );
+    }
+
+    public void onCheckboxClicked(View view) {
+
+        boolean checked = ((CheckBox) view).isChecked();
+        String P="Preventivo";
+        String C="Correctivo";
+
+        switch(view.getId()) {
+            case R.id.CheckCo:
+                if (checked){
+                    CheckCo.setText( C );
+                }
+
+            else
+
+                break;
+            case R.id.CheckPre:
+                if (checked){
+                    CheckPre.setText( P );
+                }
+
+            else
+
+                break;
+
+        }
     }
 }
