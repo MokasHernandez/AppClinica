@@ -47,16 +47,10 @@ public class Mantenimientos extends AppCompatActivity {
 
         CheckCo =(CheckBox)findViewById( R.id.CheckCo );
         CheckPre=(CheckBox)findViewById( R.id.CheckPre );
-
         BTNADD=(Button)findViewById( R.id.BTNADD );
-
-
         EDTEMPRESA=(EditText)findViewById( R.id.EDTEMPRESA );
         EDTFECHA=(EditText)findViewById( R.id.EDTFECHA );
-        EDTHORA=(EditText)findViewById( R.id.EDTHORA );
-        EDTCOSTOM=(EditText)findViewById( R.id.EDTCOSTOM );
-        EDTDFALLA=(EditText)findViewById( R.id.EDTDFALLA);
-        EDTREFACC=(EditText)findViewById( R.id.EDTREFACC);
+        EDTDFALLA =(EditText)findViewById(R.id.EDTDFALLA);
 
         Calendar calendar=Calendar.getInstance();
         final int Year=calendar.get( Calendar.YEAR );
@@ -130,15 +124,12 @@ public class Mantenimientos extends AppCompatActivity {
                 parametros.put("tipo_mant",Az);
                 parametros.put( "empresa",EDTEMPRESA.getText().toString());
                 parametros.put( "fecha", EDTFECHA.getText().toString());
-                parametros.put( "horas_paro",EDTHORA.getText().toString() );
                 parametros.put( "equipo",IDQR2 );
-                parametros.put( "costo",EDTCOSTOM.getText().toString() );
                 parametros.put( "desc_falla",EDTDFALLA.getText().toString() );
-                parametros.put("costoRefacciones",EDTREFACC.getText().toString());
                 return parametros;
             }
         };
-        RequestQueue requestQueue= Volley.newRequestQueue( this );
+        RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
         requestQueue.add( stringRequest );
     }
 

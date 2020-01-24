@@ -22,15 +22,7 @@ public class AlmacenFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_almacen, container, false);
 
         Prueba = root.findViewById(R.id.text_tools);
-        Lista = root.findViewById(R.id.recylcer);
         Prueba.setText("Módulo de Almacén");
-
-        String[] contactos = new String[200];
-        contactos[0] = "Item1";
-        contactos[1] = "Item2";
-        contactos[2] = "Item3";
-        adapter = new MyAdapter(contactos);
-        Lista.setAdapter(adapter);
 
         return root;
     }
