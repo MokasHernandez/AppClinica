@@ -52,6 +52,7 @@ public class Mantenimientos extends AppCompatActivity {
         EDTFECHA=(EditText)findViewById( R.id.EDTFECHA );
         EDTDFALLA =(EditText)findViewById(R.id.EDTDFALLA);
 
+
         Calendar calendar=Calendar.getInstance();
         final int Year=calendar.get( Calendar.YEAR );
         final int Mont=calendar.get(Calendar.MONTH);
@@ -88,6 +89,12 @@ public class Mantenimientos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
             ADDMANT( "https://asesoresconsultoreslabs.com/asesores/App_Android/AddMant.php");
+            EDTEMPRESA.requestFocus();
+            EDTEMPRESA.setText( " " );
+            EDTDFALLA.setText( " " );
+            EDTFECHA.setText( " " );
+
+
             }
         } );
 
