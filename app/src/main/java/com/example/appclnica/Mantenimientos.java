@@ -51,13 +51,11 @@ public class Mantenimientos extends AppCompatActivity {
 
         BTNADD=(Button)findViewById( R.id.BTNADD );
 
-        EDTIPOM=(EditText)findViewById( R.id.EDTIPOM );
+
         EDTEMPRESA=(EditText)findViewById( R.id.EDTEMPRESA );
         EDTFECHA=(EditText)findViewById( R.id.EDTFECHA );
         EDTHORA=(EditText)findViewById( R.id.EDTHORA );
-        EDTEQUIPO=(EditText)findViewById( R.id.EDTEQUIPO );
         EDTCOSTOM=(EditText)findViewById( R.id.EDTCOSTOM );
-        EDTEQUIPO=(EditText)findViewById( R.id.EDTEQUIPO );
         EDTDFALLA=(EditText)findViewById( R.id.EDTDFALLA);
         EDTREFACC=(EditText)findViewById( R.id.EDTREFACC);
 
