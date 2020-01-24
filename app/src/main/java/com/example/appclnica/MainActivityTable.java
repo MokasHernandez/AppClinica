@@ -38,7 +38,7 @@ public class MainActivityTable extends AppCompatActivity {
         tabCalls = findViewById(R.id.tabCalls);
         viewPager = findViewById(R.id.viewPager);
 
-        pageAdapter = new PageAdapter(this, getSupportFragmentManager(), tabLayout.getTabCount());
+        pageAdapter = new PageAdapter(getApplicationContext(), getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

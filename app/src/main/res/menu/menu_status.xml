@@ -3,8 +3,8 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <item
-    android:id="@+id/action_status"
-    android:icon="@drawable/baseline_note_add_white_124dp"
-    android:title="Add New Maintenance"
-    app:showAsAction="ifRoom" />
+      android:id="@+id/action_status"
+      android:icon="@android:drawable/ic_input_add"
+      android:title="Add New Maintenance"
+      app:showAsAction="ifRoom" />
 </menu>

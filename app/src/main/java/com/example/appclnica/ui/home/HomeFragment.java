@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.appclnica.MainActivity;
 import com.example.appclnica.NavigationActivity;
 import com.example.appclnica.R;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +35,9 @@ import java.net.URL;
 
 public class HomeFragment extends Fragment {
 
+    private int[] mImages = new int[]{
+            R.drawable.doctor, R.drawable.frutas, R.drawable.htdscaro
+    };
     private HomeViewModel homeViewModel;
     private RequestQueue requestQueue;
     private String ID;
@@ -44,6 +50,7 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         final TextView textView = root.findViewById(R.id.text_home);
+        final CarouselView carouselView = root.findViewById(R.id.carousel);
 
         Bundle bundle = getActivity().getIntent().getExtras();
         if (bundle != null) {
@@ -59,6 +66,15 @@ public class HomeFragment extends Fragment {
         });
 
         Consulta("https://asesoresconsultoreslabs.com/asesores/App_Android/Notificacion_Corres.php?ID_Usuario=" + ID + "");
+
+        carouselView.setPageCount(mImages.length);
+        carouselView.setImageListener(new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(mImages[position]);
+            }
+        });
+
         return root;
     }
 
