@@ -1,4 +1,4 @@
-package com.example.appclnica.ui.mantenimiento;
+package com.example.appclnica;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,15 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appclnica.MyAdapter;
-import com.example.appclnica.R;
-
-import java.util.ArrayList;
-
-public class MantenimientoFragment extends Fragment {
+public class AlmacenFragment extends Fragment {
 
     private RecyclerView Lista;
     private RecyclerView.Adapter adapter;
@@ -25,11 +19,11 @@ public class MantenimientoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_mantenimiento, container, false);
+        View root = inflater.inflate(R.layout.fragment_almacen, container, false);
 
         Prueba = root.findViewById(R.id.text_tools);
         Lista = root.findViewById(R.id.recylcer);
-        Prueba.setText("Selecciona una opción");
+        Prueba.setText("Módulo de Almacén");
 
         String[] contactos = new String[200];
         contactos[0] = "Item1";

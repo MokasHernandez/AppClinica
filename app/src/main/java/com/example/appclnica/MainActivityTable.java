@@ -20,9 +20,6 @@ public class MainActivityTable extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     PageAdapter pageAdapter;
-    TabItem tabChats;
-    TabItem tabStatus;
-    TabItem tabCalls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +30,6 @@ public class MainActivityTable extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         tabLayout = findViewById(R.id.tablayout);
-        tabChats = findViewById(R.id.tabChats);
-        tabStatus = findViewById(R.id.tabStatus);
-        tabCalls = findViewById(R.id.tabCalls);
         viewPager = findViewById(R.id.viewPager);
 
         pageAdapter = new PageAdapter(getApplicationContext(), getSupportFragmentManager(), tabLayout.getTabCount());

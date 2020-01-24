@@ -21,11 +21,11 @@ public class PageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new ChatFragment();
+                return new QRInfoFragment();
             case 1:
-                return new StatusFragment();
-            case 2:
-                return new CallFragment();
+                return new MantenimientoFragment();
+            /*case 2:
+                return new CallFragment();*/
             default:
                 return null;
         }

@@ -9,12 +9,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.annotation.Nullable;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,10 +26,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ChatFragment extends Fragment {
+public class QRInfoFragment extends Fragment {
 
     private TableLayout tableLayout;
-    private String[] header = {"DATOS", "INFORMACIÓN","","","","","","","","","","","","","","","","","","",""};
+    private String[] header = {"DATOS"," ", "INFORMACIÓN","","","","","","","","","","","","","","","","","",""};
     private ArrayList<String[]> rows = new ArrayList<>();
     private TableDynamic tableDynamic;
     RequestQueue requestQueue;
@@ -41,7 +39,7 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-        View view = inflater.inflate(R.layout.fragment_chat, container, false);
+        View view = inflater.inflate(R.layout.fragment_qrinfo, container, false);
         Bundle bundle =  getActivity().getIntent().getExtras();
          IDQR = bundle.getString( "ID" );
 
@@ -53,7 +51,7 @@ public class ChatFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_chats, menu);
+        inflater.inflate(R.menu.menu_qrinfo, menu);
     }
 
     @Override
