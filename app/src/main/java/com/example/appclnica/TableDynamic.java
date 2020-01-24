@@ -34,7 +34,7 @@ public class TableDynamic {
         txtcell=new TextView(context);
         txtcell.setGravity( Gravity.LEFT );
         txtcell.setTextColor(Color.BLACK);
-        txtcell.setTextSize( 10);
+        txtcell.setTextSize(10);
 
     }
 
@@ -66,7 +66,7 @@ public class TableDynamic {
 
     private TableRow.LayoutParams  newTableParams(){
         TableRow.LayoutParams params=new TableRow.LayoutParams(  );
-        params.setMargins( 1,1,1,1 );
+        params.setMargins( 5,5,1,1 );
         params.weight=1;
         return params;
     }

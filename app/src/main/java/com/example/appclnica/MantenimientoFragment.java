@@ -16,14 +16,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
-import com.example.appclnica.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class StatusFragment extends Fragment {
+public class MantenimientoFragment extends Fragment {
 
     FloatingActionButton addMantenancebtn;
     DatePickerDialog fechaMantenimiento;
@@ -42,13 +41,13 @@ public class StatusFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-        final View view= inflater.inflate(R.layout.fragment_status, container, false);
+        final View view= inflater.inflate(R.layout.fragment_mantenimiento, container, false);
         return  view;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_status, menu);
+        inflater.inflate(R.menu.menu_mantenimiento, menu);
     }
 
     @Override

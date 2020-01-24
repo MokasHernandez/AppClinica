@@ -12,12 +12,12 @@
                 android:title="Inicio" />
             <item
                 android:id="@+id/nav_qr"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="QR" />
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Mantenimiento" />
             <item
                 android:id="@+id/nav_mantenimiento"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Mantenimiento"/>
+                android:icon="@drawable/almacen"
+                android:title="Almacén"/>
             <item
                 android:id="@+id/nav_salir"
                 android:icon="@drawable/salir"

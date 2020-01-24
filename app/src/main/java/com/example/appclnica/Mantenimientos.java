@@ -22,7 +22,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,9 +33,9 @@ public class Mantenimientos extends AppCompatActivity {
     private EditText EDTIPOM,EDTEMPRESA,EDTFECHA,EDTHORA,EDTEQUIPO,EDTCOSTOM,EDTDFALLA,EDTREFACC;
     private int InYear,Inmonth,InDay,AyearIn,AmonthIn,AdayIn;
     DatePickerDialog.OnDateSetListener setListener;
-    ChatFragment chatFragment=new ChatFragment();
+    QRInfoFragment QRInfoFragment =new QRInfoFragment();
     String B;
-    String IDQR2=chatFragment.IDQR;
+    String IDQR2= QRInfoFragment.IDQR;
 
 
 
@@ -44,7 +43,7 @@ public class Mantenimientos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_mantenimientos );
-        Intent I = new Intent( Mantenimientos.this, StatusFragment.class );
+        Intent I = new Intent( Mantenimientos.this, MantenimientoFragment.class );
 
         CheckCo =(CheckBox)findViewById( R.id.CheckCo );
         CheckPre=(CheckBox)findViewById( R.id.CheckPre );
