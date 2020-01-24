@@ -10,12 +10,68 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSal"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/btn_uno"
+        android:backgroundTint="@color/colorHTDSAA"
+        android:drawableTop="@drawable/ic_salida"
+        android:text="Salida"
+        android:textColor="@color/icons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_tools" />
+
+    <Button
+        android:id="@+id/btnEnt"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_uno"
+        android:backgroundTint="@color/colorHTDSAA"
+        android:textColor="@color/icons"
+        android:text="Entrada"
+        app:layout_constraintEnd_toStartOf="@+id/btnSal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_tools" />
+
+    <Button
+        android:id="@+id/btnInicio"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/btn_uno"
+        android:backgroundTint="@color/colorHTDSAA"
+        android:textColor="@color/icons"
+        android:text="Inicio"
+        app:layout_constraintEnd_toStartOf="@+id/btnFin"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnt" />
+
+    <Button
+        android:id="@+id/btnFin"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/btn_uno"
+        android:backgroundTint="@color/colorHTDSAA"
+        android:textColor="@color/icons"
+        android:text="Fin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

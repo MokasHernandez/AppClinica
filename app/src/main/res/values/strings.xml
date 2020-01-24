@@ -11,7 +11,7 @@
 
     <string name="menu_home">Inicio</string>
     <string name="menu_qr">Lectura QR</string>
-    <string name="menu_mantenimiento">Mantenimiento</string>
+    <string name="menu_mantenimiento">Almacén</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
