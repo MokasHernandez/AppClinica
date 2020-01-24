@@ -10,5 +10,14 @@
     <color name="divider">#BDBDBD</color>
     <color name="boton">#2AD6D1</color>
     <color name="fondo">#7BFFC1</color>
+    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimaryDark">#FFA000</color>
+    <color name="colorAccent">#009688</color>
+    <color name="colorHTDSV">#7BFFC1</color>
+    <color name="colorHTDS2A">#0DB4CF</color>
+    <color name="colorHTDSAA">#09D4FC</color>
+    <color name="colorHTDSA">#0DB4CF</color>
+    <color name="colorHTDSG">#B1B1B1</color>
+    <color name="colorHTDSN">#000000</color>
 </resources>
 

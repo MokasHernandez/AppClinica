@@ -93,7 +93,7 @@ public class Mantenimientos extends AppCompatActivity {
         BTNADD.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            ADDMANT( "https://asesoresconsultoreslabs.com/asesores/App_Android/AddMant.php");
             }
         } );
 
@@ -115,11 +115,11 @@ public class Mantenimientos extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams() throws AuthFailureError{
                 Map<String,String> parametros=new HashMap<String, String>( );
+                parametros.put( "tipo_mant",EDTIPOM.getText().toString());
                 parametros.put( "empresa",EDTEMPRESA.getText().toString());
                 parametros.put( "fecha",EDTFECHA.getText().toString());
                 parametros.put( "horas_paro",EDTHORA.getText().toString() );
                 parametros.put( "equipo",EDTEQUIPO.getText().toString() );
-                parametros.put( "tipo_mant",EDTIPOM.getText().toString());
                 parametros.put( "costo",EDTEMPRESA.getText().toString() );
                 parametros.put( "desc_falla",EDTEMPRESA.getText().toString() );
                 parametros.put("costoRefacciones",EDTREFACC.getText().toString());
