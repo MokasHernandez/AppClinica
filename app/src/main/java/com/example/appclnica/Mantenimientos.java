@@ -31,13 +31,10 @@ public class Mantenimientos extends AppCompatActivity {
     private CheckBox CheckCo,CheckPre;
     private Button BTNADD;
     private EditText EDTIPOM,EDTEMPRESA,EDTFECHA,EDTHORA,EDTEQUIPO,EDTCOSTOM,EDTDFALLA,EDTREFACC;
-    private int InYear,Inmonth,InDay,AyearIn,AmonthIn,AdayIn;
     DatePickerDialog.OnDateSetListener setListener;
     QRInfoFragment QRInfoFragment =new QRInfoFragment();
     String B;
     String IDQR2= QRInfoFragment.IDQR;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,7 @@ public class Mantenimientos extends AppCompatActivity {
         EDTEMPRESA=(EditText)findViewById( R.id.EDTEMPRESA );
         EDTFECHA=(EditText)findViewById( R.id.EDTFECHA );
         EDTDFALLA =(EditText)findViewById(R.id.EDTDFALLA);
-
+        EDTEMPRESA.requestFocus();
 
         Calendar calendar=Calendar.getInstance();
         final int Year=calendar.get( Calendar.YEAR );
@@ -93,18 +90,15 @@ public class Mantenimientos extends AppCompatActivity {
             EDTEMPRESA.setText( " " );
             EDTDFALLA.setText( " " );
             EDTFECHA.setText( " " );
-
-
             }
         } );
-
     }
 
     public void ADDMANT(String URL){
         StringRequest stringRequest = new StringRequest( Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText( getApplicationContext(), "Inserccion Exitosa", Toast.LENGTH_SHORT ).show();
+                Toast.makeText( getApplicationContext(), "Inserción Exitosa", Toast.LENGTH_SHORT ).show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -129,7 +123,7 @@ public class Mantenimientos extends AppCompatActivity {
                 }
 
                 parametros.put("tipo_mant",Az);
-                parametros.put( "empresa",EDTEMPRESA.getText().toString());
+                parametros.put( "empresa_mant",EDTEMPRESA.getText().toString());
                 parametros.put( "fecha", EDTFECHA.getText().toString());
                 parametros.put( "equipo",IDQR2 );
                 parametros.put( "desc_falla",EDTDFALLA.getText().toString() );
@@ -138,32 +132,5 @@ public class Mantenimientos extends AppCompatActivity {
         };
         RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
         requestQueue.add( stringRequest );
-    }
-
-    public void onCheckboxClicked(View view) {
-
-        boolean checked = ((CheckBox) view).isChecked();
-        String P="Preventivo";
-        String C="Correctivo";
-
-        switch(view.getId()) {
-            case R.id.CheckCo:
-                if (checked){
-                    CheckCo.setText( C );
-                }
-
-            else
-
-                break;
-            case R.id.CheckPre:
-                if (checked){
-                    CheckPre.setText( P );
-                }
-
-            else
-
-                break;
-
-        }
     }
 }

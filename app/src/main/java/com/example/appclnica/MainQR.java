@@ -20,8 +20,6 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class MainQR extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
-    private TextView
-            txtResult;
     private ZXingScannerView scannerView;
 
     @Override
@@ -29,7 +27,6 @@ public class MainQR extends AppCompatActivity implements ZXingScannerView.Result
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_mqr );
         scannerView = (ZXingScannerView) findViewById( R.id.zxscan );
-        txtResult = (TextView) findViewById( R.id.txt_result );
 
 
         Dexter.withActivity( this )
@@ -60,15 +57,18 @@ public class MainQR extends AppCompatActivity implements ZXingScannerView.Result
         }
         @Override
         public void handleResult(Result rawResult) {
-        txtResult.setText( rawResult.getText() );
-        Intent I = new Intent( MainQR.this, MainActivityTable.class );
-        I.putExtra( "ID", rawResult.toString() );
-        I.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
-        PendingIntent pendingIntent = PendingIntent.getActivity( getApplicationContext(), 0, I, PendingIntent.FLAG_UPDATE_CURRENT );
-        startActivity( I );
+        if (rawResult.toString().length() <= 4) {
+            Intent I = new Intent(MainQR.this, MainActivityTable.class);
+            I.putExtra("ID", rawResult.toString());
+            I.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, I, PendingIntent.FLAG_UPDATE_CURRENT);
+            startActivity(I);
+        }
+        if (rawResult.toString().length() > 4){
+            Intent A = new Intent(MainQR.this, ActivityAlmacen.class);
+            A.putExtra("IDR", rawResult.toString());
+            startActivity(A);
+        }
     }
-
-
-
-}
+};
 

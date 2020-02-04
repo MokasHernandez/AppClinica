@@ -1,10 +1,14 @@
 package com.example.appclnica;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -13,17 +17,46 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class AlmacenFragment extends Fragment {
 
-    private RecyclerView Lista;
-    private RecyclerView.Adapter adapter;
     private TextView Prueba;
+    private Button btnEntrada;
+    private Button btnSalida;
+    private Button btnInicio;
+    private Button btnFin;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_almacen, container, false);
 
+        btnEntrada = root.findViewById(R.id.btnEnt);
+        btnSalida = root.findViewById(R.id.btnSal);
+        btnInicio = root.findViewById(R.id.btnInicio);
+        btnFin = root.findViewById(R.id.btnFin);
         Prueba = root.findViewById(R.id.text_tools);
+
         Prueba.setText("Módulo de Almacén");
 
+        btnEntrada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Entrada = new Intent(getActivity().getApplicationContext(), ActivityAlmacen.class);
+                startActivity(Entrada);
+            }
+        });
+
+        btnInicio.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Llamada();
+            }
+        });
+
         return root;
+    }
+
+
+    public void Llamada(){
+        Intent QR = new Intent(getActivity().getApplicationContext(), MainQR.class);
+        startActivity(QR);
     }
 }

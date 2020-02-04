@@ -31,7 +31,6 @@ public class QRInfoFragment extends Fragment {
     private TableLayout tableLayout;
     private String[] header = {"DATOS"," ", "INFORMACIÓN","","","","","","","","","","","","","","","","","",""};
     private ArrayList<String[]> rows = new ArrayList<>();
-    private TableDynamic tableDynamic;
     RequestQueue requestQueue;
     public static String IDQR="";
 
@@ -46,7 +45,6 @@ public class QRInfoFragment extends Fragment {
         TraerEquipo( "https://asesoresconsultoreslabs.com/asesores/App_Android/ConsultaB.php?id=" + IDQR + "");
         tableLayout = view.findViewById( R.id.Table );
         return  view;
-
     }
 
     @Override
@@ -57,7 +55,6 @@ public class QRInfoFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_chat) {
-            Toast.makeText(getActivity().getApplicationContext(), "Clicked on " + item.getTitle(), Toast.LENGTH_SHORT).show();
             goToAttract();
         }
         return true;

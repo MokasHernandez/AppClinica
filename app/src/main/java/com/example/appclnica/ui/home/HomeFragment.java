@@ -36,7 +36,7 @@ import java.net.URL;
 public class HomeFragment extends Fragment {
 
     private int[] mImages = new int[]{
-            R.drawable.doctor, R.drawable.frutas, R.drawable.htdscaro
+            R.drawable.doctor, R.drawable.htdscaro
     };
     private HomeViewModel homeViewModel;
     private RequestQueue requestQueue;

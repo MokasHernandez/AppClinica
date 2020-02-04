@@ -47,7 +47,17 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Login("https://asesoresconsultoreslabs.com/asesores/App_Android/select.php?id=" + txtUsuario.getText() + "&pass=" + txtPassword.getText() + "");
+                if(txtUsuario.getText().toString().isEmpty())
+                {
+                    txtUsuario.setError("Favor de llenar éste campo");
+                }
+                if(txtPassword.getText().toString().isEmpty())
+                {
+                    txtPassword.setError("Favor de llenar éste campo");
+                }
+                else if(!txtUsuario.getText().toString().isEmpty() && !txtPassword.getText().toString().isEmpty()) {
+                    Login("https://asesoresconsultoreslabs.com/asesores/App_Android/select.php?id=" + txtUsuario.getText().toString().trim() + "&pass=" + txtPassword.getText() + "");
+                }
             }
         });
     }

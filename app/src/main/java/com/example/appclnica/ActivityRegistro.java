@@ -37,7 +37,7 @@ public class ActivityRegistro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!txtUsuario.getText().toString().isEmpty()) {
-                    enviarTokenToServer(Message, txtUsuario.getText().toString());
+                    enviarTokenToServer(Message, txtUsuario.getText().toString().trim());
 
                     Intent Principal = new Intent(getApplicationContext(), MainActivity.class);
                     Principal.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

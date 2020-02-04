@@ -53,7 +53,6 @@ public class MantenimientoFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_status) {
-            Toast.makeText(getActivity(), "Clicked on " + item.getTitle(), Toast.LENGTH_SHORT).show();
             goToAttract();
         }
         return true;
