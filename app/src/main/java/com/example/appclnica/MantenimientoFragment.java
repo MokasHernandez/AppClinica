@@ -79,14 +79,12 @@ public class MantenimientoFragment extends Fragment {
                                 JSONObject mants=array.getJSONObject( i );
                                 ListMant.add(new MantConstructor(
                                         mants.getString( "nombre" ),
-                                        mants.getString( "tipo_mant" ),
                                         mants.getString( "fecha" ),
-                                        mants.getString( "area" ),
-                                        mants.getString( "sucursal" )
+                                        mants.getString( "tipo_mant" )
 
                                 ) );
 
-                                Toast.makeText( getActivity().getApplicationContext(),mants.getString( "area" ),Toast.LENGTH_SHORT ).show();
+                                Toast.makeText( getActivity().getApplicationContext(),mants.getString( "nombre" ),Toast.LENGTH_SHORT ).show();
                             }
                             Adapter adapterData=new Adapter( getActivity().getApplicationContext(),ListMant );
                             RCV.setAdapter( adapterData);
