@@ -15,7 +15,7 @@ public class MantConstructor {
 
     }
 
-    public MantConstructor(String sucursal, String area, String nombre) {
+    public MantConstructor(String sucursal, String area, String nombre, String tipo, String empresa) {
         this.id = id;
         this.sucursal = sucursal;
         this.area = area;

@@ -76,6 +76,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MantConstructor mants=ListMant.get( position );
+        /*holder.sucursal.setText( mants.getSucursal() );
+        holder.empresa.setText( mants.getEmpresa() );
+        holder.area.setText( mants.getArea() );
+        holder.id.setText( mants.getId() );*/
         holder.name.setText(mants.getNombre());
         holder.tipo.setText(mants.getTipo());
         holder.fecha.setText(mants.getFecha());
@@ -99,8 +103,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             tipo=itemView.findViewById( R.id.desc);
             fecha=itemView.findViewById( R.id.TXTMANTTIPO);
             fecha.setTextColor(Color.BLACK );
-            name.setTextColor(Color.BLACK );
-            tipo.setTextColor(Color.BLACK );
         }
 
 

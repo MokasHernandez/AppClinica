@@ -79,12 +79,20 @@ public class MantenimientoFragment extends Fragment {
                                 JSONObject mants=array.getJSONObject( i );
                                 ListMant.add(new MantConstructor(
                                         mants.getString( "nombre" ),
+                                        mants.getString( "tipo_mant" ),
                                         mants.getString( "fecha" ),
-                                        mants.getString( "tipo_mant" )
-
+                                        mants.getString( "area" ),
+                                        mants.getString( "sucursal" )
                                 ) );
-
-                                Toast.makeText( getActivity().getApplicationContext(),mants.getString( "nombre" ),Toast.LENGTH_SHORT ).show();
+                                /*
+                                *   String id = item.getString("Id");
+                        String sucursal = item.getString("Sucursal");
+                        String area = item.getString("Area");
+                        String nombre = item.getString("Nombre")+ ":" + item.getString("Id");
+                        String tipo = item.getString("Tipo");
+                        String empresa = item.getString("Empresa");
+                        String fecha = item.getString("Fecha");*/
+                                Toast.makeText( getActivity().getApplicationContext(),mants.getString( "area" ),Toast.LENGTH_SHORT ).show();
                             }
                             Adapter adapterData=new Adapter( getActivity().getApplicationContext(),ListMant );
                             RCV.setAdapter( adapterData);
