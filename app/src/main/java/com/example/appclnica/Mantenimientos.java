@@ -85,11 +85,18 @@ public class Mantenimientos extends AppCompatActivity {
         BTNADD.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            ADDMANT( "https://asesoresconsultoreslabs.com/asesores/App_Android/AddMant.php");
-            EDTEMPRESA.requestFocus();
-            EDTEMPRESA.setText( " " );
-            EDTDFALLA.setText( " " );
-            EDTFECHA.setText( " " );
+                if( EDTEMPRESA.getText().toString().isEmpty()&&EDTDFALLA.getText().toString().isEmpty()&&EDTFECHA.getText().toString().isEmpty())
+                {
+                    EDTEMPRESA.setError( "Favor de Llenar Campo" );
+                    EDTFECHA.setError( "Favor de Llenar Campo" );
+                    EDTDFALLA.setError( "Favor de Llenar Campo" );
+                }else if(!EDTEMPRESA.getText().toString().isEmpty()&&!EDTDFALLA.getText().toString().isEmpty()&&!EDTFECHA.getText().toString().isEmpty()) {
+                    ADDMANT( "https://asesoresconsultoreslabs.com/asesores/App_Android/AddMant.php" );
+                    EDTEMPRESA.requestFocus();
+                    EDTEMPRESA.setText( " " );
+                    EDTDFALLA.setText( " " );
+                    EDTFECHA.setText( " " );
+                }
             }
         } );
     }
