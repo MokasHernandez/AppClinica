@@ -1,11 +1,13 @@
 package com.example.appclnica;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
@@ -14,38 +16,33 @@ import java.util.Locale;
 
 public class Main2Activity extends AppCompatActivity {
 
+    DatePickerDialog.OnDateSetListener setListener;
+    EditText Cad;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        final EditText Cad = findViewById(R.id.editText2);
-
-        final Calendar calendar = Calendar.getInstance();
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH, month);
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                actualizarInput(Cad, calendar);
-            }
-        };
+        Cad = findViewById(R.id.editText2);
 
         Cad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(getApplicationContext(), date,
-                        calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-                        calendar.get(Calendar.DAY_OF_MONTH)).show();
+                showDatePickerDialog();
             }
         });
     }
 
-    private void actualizarInput(EditText Cad, Calendar calendar){
-        String formatoDeFecha = "YYYY/mm/dd";
-        SimpleDateFormat sdf = new SimpleDateFormat(formatoDeFecha, Locale.US);
+    public void showDatePickerDialog(){
+        DatePicker newFragment = DatePicker.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
+                final String selectedDate = dayOfMonth + " / " + (month+1) + " / " + year;
+                Cad.setText(selectedDate);
+            }
+        });
 
-        Cad.setText(sdf.format(calendar.getTime()));
+        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 }
