@@ -87,14 +87,6 @@ public class MantenimientoFragment extends Fragment {
                                         mants.getString( "tipo_mant" )
 
                                 ) );
-                                /*
-                                *   String id = item.getString("Id");
-                        String sucursal = item.getString("Sucursal");
-                        String area = item.getString("Area");
-                        String nombre = item.getString("Nombre")+ ":" + item.getString("Id");
-                        String tipo = item.getString("Tipo");
-                        String empresa = item.getString("Empresa");
-                        String fecha = item.getString("Fecha");*/
                                 Toast.makeText( getActivity().getApplicationContext(),mants.getString( "id_equipo" ),Toast.LENGTH_SHORT ).show();
                             }
                             Adapter adapterData=new Adapter( getActivity().getApplicationContext(),ListMant );
