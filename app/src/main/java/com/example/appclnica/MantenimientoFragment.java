@@ -53,9 +53,9 @@ public class MantenimientoFragment extends Fragment {
         setHasOptionsMenu(true);
         final View view= inflater.inflate(R.layout.fragment_mantenimiento, container, false);
         RCV=(RecyclerView)view.findViewById( R.id.rcv );
-        txt1=(TextView)view.findViewById( R.id.TXTNON );
+        /*txt1=(TextView)view.findViewById( R.id.TXTNON );
         txt2=(TextView)view.findViewById( R.id.desc );
-        txt3=(TextView)view.findViewById( R.id.TXTMANTTIPO );
+        txt3=(TextView)view.findViewById( R.id.TXTMANTTIPO );*/
         RCV.setHasFixedSize( true );
         RCV.setLayoutManager( new LinearLayoutManager( getContext(),LinearLayoutManager.VERTICAL,false ) );
         ListMant=new ArrayList<>(  );
@@ -78,11 +78,14 @@ public class MantenimientoFragment extends Fragment {
                             for (int i=0;i<array.length();i++){
                                 JSONObject mants=array.getJSONObject( i );
                                 ListMant.add(new MantConstructor(
-                                        mants.getString( "nombre" ),
-                                        mants.getString( "tipo_mant" ),
+                                        mants.getInt( "id_equipo" ),
                                         mants.getString( "fecha" ),
-                                        mants.getString( "area" ),
-                                        mants.getString( "sucursal" )
+                                        mants.getString( "nombre" ),
+                                        mants.getString( "fecha" ),
+                                        mants.getString( "nombre" ),
+                                        mants.getString( "fecha" ),
+                                        mants.getString( "tipo_mant" )
+
                                 ) );
                                 /*
                                 *   String id = item.getString("Id");
@@ -92,7 +95,7 @@ public class MantenimientoFragment extends Fragment {
                         String tipo = item.getString("Tipo");
                         String empresa = item.getString("Empresa");
                         String fecha = item.getString("Fecha");*/
-                                Toast.makeText( getActivity().getApplicationContext(),mants.getString( "area" ),Toast.LENGTH_SHORT ).show();
+                                Toast.makeText( getActivity().getApplicationContext(),mants.getString( "id_equipo" ),Toast.LENGTH_SHORT ).show();
                             }
                             Adapter adapterData=new Adapter( getActivity().getApplicationContext(),ListMant );
                             RCV.setAdapter( adapterData);

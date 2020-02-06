@@ -11,11 +11,9 @@ public class MantConstructor {
     private String empresa;
     private String fecha;
     private JSONObject mantenimiento;
-    public MantConstructor(String mantsString, String tipoMant, String string, String area, String nombre, String tipo_mant, int fecha){
 
-    }
 
-    public MantConstructor(String sucursal, String area, String nombre, String tipo, String empresa) {
+    public MantConstructor(int id,String tipo, String sucursal, String area, String nombre, String empresa, String fecha) {
         this.id = id;
         this.sucursal = sucursal;
         this.area = area;

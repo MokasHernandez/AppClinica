@@ -75,11 +75,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MantConstructor mants=ListMant.get( position );
+        MantConstructor mants=ListMant.get(  position);
         /*holder.sucursal.setText( mants.getSucursal() );
         holder.empresa.setText( mants.getEmpresa() );
         holder.area.setText( mants.getArea() );
-        holder.id.setText( mants.getId() );*/
+   */
         holder.name.setText(mants.getNombre());
         holder.tipo.setText(mants.getTipo());
         holder.fecha.setText(mants.getFecha());
@@ -95,7 +95,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name,tipo,fecha,sucursal,area,empresa,id;
+        TextView name,tipo,fecha,sucursal,area,empresa;
         public ViewHolder(@NonNull View itemView) {
             super( itemView );
 
