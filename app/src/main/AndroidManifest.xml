@@ -15,10 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".Main2Activity">
+        <activity android:name=".ActivityAlmacenS">
         </activity>
-        <activity android:name=".ActivityAlmacen" />
+        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".ActivityAlmacenE" />
         <activity android:name=".Mantenimientos" />
         <activity
             android:name=".ActivityRegistro"

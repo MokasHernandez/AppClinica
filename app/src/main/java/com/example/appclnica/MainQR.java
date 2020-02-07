@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -65,7 +64,7 @@ public class MainQR extends AppCompatActivity implements ZXingScannerView.Result
             startActivity(I);
         }
         if (rawResult.toString().length() > 4){
-            Intent A = new Intent(MainQR.this, ActivityAlmacen.class);
+            Intent A = new Intent(MainQR.this, ActivityAlmacenE.class);
             A.putExtra("IDR", rawResult.toString());
             startActivity(A);
         }

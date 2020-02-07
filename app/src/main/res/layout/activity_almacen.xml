@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo2"
     android:fitsSystemWindows="true"
-    tools:context=".ActivityAlmacen">
+    tools:context=".ActivityAlmacenE">
 
     <TextView
         android:id="@+id/txtPedido"
@@ -59,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Entrada Búsqueda"
+        app:title="Entrada Producto"
         app:titleTextColor="@color/icons" />
 
     <Spinner

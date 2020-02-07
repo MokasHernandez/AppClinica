@@ -56,7 +56,7 @@ import java.util.Map;
 import static android.widget.ArrayAdapter.createFromResource;
 import static androidx.constraintlayout.solver.widgets.ConstraintWidget.VISIBLE;
 
-public class ActivityAlmacen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private RequestQueue requestQueue;
     private TextView lbProvee, lbOrden, lbFactura, lbIVA;
