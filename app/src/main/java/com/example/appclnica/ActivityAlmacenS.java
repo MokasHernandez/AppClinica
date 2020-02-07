@@ -214,7 +214,7 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
 
                                 @Override
                                 public void afterTextChanged(Editable s) {
-                                    if (CanSurtir.length() < 1) {
+                                    if (CanSurtir.length()<1) {
                                         numero2[0] = 0;
                                     }else{
                                         numero2[0] = Integer.parseInt(CanSurtir.getText().toString());
