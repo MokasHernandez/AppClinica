@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_shadow_end_color"
@@ -52,11 +53,12 @@
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="160dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/txt"
                 android:fontFamily="@font/montserratlight"
                 android:text="Nombre:"
-                android:textSize="10sp"
-                android:background="@drawable/txt"
+                android:textAlignment="center"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/desc"
                 app:layout_constraintStart_toEndOf="@+id/CIMAGE"
@@ -67,21 +69,20 @@
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="80dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="12dp"
                 android:background="@drawable/txt"
                 android:fontFamily="@font/montserratlight"
                 android:text="Fecha:"
                 android:textColor="#8A000000"
                 android:textSize="10sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/CIMAGE"
+                app:layout_constraintStart_toStartOf="@+id/TXTNON"
                 app:layout_constraintTop_toBottomOf="@+id/TXTNON" />
 
             <Button
                 android:id="@+id/BTNARROW"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/ic_keyboard_arrow_down_black_24dp"
                 app:layout_constraintBottom_toBottomOf="@+id/CIMAGE"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -92,9 +93,8 @@
                 android:id="@+id/expandableView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:paddingBottom="12dp"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -211,11 +211,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="30dp"
+                    android:background="@drawable/txt"
                     android:drawableTop="@drawable/txt"
                     android:fontFamily="@font/montserratlight"
                     android:gravity="center_horizontal"
                     android:text="TSTS"
-                    android:background="@drawable/txt"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -227,11 +227,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="30dp"
+                    android:background="@drawable/txt"
                     android:drawableTop="@drawable/txt"
                     android:fontFamily="@font/montserratlight"
                     android:gravity="center_horizontal"
                     android:text="TXTA"
-                    android:background="@drawable/txt"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -243,11 +243,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="30dp"
+                    android:background="@drawable/txt"
                     android:drawableTop="@drawable/txt"
                     android:fontFamily="@font/montserratlight"
                     android:gravity="center_horizontal"
-                    android:text="TextView"
-                    android:background="@drawable/txt"
+                    android:text="TXTN"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -259,31 +259,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="30dp"
+                    android:background="@drawable/txt"
                     android:drawableTop="@drawable/txt"
                     android:fontFamily="@font/montserratlight"
                     android:gravity="center_horizontal"
-                    android:text="TextView"
-                    android:background="@drawable/txt"
+                    android:text="TXTPO"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/TXTN" />
-
-                <TextView
-                    android:id="@+id/TXTEM"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="30dp"
-                    android:drawableTop="@drawable/txt"
-                    android:fontFamily="@font/montserratlight"
-                    android:gravity="center_horizontal"
-                    android:text="TextView"
-                    android:background="@drawable/txt"
-                    android:textSize="12sp"
-                    android:textStyle="italic"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTPO" />
 
                 <TextView
                     android:id="@+id/TXTF"
@@ -291,15 +275,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="30dp"
+                    android:background="@drawable/txt"
                     android:drawableTop="@drawable/txt"
                     android:fontFamily="@font/montserratlight"
                     android:gravity="center_horizontal"
-                    android:text="TextView"
-                    android:background="@drawable/txt"
+                    android:text="TXTF"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTEM" />
+                    app:layout_constraintTop_toBottomOf="@+id/EDTEMPRE" />
 
                 <TextView
                     android:id="@+id/TXTC"
@@ -307,15 +291,32 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="30dp"
+                    android:background="@drawable/txt"
                     android:drawableTop="@drawable/txt"
                     android:fontFamily="@font/montserratlight"
                     android:gravity="center_horizontal"
-                    android:text="TextView"
-                    android:background="@drawable/txt"
+                    android:text="TXTC"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/TXTF" />
+
+                <EditText
+                    android:id="@+id/EDTEMPRE"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/txt"
+                    android:ems="10"
+                    android:fontFamily="@font/montserratlight"
+                    android:inputType="textPersonName"
+                    android:padding="1px"
+                    android:text="EDTEMP"
+                    android:textAlignment="viewStart"
+                    android:textSize="11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TXTPO" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -323,19 +324,20 @@
                 android:id="@+id/TXTMANTTIPO"
                 android:layout_width="80dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="80dp"
                 android:background="@drawable/txt"
                 android:fontFamily="@font/montserratlight"
                 android:text="Tipo Mant:"
-                android:textSize="10sp"
+                android:textAlignment="center"
+                android:textSize="11sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/desc"
+                app:layout_constraintStart_toStartOf="@+id/TXTNON"
                 app:layout_constraintTop_toBottomOf="@+id/TXTNON" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>
-
 
 
 </RelativeLayout>

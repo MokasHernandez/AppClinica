@@ -24,6 +24,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -45,7 +47,7 @@ public class MantenimientoFragment extends Fragment {
     RequestQueue queue;
     RelativeLayout expandableView;
     CardView cd;
-    TextView txt1,txt2,txt3;
+    TextView txtA,txtB,txtC,txtD,txtE,txtF,txtG;
 
 
     @Override
@@ -53,20 +55,23 @@ public class MantenimientoFragment extends Fragment {
         setHasOptionsMenu(true);
         final View view= inflater.inflate(R.layout.fragment_mantenimiento, container, false);
         RCV=(RecyclerView)view.findViewById( R.id.rcv );
-        /*txt1=(TextView)view.findViewById( R.id.TXTNON );
-        txt2=(TextView)view.findViewById( R.id.desc );
-        txt3=(TextView)view.findViewById( R.id.TXTMANTTIPO );*/
+        txtA=(TextView)view.findViewById( R.id.TXTN );
+        txtB=(TextView)view.findViewById( R.id.TXTS );
+        txtC=(TextView)view.findViewById( R.id.TXTA );
+        txtD=(TextView)view.findViewById( R.id.TXTN );
+        txtE=(TextView)view.findViewById( R.id.TXTPO );
+        txtF=(TextView)view.findViewById( R.id.EDTEMPRE);
+        txtG=(TextView)view.findViewById( R.id.TXTC );
+
+
         RCV.setHasFixedSize( true );
         RCV.setLayoutManager( new LinearLayoutManager( getContext(),LinearLayoutManager.VERTICAL,false ) );
         ListMant=new ArrayList<>(  );
 
-        /*btn=(Button)view.findViewById( R.id.btndep );
-        cd=(CardView) view.findViewById( R.id.CDW2 ) ;*/
-
         Mostrar("https://asesoresconsultoreslabs.com/asesores/App_Android/GetMant.php");
+        MOSTRAR2("https://asesoresconsultoreslabs.com/asesores/App_Android/GetMant.php");
         return  view;
     }
-
 
     public void Mostrar(String URL) {
         StringRequest stringRequest= new StringRequest( Request.Method.GET, URL,
@@ -79,15 +84,15 @@ public class MantenimientoFragment extends Fragment {
                                 JSONObject mants=array.getJSONObject( i );
                                 ListMant.add(new MantConstructor(
                                         mants.getInt( "id_equipo" ),
-                                        mants.getString( "fecha" ),
-                                        mants.getString( "nombre" ),
-                                        mants.getString( "fecha" ),
-                                        mants.getString( "nombre" ),
-                                        mants.getString( "fecha" ),
-                                        mants.getString( "tipo_mant" )
+                                        mants.getString( "tipo_mant" )+" " +":"+" "+ mants.getString("id_equipo"),
+                                        mants.getString( "sucursal" )+" " +":"+" "+ mants.getString("id_equipo"),
+                                        mants.getString( "area" )+" " +":"+" "+ mants.getString("id_equipo"),
+                                        mants.getString( "nombre" )+" " +":"+" "+ mants.getString("id_equipo"),
+                                        mants.getString( "empresa" ),
+                                        mants.getString( "fecha" )+" " +":"+" "+ mants.getString("id_equipo")
 
                                 ) );
-                                Toast.makeText( getActivity().getApplicationContext(),mants.getString( "id_equipo" ),Toast.LENGTH_SHORT ).show();
+                                /*Toast.makeText( getActivity().getApplicationContext(),mants.getString( "id_equipo" ),Toast.LENGTH_SHORT ).show();*/
                             }
                             Adapter adapterData=new Adapter( getActivity().getApplicationContext(),ListMant );
                             RCV.setAdapter( adapterData);
@@ -102,6 +107,44 @@ public class MantenimientoFragment extends Fragment {
             }
         });
         Volley.newRequestQueue(getActivity().getApplicationContext()).add( stringRequest );
+    }
+
+    private void MOSTRAR2(String URL) {
+        JsonArrayRequest
+                jsonArrayRequest = new JsonArrayRequest( URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) { JSONObject InfoEquipo = null;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        InfoEquipo = response.getJSONObject( i );
+                        if (InfoEquipo != null) {
+                            String A=InfoEquipo.getString( "id_equipo" ) ;
+                            String B= InfoEquipo.getString( "sucursal" ) ;
+                            String C = InfoEquipo.getString( "area" );
+                            String D= InfoEquipo.getString( "nombre" );
+                            String E = InfoEquipo.getString( "tipo_mant" );
+                            String F = InfoEquipo.getString( "empresa_mant" );
+                            String G = InfoEquipo.getString( "costo_mantenimiento" );
+                            Toast.makeText( getActivity().getApplicationContext(),G,Toast.LENGTH_SHORT ).show();
+                            ListMant.add(new MantConstructor(Integer.parseInt(  A ), B, C, D, E,F,G));
+                        }
+                        Adapter adapterData=new Adapter( getActivity().getApplicationContext(),ListMant );
+                        RCV.setAdapter( adapterData);
+                    } catch (JSONException e) {
+                        Toast.makeText( getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT ).show();
+                    }
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText( getActivity().getApplicationContext(), "Error de Conexion", Toast.LENGTH_SHORT ).show();
+            }
+
+        } );
+        queue = Volley.newRequestQueue( getActivity().getApplicationContext() );
+        queue.add( jsonArrayRequest );
     }
 
 
