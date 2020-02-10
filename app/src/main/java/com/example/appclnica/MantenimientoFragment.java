@@ -86,9 +86,9 @@ public class MantenimientoFragment extends Fragment {
                                         mants.getInt( "id_equipo" ),
                                         mants.getString( "tipo_mant" )+" " +":"+" "+ mants.getString("id_equipo"),
                                         mants.getString( "sucursal" )+" " +":"+" "+ mants.getString("id_equipo"),
-                                        mants.getString( "area" )+" " +":"+" "+ mants.getString("id_equipo"),
+                                        mants.getString( "fecha" )+" " +":"+" "+ mants.getString("id_equipo"),
                                         mants.getString( "nombre" )+" " +":"+" "+ mants.getString("id_equipo"),
-                                        mants.getString( "empresa" ),
+                                        mants.getString( "tipo_mant" ),
                                         mants.getString( "fecha" )+" " +":"+" "+ mants.getString("id_equipo")
 
                                 ) );
@@ -108,6 +108,7 @@ public class MantenimientoFragment extends Fragment {
         });
         Volley.newRequestQueue(getActivity().getApplicationContext()).add( stringRequest );
     }
+
 
     private void MOSTRAR2(String URL) {
         JsonArrayRequest
