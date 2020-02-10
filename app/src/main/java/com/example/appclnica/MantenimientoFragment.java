@@ -69,7 +69,7 @@ public class MantenimientoFragment extends Fragment {
         ListMant=new ArrayList<>(  );
 
         Mostrar("https://asesoresconsultoreslabs.com/asesores/App_Android/GetMant.php");
-        MOSTRAR2("https://asesoresconsultoreslabs.com/asesores/App_Android/GetMant.php");
+        /*MOSTRAR2("https://asesoresconsultoreslabs.com/asesores/App_Android/GetMant.php");*/
         return  view;
     }
 
@@ -86,10 +86,11 @@ public class MantenimientoFragment extends Fragment {
                                         mants.getInt( "id_equipo" ),
                                         mants.getString( "tipo_mant" )+" " +":"+" "+ mants.getString("id_equipo"),
                                         mants.getString( "sucursal" )+" " +":"+" "+ mants.getString("id_equipo"),
-                                        mants.getString( "fecha" )+" " +":"+" "+ mants.getString("id_equipo"),
+                                        mants.getString( "area" )+" " +":"+" "+ mants.getString("id_equipo"),
                                         mants.getString( "nombre" )+" " +":"+" "+ mants.getString("id_equipo"),
-                                        mants.getString( "tipo_mant" ),
+                                        mants.getString( "empresa_mant" )+" " +":"+" "+ mants.getString("id_equipo"),
                                         mants.getString( "fecha" )+" " +":"+" "+ mants.getString("id_equipo")
+
 
                                 ) );
                                 /*Toast.makeText( getActivity().getApplicationContext(),mants.getString( "id_equipo" ),Toast.LENGTH_SHORT ).show();*/
@@ -110,47 +111,7 @@ public class MantenimientoFragment extends Fragment {
     }
 
 
-    private void MOSTRAR2(String URL) {
-        JsonArrayRequest
-                jsonArrayRequest = new JsonArrayRequest( URL, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) { JSONObject InfoEquipo = null;
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        InfoEquipo = response.getJSONObject( i );
-                        if (InfoEquipo != null) {
-                            String A=InfoEquipo.getString( "id_equipo" ) ;
-                            String B= InfoEquipo.getString( "sucursal" ) ;
-                            String C = InfoEquipo.getString( "area" );
-                            String D= InfoEquipo.getString( "nombre" );
-                            String E = InfoEquipo.getString( "tipo_mant" );
-                            String F = InfoEquipo.getString( "empresa_mant" );
-                            String G = InfoEquipo.getString( "costo_mantenimiento" );
-                            Toast.makeText( getActivity().getApplicationContext(),G,Toast.LENGTH_SHORT ).show();
-                            ListMant.add(new MantConstructor(Integer.parseInt(  A ), B, C, D, E,F,G));
-                        }
-                        Adapter adapterData=new Adapter( getActivity().getApplicationContext(),ListMant );
-                        RCV.setAdapter( adapterData);
-                    } catch (JSONException e) {
-                        Toast.makeText( getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT ).show();
-                    }
-                }
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText( getActivity().getApplicationContext(), "Error de Conexion", Toast.LENGTH_SHORT ).show();
-            }
-
-        } );
-        queue = Volley.newRequestQueue( getActivity().getApplicationContext() );
-        queue.add( jsonArrayRequest );
-    }
-
-
-
-/*************************Metodos de Fragments**********************************/
+    /*************************Metodos de Fragments**********************************/
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_mantenimiento, menu);

@@ -114,11 +114,14 @@ public class Mantenimientos extends AppCompatActivity {
                 }else if(!EDTEMPRESA.getText().toString().isEmpty()&&!EDTDFALLA.getText().toString().isEmpty()&&!EDTFECHA.getText().toString().isEmpty()) {
                     ADDMANT( "https://asesoresconsultoreslabs.com/asesores/App_Android/AddMant.php" );
                     EDTEMPRESA.requestFocus();
+                    CheckPre.setChecked( false );
+                    CheckCo.setChecked( false );
+                    CheckPre.setVisibility( View.VISIBLE );
+                    CheckCo.setVisibility( View.VISIBLE );
                     EDTEMPRESA.setText( " " );
                     EDTDFALLA.setText( " " );
                     EDTFECHA.setText( " " );
-                    CheckPre.setChecked( false );
-                    CheckCo.setChecked( false );
+
                 }
             }
         } );

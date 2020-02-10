@@ -10,7 +10,7 @@ public class MantConstructor {
     private String tipo;
     private String empresa;
     private String fecha;
-    private JSONObject mantenimiento;
+    private int mantenimiento;
 
 
     public MantConstructor(int id,String tipo, String sucursal, String area, String nombre, String empresa, String fecha) {
@@ -52,5 +52,5 @@ public class MantConstructor {
         return fecha;
     }
 
-    public JSONObject getMantenimiento () { return mantenimiento;   }
+    public int getMantenimiento () { return mantenimiento;   }
 }
