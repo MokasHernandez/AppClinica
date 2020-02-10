@@ -54,7 +54,6 @@
                 android:layout_width="160dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
-                android:background="@drawable/txt"
                 android:fontFamily="@font/montserratlight"
                 android:text="Nombre:"
                 android:gravity="center"
