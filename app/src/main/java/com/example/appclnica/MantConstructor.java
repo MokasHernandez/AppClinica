@@ -10,10 +10,10 @@ public class MantConstructor {
     private String tipo;
     private String empresa;
     private String fecha;
-    private int mantenimiento;
+    private String mantenimiento;
 
 
-    public MantConstructor(int id,String tipo, String sucursal, String area, String nombre, String empresa, String fecha) {
+    public MantConstructor(int id,String tipo, String sucursal, String area, String nombre, String empresa, String fecha,String mantenimiento) {
         this.id = id;
         this.sucursal = sucursal;
         this.area = area;
@@ -52,5 +52,5 @@ public class MantConstructor {
         return fecha;
     }
 
-    public int getMantenimiento () { return mantenimiento;   }
+    public String getMantenimiento () { return mantenimiento;   }
 }

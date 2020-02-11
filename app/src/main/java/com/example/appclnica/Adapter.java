@@ -48,7 +48,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
          View view=LayoutInflater.from( parent.getContext() ).inflate( R.layout.activitycard2,null,false );
          cdw1=(CardView)view.findViewById( R. id.cardView);
          expandableView =view.findViewById( R.id.expandableView );
-       /* btn= view.findViewById( R.id.BTNARROW );
+       btn= view.findViewById( R.id.BTNARROW );
         btn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,15 +62,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
                     btn.setBackgroundResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
                 }
             }
-        } );*/
+        } );
         return new ViewHolder( view );
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MantConstructor
-                mants =
-                ListMant.get( position );
+        MantConstructor mants = ListMant.get( position );
         /**************Texview 1*************************/
         holder.name.setText( mants.getNombre() );
         holder.tipo.setText( mants.getTipo() );
@@ -82,7 +80,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         holder.sucursal.setText( mants.getSucursal() );
         holder.empresa.setText( mants.getEmpresa() );
         holder.area.setText( mants.getArea() );
-
+        holder.mantenimiento.setText( mants.getMantenimiento());
         /**************Textview 2*******************************/
         /**************Color Textview*******************************/
         holder.name.setTextColor( Color.BLACK );

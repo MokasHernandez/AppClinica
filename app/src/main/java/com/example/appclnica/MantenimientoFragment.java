@@ -84,12 +84,14 @@ public class MantenimientoFragment extends Fragment {
                                 JSONObject mants=array.getJSONObject( i );
                                 ListMant.add(new MantConstructor(
                                         mants.getInt( "id_equipo" ),
-                                        mants.getString( "tipo_mant" )+" " +":"+" "+ mants.getString("id_equipo"),
-                                        mants.getString( "sucursal" )+" " +":"+" "+ mants.getString("id_equipo"),
-                                        mants.getString( "area" )+" " +":"+" "+ mants.getString("id_equipo"),
-                                        mants.getString( "nombre" )+" " +":"+" "+ mants.getString("id_equipo"),
-                                        mants.getString( "empresa_mant" )+" " +":"+" "+ mants.getString("id_equipo"),
-                                        mants.getString( "fecha" )+" " +":"+" "+ mants.getString("id_equipo")
+                                        mants.getString( "tipo_mant" ),
+                                        mants.getString( "sucursal" ),
+                                        mants.getString( "area" ),
+                                        mants.getString( "nombre" ),
+                                        mants.getString( "empresa_mant" ),
+                                        mants.getString( "fecha" ),
+                                        mants.getString("costoRefacciones" )+" " +":"+" "+ mants.getString("id_equipo")
+
 
 
                                 ) );
