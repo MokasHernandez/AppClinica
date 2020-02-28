@@ -26,8 +26,7 @@ public class AlmacenFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_almacen, container, false);
 
-        btnEntrada = root.findViewById(R.id.btnEnt);
-        btnSalida = root.findViewById(R.id.btnSal);
+
         btnInicio = root.findViewById(R.id.btnInicio);
         btnFin = root.findViewById(R.id.btnFin);
         Prueba = root.findViewById(R.id.text_tools);
