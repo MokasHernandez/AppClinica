@@ -18,9 +18,6 @@ public class AlmacenFragment extends Fragment {
     private TextView Prueba;
     private Button btnEntrada;
     private Button btnSalida;
-    private Button btnInicio;
-    private Button btnFin;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,8 +25,6 @@ public class AlmacenFragment extends Fragment {
 
         btnEntrada = root.findViewById(R.id.btnEnt);
         btnSalida = root.findViewById(R.id.btnSal);
-        btnInicio = root.findViewById(R.id.btnInicio);
-        btnFin = root.findViewById(R.id.btnFin);
         Prueba = root.findViewById(R.id.text_tools);
 
         Prueba.setText("Módulo de Almacén");
@@ -47,13 +42,6 @@ public class AlmacenFragment extends Fragment {
             public void onClick(View v) {
                 Intent Salida = new Intent(getActivity().getApplicationContext(), ActivityAlmacenS.class);
                 startActivity(Salida);
-            }
-        });
-
-        btnInicio.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Llamada();
             }
         });
 

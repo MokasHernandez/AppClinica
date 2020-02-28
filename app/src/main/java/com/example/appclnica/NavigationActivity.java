@@ -2,6 +2,7 @@ package com.example.appclnica;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class NavigationActivity extends AppCompatActivity {
@@ -30,11 +32,16 @@ public class NavigationActivity extends AppCompatActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navigationView.getMenu().findItem(R.id.nav_mantenimiento).setVisible(false);
+        navigationView.getMenu().findItem(R.id.nav_unidadesa).setVisible(false);
+        navigationView.getMenu().findItem(R.id.nav_qr).setVisible(false);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_qr,
-                R.id.nav_mantenimiento)
+                R.id.nav_mantenimiento, R.id.nav_unidadesa)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

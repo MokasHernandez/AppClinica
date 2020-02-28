@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo2">
+
     <TextView
         android:id="@+id/text_tools"
         android:layout_width="match_parent"
@@ -24,70 +25,30 @@
         android:id="@+id/btnSal"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="56dp"
         android:background="@drawable/btn_uno"
         android:backgroundTint="@color/colorHTDSAA"
         android:text="Salida"
         android:textColor="@color/icons"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_tools" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_tools"
+        app:layout_constraintVertical_bias="0.605" />
 
     <Button
         android:id="@+id/btnEnt"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="16dp"
         android:background="@drawable/btn_uno"
         android:backgroundTint="@color/colorHTDSAA"
         android:text="Entrada"
         android:textColor="@color/icons"
-        app:layout_constraintEnd_toStartOf="@+id/btnSal"
-        app:layout_constraintHorizontal_bias="0.252"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_tools"/>
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="16dp"
-        android:text="Aplica Reactivos"
-        app:layout_constraintBottom_toTopOf="@+id/btnInicio"
+        app:layout_constraintBottom_toTopOf="@+id/btnSal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnFin"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="56dp"
-        android:background="@drawable/btn_uno"
-        android:backgroundTint="@color/colorHTDSAA"
-        android:text="Fin"
-        android:textColor="@color/icons"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSal" />
-
-    <Button
-        android:id="@+id/btnInicio"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="48dp"
-        android:background="@drawable/btn_uno"
-        android:backgroundTint="@color/colorHTDSAA"
-        android:text="Inicio"
-        android:textColor="@color/icons"
-        app:layout_constraintEnd_toStartOf="@+id/btnFin"
-        app:layout_constraintHorizontal_bias="0.373"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEnt" />
+        app:layout_constraintTop_toBottomOf="@+id/text_tools"
+        app:layout_constraintVertical_bias="0.581" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

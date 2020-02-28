@@ -88,7 +88,7 @@ public class MantenimientoFragment extends Fragment {
                                         mants.getString( "sucursal" )+" " +":"+" "+ mants.getString("id_equipo"),
                                         mants.getString( "area" )+" " +":"+" "+ mants.getString("id_equipo"),
                                         mants.getString( "nombre" )+" " +":"+" "+ mants.getString("id_equipo"),
-                                        mants.getString( "empresa" ),
+                                        mants.getString( "tipo_mant" ),
                                         mants.getString( "fecha" )+" " +":"+" "+ mants.getString("id_equipo")
 
                                 ) );
