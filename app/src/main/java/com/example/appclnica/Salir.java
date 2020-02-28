@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.appclnica.MainActivity;
 import com.example.appclnica.R;
+import com.example.appclnica.ui.home.HomeFragment;
 
 public class Salir extends Fragment {
     @Nullable
@@ -24,6 +25,9 @@ public class Salir extends Fragment {
         Intent intent = new Intent(getContext(),MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.contador = 0;
 
         return super.onCreateView(inflater, container, savedInstanceState);
     }

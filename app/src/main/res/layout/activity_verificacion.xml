@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo2"
-    tools:context=".ActivityAlmacenS">
+    tools:context=".ActivityVerificacion">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
+        android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -17,98 +17,71 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Salida Producto"
+        app:title="Verificación Pedido"
         app:titleTextColor="@color/icons"/>
 
+    <TextView
+        android:id="@+id/lbPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/montserratlight"
+        android:text="Número Pedido:"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+
+    <TextView
+        android:id="@+id/lbFolioS"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/montserratlight"
+        android:text="Folio Salida:"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbPedido" />
+
     <Spinner
-        android:id="@+id/spinnerNum_P"
+        android:id="@+id/spinnerPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/txt"
+        android:textColor="@color/colorHTDSN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.313"
+        app:layout_constraintStart_toEndOf="@+id/lbPedido"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+
+    <Spinner
+        android:id="@+id/spinnerFolioS"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/txt"
         android:textColor="@color/colorHTDSN"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.61"
-        app:layout_constraintStart_toEndOf="@+id/lbNum_Ped"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
-
-    <Spinner
-        android:id="@+id/spinnerArea"
-        android:layout_width="258dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/txt"
-        android:textColor="@color/colorHTDSN"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.243"
-        app:layout_constraintStart_toEndOf="@+id/lbArea"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerUnidad" />
-
-    <Spinner
-        android:id="@+id/spinnerUnidad"
-        android:layout_width="227dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/txt"
-        android:textColor="@color/colorHTDSN"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.347"
-        app:layout_constraintStart_toEndOf="@+id/lbUdn"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerNum_P" />
-
-    <TextView
-        android:id="@+id/lbNum_Ped"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/montserratlight"
-        android:gravity="center"
-        android:text="Número de Pedido:"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
-
-    <TextView
-        android:id="@+id/lbUdn"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/montserratlight"
-        android:gravity="center"
-        android:text="Unidad:"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbNum_Ped" />
-
-    <TextView
-        android:id="@+id/lbArea"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/montserratlight"
-        android:gravity="center"
-        android:text="Área:"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbUdn" />
+        app:layout_constraintHorizontal_bias="0.361"
+        app:layout_constraintStart_toEndOf="@+id/lbFolioS"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPedido" />
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTodos">
+        app:layout_constraintTop_toBottomOf="@+id/btnRegistrar">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -120,7 +93,7 @@
                 android:orientation="vertical">
 
                 <TableLayout
-                    android:id="@+id/tblPro"
+                    android:id="@+id/tblSalidas"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -142,22 +115,21 @@
                 </TableLayout>
             </LinearLayout>
         </HorizontalScrollView>
-
     </ScrollView>
 
     <Button
-        android:id="@+id/btnTodos"
-        android:layout_width="150dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="15dp"
+        android:id="@+id/btnRegistrar"
+        android:layout_width="108dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_uno"
         android:backgroundTint="@color/boton"
         android:gravity="center"
-        android:text="Agregar Todos"
+        android:text="Registrar"
         android:textColor="@color/icons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintHorizontal_bias="0.907"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerArea" />>
+        app:layout_constraintTop_toBottomOf="@+id/spinnerFolioS" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

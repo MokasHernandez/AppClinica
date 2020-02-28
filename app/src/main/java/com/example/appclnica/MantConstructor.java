@@ -24,6 +24,9 @@ public class MantConstructor {
         this.mantenimiento = mantenimiento;
     }
 
+    public MantConstructor(int id_equipo, String s, String s1, String s2, String s3, String empresa, String s4) {
+    }
+
     public int getId() {
         return id;
     }
