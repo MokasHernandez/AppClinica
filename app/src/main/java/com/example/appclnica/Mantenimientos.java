@@ -35,6 +35,7 @@ public class Mantenimientos extends AppCompatActivity {
     QRInfoFragment QRInfoFragment =new QRInfoFragment();
     String B;
     String IDQR2= QRInfoFragment.IDQR;
+    String Az="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,26 @@ public class Mantenimientos extends AppCompatActivity {
         EDTFECHA=(EditText)findViewById( R.id.EDTFECHA );
         EDTDFALLA =(EditText)findViewById(R.id.EDTDFALLA);
         EDTEMPRESA.requestFocus();
+        CheckCo.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(CheckCo.isChecked()){
+                    Az="correctivo";
+                    CheckPre.setVisibility( View.INVISIBLE );
+                }else if(CheckCo.isChecked()==false)
+                {CheckPre.setVisibility( View.VISIBLE );}
+            }
+        } );
+        CheckPre.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(CheckPre.isChecked()){
+                    Az="preventivo";
+                    CheckCo.setVisibility( View.INVISIBLE );
+                }else if(CheckPre.isChecked()==false)
+                {CheckCo.setVisibility( View.VISIBLE );}
+            }
+        } );
 
         Calendar calendar=Calendar.getInstance();
         final int Year=calendar.get( Calendar.YEAR );
@@ -93,9 +114,14 @@ public class Mantenimientos extends AppCompatActivity {
                 }else if(!EDTEMPRESA.getText().toString().isEmpty()&&!EDTDFALLA.getText().toString().isEmpty()&&!EDTFECHA.getText().toString().isEmpty()) {
                     ADDMANT( "https://asesoresconsultoreslabs.com/asesores/App_Android/AddMant.php" );
                     EDTEMPRESA.requestFocus();
+                    CheckPre.setChecked( false );
+                    CheckCo.setChecked( false );
+                    CheckPre.setVisibility( View.VISIBLE );
+                    CheckCo.setVisibility( View.VISIBLE );
                     EDTEMPRESA.setText( " " );
                     EDTDFALLA.setText( " " );
                     EDTFECHA.setText( " " );
+
                 }
             }
         } );
@@ -118,17 +144,6 @@ public class Mantenimientos extends AppCompatActivity {
             protected Map<String,String> getParams() throws AuthFailureError{
                 Map<String,String> parametros=new HashMap<String, String>( );
                 String.valueOf(EDTFECHA);
-                String Az="";
-
-                if(CheckCo.isChecked()){
-                     Az="correctivo";
-                   /* EDTIPOM.setText( Az );*/
-                }
-                else if (CheckPre.isChecked()){
-                    Az="preventivo";
-                   /* EDTIPOM.setText( Az );*/
-                }
-
                 parametros.put("tipo_mant",Az);
                 parametros.put( "empresa_mant",EDTEMPRESA.getText().toString());
                 parametros.put( "fecha", EDTFECHA.getText().toString());
