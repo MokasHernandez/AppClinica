@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -15,20 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityInicioFinQR">
-
-        </activity>
-        <activity android:name=".ActivityVerificacion"></activity>
-        <activity android:name=".ActivityAlmacenS">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ActivityContadorQR"></activity>
-        <activity android:name=".ActivityAlmacenE">
-        </activity>
+        <activity android:name=".MainQR2"></activity>
+        <activity android:name=".Reportes" />
+        <activity android:name=".ActivityAlmacenS" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".ActivityAlmacenE" />
         <activity android:name=".Mantenimientos" />
         <activity
             android:name=".ActivityRegistro"
@@ -61,6 +53,11 @@
             android:resource="@string/default_notification_channel_id" />
 
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

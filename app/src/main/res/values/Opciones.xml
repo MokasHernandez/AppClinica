@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="Combo1">
+        <item>Seleccione</item>
+        <item>Falló alas 24 Hrs.</item>
+        <item>Falló alas 48 Hrs.</item>
+        <item>No Falló</item>
+    </string-array>
+
+</resources>

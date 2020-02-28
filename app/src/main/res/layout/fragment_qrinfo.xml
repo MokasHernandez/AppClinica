@@ -2,27 +2,45 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+    android:background="@drawable/fondo2"
   tools:context=".QRInfoFragment">
 
   <ScrollView
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent"
+      android:verticalScrollbarPosition="left"
+      tools:layout_editor_absoluteX="16dp"
+      tools:layout_editor_absoluteY="0dp">
+
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:id="@+id/CTL3"
+          android:paddingTop="20dp"
+          android:paddingRight="20dp"
+          android:paddingLeft="20dp"
+          android:paddingEnd="20dp"
+          android:layout_width="match_parent"
+          android:layout_height="400dp"
+          android:background="@color/Constrain">
       <TableLayout
           android:id="@+id/Table"
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent">
+          android:background="@drawable/table"
+          android:layout_width="match_parent"
+          android:layout_height="350dp"
+          android:gravity="center_horizontal"
+          android:paddingLeft="30dp"
+          android:paddingRight="20dp"
+          android:paddingEnd="20dp"
+          android:paddingTop="20dp"
+         >
 
-        <TableRow
-            android:id="@+id/tbr1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal" />
       </TableLayout>
+      </androidx.constraintlayout.widget.ConstraintLayout>
     </HorizontalScrollView>
+
   </ScrollView>
 </LinearLayout>

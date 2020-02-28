@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -30,10 +31,9 @@ public class Mantenimientos extends AppCompatActivity {
 
     private CheckBox CheckCo,CheckPre;
     private Button BTNADD;
-    private EditText EDTIPOM,EDTEMPRESA,EDTFECHA,EDTHORA,EDTEQUIPO,EDTCOSTOM,EDTDFALLA,EDTREFACC;
+    private EditText EDTEMPRESA,EDTFECHA;
     DatePickerDialog.OnDateSetListener setListener;
     QRInfoFragment QRInfoFragment =new QRInfoFragment();
-    String B;
     String IDQR2= QRInfoFragment.IDQR;
     String Az="";
 
@@ -48,11 +48,27 @@ public class Mantenimientos extends AppCompatActivity {
         BTNADD=(Button)findViewById( R.id.BTNADD );
         EDTEMPRESA=(EditText)findViewById( R.id.EDTEMPRESA );
         EDTFECHA=(EditText)findViewById( R.id.EDTFECHA );
-        EDTDFALLA =(EditText)findViewById(R.id.EDTDFALLA);
         EDTEMPRESA.requestFocus();
         CheckCo.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(CheckCo.isChecked()&&CheckPre.isChecked()){
+                    Toast.makeText( getApplicationContext(), "No es posible ambas opciones.", Toast.LENGTH_SHORT ).show();
+                    CheckPre.setVisibility( View.VISIBLE);
+                    CheckCo.setVisibility( View.VISIBLE );
+                    CheckCo.setChecked( false );
+                    CheckPre.setChecked( false );
+                    CheckPre.setEnabled( false );
+                    CheckCo.setEnabled(false);
+                    new Handler().postDelayed( new Runnable() {
+                        @Override
+                        public void run() {
+                            CheckCo.setEnabled(true);
+                            CheckPre.setEnabled( true );
+                        }
+                    },3000);
+
+                }
                 if(CheckCo.isChecked()){
                     Az="correctivo";
                     CheckPre.setVisibility( View.INVISIBLE );
@@ -63,6 +79,25 @@ public class Mantenimientos extends AppCompatActivity {
         CheckPre.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(CheckCo.isChecked()&&CheckPre.isChecked()){
+                    Toast.makeText( getApplicationContext(), "No es posible ambas opciones.", Toast.LENGTH_SHORT ).show();
+                    CheckPre.setVisibility( View.VISIBLE);
+                    CheckCo.setVisibility( View.VISIBLE );
+                    CheckCo.setChecked( false );
+                    CheckPre.setChecked( false );
+                    CheckPre.setEnabled( false );
+                    CheckCo.setEnabled(false);
+                    BTNADD.setEnabled( false );
+                    new Handler().postDelayed( new Runnable() {
+                        @Override
+                        public void run() {
+                            CheckCo.setEnabled(true);
+                            CheckPre.setEnabled( true );
+                            BTNADD.setEnabled( true );
+                        }
+                    },3000);
+
+                }
                 if(CheckPre.isChecked()){
                     Az="preventivo";
                     CheckCo.setVisibility( View.INVISIBLE );
@@ -106,20 +141,19 @@ public class Mantenimientos extends AppCompatActivity {
         BTNADD.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( EDTEMPRESA.getText().toString().isEmpty()&&EDTDFALLA.getText().toString().isEmpty()&&EDTFECHA.getText().toString().isEmpty())
+                if( EDTEMPRESA.getText().toString().isEmpty()&&EDTFECHA.getText().toString().isEmpty())
                 {
                     EDTEMPRESA.setError( "Favor de Llenar Campo" );
                     EDTFECHA.setError( "Favor de Llenar Campo" );
-                    EDTDFALLA.setError( "Favor de Llenar Campo" );
-                }else if(!EDTEMPRESA.getText().toString().isEmpty()&&!EDTDFALLA.getText().toString().isEmpty()&&!EDTFECHA.getText().toString().isEmpty()) {
+
+                }else if(!EDTEMPRESA.getText().toString().isEmpty()&& !EDTFECHA.getText().toString().isEmpty()) {
                     ADDMANT( "https://asesoresconsultoreslabs.com/asesores/App_Android/AddMant.php" );
-                    EDTEMPRESA.requestFocus();
+                    CheckPre.requestFocus();
                     CheckPre.setChecked( false );
                     CheckCo.setChecked( false );
                     CheckPre.setVisibility( View.VISIBLE );
                     CheckCo.setVisibility( View.VISIBLE );
                     EDTEMPRESA.setText( " " );
-                    EDTDFALLA.setText( " " );
                     EDTFECHA.setText( " " );
 
                 }
@@ -148,7 +182,6 @@ public class Mantenimientos extends AppCompatActivity {
                 parametros.put( "empresa_mant",EDTEMPRESA.getText().toString());
                 parametros.put( "fecha", EDTFECHA.getText().toString());
                 parametros.put( "equipo",IDQR2 );
-                parametros.put( "desc_falla",EDTDFALLA.getText().toString() );
                 return parametros;
             }
         };

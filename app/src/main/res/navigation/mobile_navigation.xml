@@ -9,9 +9,9 @@
         android:id="@+id/nav_home"
         android:name="com.example.appclnica.ui.home.HomeFragment"
         android:label="@string/menu_home" />
-    <activity
+    <fragment
         android:id="@+id/nav_qr"
-        android:name="com.example.appclnica.MainQR"
+        android:name="com.example.appclnica.MMFragment"
         android:label="@string/menu_qr" />
     <fragment
         android:id="@+id/nav_mantenimiento"
