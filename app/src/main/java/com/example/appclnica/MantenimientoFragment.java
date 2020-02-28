@@ -3,6 +3,7 @@ package com.example.appclnica;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,11 +37,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.IdentityHashMap;
 import java.util.List;
 
 public class MantenimientoFragment extends Fragment {
-    QRInfoFragment QRInfoFragment =new QRInfoFragment();
-    String IDMT= QRInfoFragment.IDQR;
+
+    QRInfoFragment qrInfoFragment =new QRInfoFragment();
+    String D=qrInfoFragment.IDQR;
+
     List<MantConstructor> ListMant;
     RecyclerView RCV;
     AlertDialog InfoMant;
@@ -48,6 +53,7 @@ public class MantenimientoFragment extends Fragment {
     RelativeLayout expandableView;
     CardView cd;
     TextView txtA,txtB,txtC,txtD,txtE,txtF,txtG;
+
 
 
     @Override
@@ -62,14 +68,10 @@ public class MantenimientoFragment extends Fragment {
         txtE=(TextView)view.findViewById( R.id.TXTPO );
         txtF=(TextView)view.findViewById( R.id.EDTEMPRE);
         txtG=(TextView)view.findViewById( R.id.TXTC );
-
-
         RCV.setHasFixedSize( true );
         RCV.setLayoutManager( new LinearLayoutManager( getContext(),LinearLayoutManager.VERTICAL,false ) );
         ListMant=new ArrayList<>(  );
-
-        Mostrar("https://asesoresconsultoreslabs.com/asesores/App_Android/GetMant.php");
-        /*MOSTRAR2("https://asesoresconsultoreslabs.com/asesores/App_Android/GetMant.php");*/
+        Mostrar("https://asesoresconsultoreslabs.com/asesores/App_Android/GetMant.php?id=" + D + "");
         return  view;
     }
 
@@ -91,9 +93,6 @@ public class MantenimientoFragment extends Fragment {
                                         mants.getString( "empresa_mant" ),
                                         mants.getString( "fecha" ),
                                         mants.getString("costoRefacciones" )+" " +":"+" "+ mants.getString("id_equipo")
-
-
-
                                 ) );
                                 /*Toast.makeText( getActivity().getApplicationContext(),mants.getString( "id_equipo" ),Toast.LENGTH_SHORT ).show();*/
                             }
@@ -122,7 +121,9 @@ public class MantenimientoFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_status) {
+
             goToAttract();
+
         }
         return true;
     }
@@ -131,5 +132,24 @@ public class MantenimientoFragment extends Fragment {
     {
         Intent intent = new Intent(getActivity().getApplication(), Mantenimientos.class);
         startActivity(intent);
+    }
+
+    private void ShowDialog(){
+       AlertDialog.Builder alert;
+       if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+           alert=new AlertDialog.Builder( getActivity().getApplicationContext(),android.R.style.Theme_Material_Dialog_Alert );
+       }else{
+           alert= new AlertDialog.Builder( getActivity().getApplicationContext() );
+
+       }
+       LayoutInflater inflater=getLayoutInflater();
+       View view =inflater.inflate( R.layout.activity_mantenimientos,null );
+       alert.setView( view );
+       alert.setCancelable( false );
+
+       final AlertDialog dialog =alert.create();
+       dialog.getWindow().requestFeature( Window.FEATURE_NO_TITLE );
+       dialog.show();
+
     }
 }

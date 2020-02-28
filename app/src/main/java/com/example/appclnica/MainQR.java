@@ -58,6 +58,7 @@ public class MainQR extends AppCompatActivity implements ZXingScannerView.Result
         public void handleResult(Result rawResult) {
         if (rawResult.toString().length() <= 4) {
             Intent I = new Intent(MainQR.this, MainActivityTable.class);
+
             I.putExtra("ID", rawResult.toString());
             I.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, I, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -68,6 +69,7 @@ public class MainQR extends AppCompatActivity implements ZXingScannerView.Result
             A.putExtra("IDR", rawResult.toString());
             startActivity(A);
         }
+
     }
 };
 
