@@ -44,6 +44,7 @@ public class QRInfoFragment extends Fragment {
 
         TraerEquipo( "https://asesoresconsultoreslabs.com/asesores/App_Android/ConsultaB.php?id=" + IDQR + "");
         tableLayout = view.findViewById( R.id.Table );
+
         return  view;
     }
 
@@ -94,27 +95,27 @@ public class QRInfoFragment extends Fragment {
                             String S = InfoEquipo.getString( "fecha_instalacion" );
                             String W = InfoEquipo.getString( "prot_instalacion" );
                             String X = InfoEquipo.getString( "fecha_inicio_operacion" );
-                            rows.add( new String[]{"Id","  ", A} );
-                            rows.add( new String[]{"Nombre","  ", B} );
-                            rows.add( new String[]{"Marca","  ", C} );
-                            rows.add( new String[]{"Modelo","  ", D} );
-                            rows.add( new String[]{"Área","  ", E} );
-                            rows.add( new String[]{"Instrumento","  ", F} );
-                            rows.add( new String[]{"Identificador","  ", G} );
-                            rows.add( new String[]{"Nomenclatura","  ", H} );
-                            rows.add( new String[]{"N° Serie","  ", I} );
-                            rows.add( new String[]{"Proveedor","  ", J} );
-                            rows.add( new String[]{"Frec. Mantenimiento","  ", K} );
-                            rows.add( new String[]{"Responsable de Equipo","  ", L} );
-                            rows.add( new String[]{"Sucursal","  ", M} );
-                            rows.add( new String[]{"Costo Mantenimiento","  ", V} );
-                            rows.add( new String[]{"Empresa","  ", O} );
-                            rows.add( new String[]{"Teléfono","  ", P} );
-                            rows.add( new String[]{"E-mail","  ", Q} );
-                            rows.add( new String[]{"Manual","  ", R} );
-                            rows.add( new String[]{"Fecha Instalación","  ", S} );
-                            rows.add( new String[]{"P.Instalación","  ", W} );
-                            rows.add( new String[]{"Fecha Inicio Operación","  ", X} );
+                            rows.add( new String[]{"Id :","  ", A} );
+                            rows.add( new String[]{"Nombre :","  ", B} );
+                            rows.add( new String[]{"Marca :","  ", C} );
+                            rows.add( new String[]{"Modelo :","  ", D} );
+                            rows.add( new String[]{"Área :","  ", E} );
+                            rows.add( new String[]{"Instrumento :","  ", F} );
+                            rows.add( new String[]{"Identificador :","  ", G} );
+                            rows.add( new String[]{"Nomenclatura :","  ", H} );
+                            rows.add( new String[]{"N° Serie :","  ", I} );
+                            rows.add( new String[]{"Proveedor :","  ", J} );
+                            rows.add( new String[]{"Frec. Mantenimiento :","  ", K} );
+                            rows.add( new String[]{"Responsable de Equipo :","  ", L} );
+                            rows.add( new String[]{"Sucursal :","  ", M} );
+                            rows.add( new String[]{"Costo Mantenimiento :","  ", V} );
+                            rows.add( new String[]{"Empresa :","  ", O} );
+                            rows.add( new String[]{"Teléfono :","  ", P} );
+                            rows.add( new String[]{"E-mail :","  ", Q} );
+                            rows.add( new String[]{"Manual :","  ", R} );
+                            rows.add( new String[]{"Fecha Instalación :","  ", S} );
+                            rows.add( new String[]{"P.Instalación :","  ", W} );
+                            rows.add( new String[]{"Fecha Inicio Operación :","  ", X} );
                             TableDynamic tableDynamic = new TableDynamic( tableLayout, getActivity().getApplicationContext() );
                             tableDynamic.addHeader( header );
                             tableDynamic.addData( rows );

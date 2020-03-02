@@ -23,8 +23,8 @@ public class AlmacenFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_almacen, container, false);
 
-        btnEntrada = root.findViewById(R.id.btnEnt);
-        btnSalida = root.findViewById(R.id.btnSal);
+        btnEntrada = root.findViewById(R.id.btnEntrada);
+        btnSalida = root.findViewById(R.id.btnSalida);
         Prueba = root.findViewById(R.id.text_tools);
 
         Prueba.setText("Módulo de Almacén");
@@ -45,12 +45,7 @@ public class AlmacenFragment extends Fragment {
             }
         });
 
+
         return root;
-    }
-
-
-    public void Llamada(){
-        Intent QR = new Intent(getActivity().getApplicationContext(), MainQR.class);
-        startActivity(QR);
     }
 }

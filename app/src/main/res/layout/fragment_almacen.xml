@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo2">
-
     <TextView
         android:id="@+id/text_tools"
         android:layout_width="match_parent"
@@ -22,33 +21,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnSal"
+        android:id="@+id/btnSalida"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/btn_uno"
         android:backgroundTint="@color/colorHTDSAA"
         android:text="Salida"
         android:textColor="@color/icons"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_tools"
-        app:layout_constraintVertical_bias="0.605" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEntrada" />
 
     <Button
-        android:id="@+id/btnEnt"
+        android:id="@+id/btnEntrada"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/btn_uno"
         android:backgroundTint="@color/colorHTDSAA"
         android:text="Entrada"
         android:textColor="@color/icons"
-        app:layout_constraintBottom_toTopOf="@+id/btnSal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_tools"
-        app:layout_constraintVertical_bias="0.581" />
+        app:layout_constraintVertical_bias="0.087" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

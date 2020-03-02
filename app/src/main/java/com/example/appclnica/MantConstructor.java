@@ -13,7 +13,7 @@ public class MantConstructor {
     private String mantenimiento;
 
 
-    public MantConstructor(int id,String tipo, String sucursal, String area, String nombre, String empresa, String fecha,String mantenimiento) {
+    public MantConstructor(int id, String tipo, String sucursal, String area, String nombre, String empresa, String fecha) {
         this.id = id;
         this.sucursal = sucursal;
         this.area = area;
@@ -24,7 +24,7 @@ public class MantConstructor {
         this.mantenimiento = mantenimiento;
     }
 
-    public MantConstructor(int id_equipo, String s, String s1, String s2, String s3, String empresa, String s4) {
+    public MantConstructor(int id_equipo, String s9, String s8, String s7, String s6, String string, String s5, String tipo_mant, String s, String s1, String s2, String s3, String empresa, String s4) {
     }
 
     public int getId() {
