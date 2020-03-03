@@ -70,15 +70,17 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:fillViewport="true"
         android:descendantFocusability="beforeDescendants"
+        android:fillViewport="true"
         android:focusableInTouchMode="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ConsLay2"
@@ -90,6 +92,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbarMenu1">
 
+            <Spinner
+                android:id="@+id/spinnerPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/txt"
+                android:textColor="@color/colorHTDSN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.223"
+                app:layout_constraintStart_toEndOf="@+id/txtPedido"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinnerProvee"
+                android:layout_width="240dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/txt"
+                android:textColor="@color/colorHTDSN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.45"
+                app:layout_constraintStart_toEndOf="@+id/lbProvee"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerPedido" />
+
+            <TextView
+                android:id="@+id/txtPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserratlight"
+                android:text="Número de pedido:"
+                android:textColor="@color/colorHTDSN"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.063"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/lbIVA"
                 android:layout_width="wrap_content"
@@ -100,87 +142,9 @@
                 android:textColor="@color/colorHTDSN"
                 android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.094"
+                app:layout_constraintHorizontal_bias="0.046"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lbFactura" />
-
-            <Spinner
-                android:id="@+id/spinnerPedido"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/txt"
-                android:textColor="@color/colorHTDSN"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.69"
-                app:layout_constraintStart_toEndOf="@+id/txtPedido"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Spinner
-                android:id="@+id/spinnerOrdenC"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/txt"
-                android:textColor="@color/colorHTDSN"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.626"
-                app:layout_constraintStart_toEndOf="@+id/lbOrden"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerProvee" />
-
-            <Spinner
-                android:id="@+id/spinnerProvee"
-                android:layout_width="217dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/txt"
-                android:textColor="@color/colorHTDSN"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.354"
-                app:layout_constraintStart_toEndOf="@+id/lbProvee"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerPedido" />
-
-            <TextView
-                android:id="@+id/txtPedido"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/montserratlight"
-                android:text="Número de pedido:"
-                android:textColor="@color/colorHTDSN"
-                android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.132"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/lbProvee"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserratlight"
-                android:text="Proveedor:"
-                android:textColor="@color/colorHTDSN"
-                android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.108"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPedido" />
-
-            <TextView
-                android:id="@+id/lbOrden"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserratlight"
-                android:text="Orden de compra:"
-                android:textColor="@color/colorHTDSN"
-                android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.129"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbProvee" />
 
             <TextView
                 android:id="@+id/lbFactura"
@@ -192,9 +156,75 @@
                 android:textColor="@color/colorHTDSN"
                 android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.102"
+                app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lbOrden" />
+
+            <TextView
+                android:id="@+id/lbOrden"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserratlight"
+                android:text="Orden de compra:"
+                android:textColor="@color/colorHTDSN"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.061"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbDivision" />
+
+            <TextView
+                android:id="@+id/lbDivision"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserratlight"
+                android:text="Division:"
+                android:textColor="@color/colorHTDSN"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.047"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbProvee" />
+
+            <TextView
+                android:id="@+id/lbProvee"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserratlight"
+                android:text="Proveedor:"
+                android:textColor="@color/colorHTDSN"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPedido" />
+
+            <Spinner
+                android:id="@+id/spinnerOrdenC"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/txt"
+                android:textColor="@color/colorHTDSN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.251"
+                app:layout_constraintStart_toEndOf="@+id/lbOrden"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerDivision" />
+
+            <Spinner
+                android:id="@+id/spinnerDivision"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/txt"
+                android:textColor="@color/colorHTDSN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.136"
+                app:layout_constraintStart_toEndOf="@+id/lbDivision"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerProvee" />
 
             <EditText
                 android:id="@+id/txtFactura"
@@ -264,6 +294,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="15dp"
                 android:focusableInTouchMode="true"
+                android:descendantFocusability="blocksDescendants"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

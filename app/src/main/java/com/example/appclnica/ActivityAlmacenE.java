@@ -52,16 +52,16 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
 
     public static EditText lote2, cad;
     private RequestQueue requestQueue;
-    private TextView lbProvee, lbOrden, lbFactura, lbIVA, lbMonto, lbIVATotal, lbMontoTotal;
+    private TextView lbProvee, lbOrden, lbFactura, lbIVA, lbMonto, lbIVATotal, lbMontoTotal, lbDivision;
     private EditText txtFactura, txtIVA;
     Button btnOrdenC, btnAgregarT;
-    Spinner SProveedor, SPedido, SOrden;
-    ArrayList<String> folioPedidos, proveedores, ordenesC, status;
+    Spinner SProveedor, SPedido, SOrden, SDivision;
+    ArrayList<String> folioPedidos, proveedores, ordenesC, status, divisones;
     ArrayList<String[]> nombres;
     ArrayList<Float> Totales;
     ArrayList<CheckBox> checkBoxes;
     TableLayout tablaProductos;
-    String orden, folioe, num_ent;
+    String orden, folioe, num_ent, provee;
     Boolean bandera = true;
     ScrollView scrollView;
     float TotalMonto;
@@ -88,10 +88,29 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         lbMonto = findViewById(R.id.lbMonto);
         lbIVATotal = findViewById(R.id.lbIVATotal);
         lbMontoTotal = findViewById(R.id.lbMontoTotal);
+        lbDivision = findViewById(R.id.lbDivision);
+        SDivision = findViewById(R.id.spinnerDivision);
 
         setSupportActionBar(toolbar);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+        lbProvee.setVisibility(View.INVISIBLE);
+        SProveedor.setVisibility(View.INVISIBLE);
+        lbOrden.setVisibility(View.INVISIBLE);
+        SOrden.setVisibility(View.INVISIBLE);
+        tablaProductos.setVisibility(View.INVISIBLE);
+        lbFactura.setVisibility(View.INVISIBLE);
+        txtFactura.setVisibility(View.INVISIBLE);
+        btnOrdenC.setVisibility(View.INVISIBLE);
+        lbIVA.setVisibility(View.INVISIBLE);
+        txtIVA.setVisibility(View.INVISIBLE);
+        btnAgregarT.setVisibility(View.INVISIBLE);
+        lbMontoTotal.setVisibility(View.GONE);
+        lbMonto.setVisibility(View.GONE);
+        lbIVATotal.setVisibility(View.GONE);
+        lbDivision.setVisibility(View.INVISIBLE);
+        SDivision.setVisibility(View.INVISIBLE);
 
         status = new ArrayList<String>();
         status.add("Aprobado");
@@ -128,7 +147,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     LlenarTextView("Costo Unitario  ", fila, 1);
                     LlenarTextView("Costo Total  ", fila, 1);
                     LlenarTextView("  ", fila, 1);
-                    LlenarTextView(" Descuento ", fila, 1);
+                    LlenarTextView(" Descuento \n % ", fila, 1);
                     LlenarTextView(" ", fila, 1);
                     LlenarTextView(" Estatus", fila, 1);
                     tablaProductos.addView(fila, 0);
@@ -236,41 +255,90 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     lbMontoTotal.setVisibility(View.GONE);
                     lbMonto.setVisibility(View.GONE);
                     lbIVATotal.setVisibility(View.GONE);
+                    lbDivision.setVisibility(View.INVISIBLE);
+                    SDivision.setVisibility(View.INVISIBLE);
                 }
                 break;
             }
             case R.id.spinnerProvee: {
-            if (position != 0){
-                tablaProductos.removeAllViews();
-                String provee = parent.getItemAtPosition(position).toString();
-                provee = provee.replace(" ", "%20").trim();
-                provee = provee.replace("&", "%26");
+                if (position != 0) {
+                    lbDivision.setVisibility(View.GONE);
+                    SDivision.setVisibility(View.GONE);
+                    tablaProductos.removeAllViews();
+                    provee = parent.getItemAtPosition(position).toString();
+                    provee = provee.replace(" ", "%20").trim();
+                    provee = provee.replace("&", "%26");
 
-                ordenesC = new ArrayList<String>();
-                ordenesC.add("-Seleccione-");
-                CargarDatos("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=2&orden="+ orden+ "&provee="+ provee, "folio_orden", ordenesC);
-                LlenarSpinners(ordenesC, SOrden);
+                    DivProvee(parent.getItemAtPosition(position).toString(), orden);
 
-                lbOrden.setVisibility(View.VISIBLE);
-                SOrden.setVisibility(View.VISIBLE);
+                    ordenesC = new ArrayList<String>();
+                    ordenesC.add("-Seleccione-");
+                    CargarDatos("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=2&tipo=1&orden=" + orden + "&provee=" + provee, "folio_orden", ordenesC);
+                    LlenarSpinners(ordenesC, SOrden);
 
-            }else{
-                tablaProductos.removeAllViews();
-                lbOrden.setVisibility(View.INVISIBLE);
-                SOrden.setVisibility(View.INVISIBLE);
-                tablaProductos.setVisibility(View.INVISIBLE);
-                lbFactura.setVisibility(View.INVISIBLE);
-                txtFactura.setVisibility(View.INVISIBLE);
-                btnOrdenC.setVisibility(View.INVISIBLE);
-                lbIVA.setVisibility(View.INVISIBLE);
-                txtIVA.setVisibility(View.INVISIBLE);
-                btnAgregarT.setVisibility(View.INVISIBLE);
-                lbMontoTotal.setVisibility(View.GONE);
-                lbMonto.setVisibility(View.GONE);
-                lbIVATotal.setVisibility(View.GONE);
-            }
+                    lbOrden.setVisibility(View.VISIBLE);
+                    SOrden.setVisibility(View.VISIBLE);
+
+                } else {
+                    lbDivision.setVisibility(View.GONE);
+                    SDivision.setVisibility(View.GONE);
+                    tablaProductos.removeAllViews();
+                    lbOrden.setVisibility(View.INVISIBLE);
+                    SOrden.setVisibility(View.INVISIBLE);
+                    tablaProductos.setVisibility(View.INVISIBLE);
+                    lbFactura.setVisibility(View.INVISIBLE);
+                    txtFactura.setVisibility(View.INVISIBLE);
+                    btnOrdenC.setVisibility(View.INVISIBLE);
+                    lbIVA.setVisibility(View.INVISIBLE);
+                    txtIVA.setVisibility(View.INVISIBLE);
+                    btnAgregarT.setVisibility(View.INVISIBLE);
+                    lbMontoTotal.setVisibility(View.GONE);
+                    lbMonto.setVisibility(View.GONE);
+                    lbIVATotal.setVisibility(View.GONE);
+                }
                 break;
             }
+            case R.id.spinnerDivision:{
+                if (position != 0){
+                    tablaProductos.removeAllViews();
+
+                    String division = parent.getItemAtPosition(position).toString();
+                    if (!division.equals("NORMAL")) {
+                        division = division.replace(" ", "%20").trim();
+                        division = division.replace("&", "%26");
+                    }else{
+                        division = "";
+                    }
+
+                    ordenesC = new ArrayList<String>();
+                    ordenesC.add("-Seleccione-");
+                    CargarDatos("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=2&tipo=2&orden=" + orden +
+                                    "&provee=" + provee + "&div=" + division, "folio_orden", ordenesC);
+                    LlenarSpinners(ordenesC, SOrden);
+
+                    lbOrden.setVisibility(View.VISIBLE);
+                    SOrden.setVisibility(View.VISIBLE);
+                }
+                else{
+
+                    tablaProductos.removeAllViews();
+                    lbOrden.setVisibility(View.INVISIBLE);
+                    SOrden.setVisibility(View.INVISIBLE);
+                    tablaProductos.setVisibility(View.INVISIBLE);
+                    lbFactura.setVisibility(View.INVISIBLE);
+                    txtFactura.setVisibility(View.INVISIBLE);
+                    btnOrdenC.setVisibility(View.INVISIBLE);
+                    lbIVA.setVisibility(View.INVISIBLE);
+                    txtIVA.setVisibility(View.INVISIBLE);
+                    btnAgregarT.setVisibility(View.INVISIBLE);
+                    lbMontoTotal.setVisibility(View.GONE);
+                    lbMonto.setVisibility(View.GONE);
+                    lbIVATotal.setVisibility(View.GONE);
+                }
+
+                break;
+            }
+
             case R.id.spinnerOrdenC:{
             if (position != 0){
                 txtFactura.setText("");
@@ -341,6 +409,8 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     try {
                         obj = response.getJSONObject(i);
                         if (obj != null) {
+
+                            DecimalFormat formato = new DecimalFormat("#,###,##0.00");
                             String clave = obj.getString("clave");
                             final String m = obj.getString("nombre");
                             final String can = obj.getString("cantidad_unidad");
@@ -365,6 +435,9 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                             Total[0] = (entrada * factor_uni * costo[0]);
                             Totales.add(Total[0]);
 
+                            float costoi = Float.parseFloat(costo_ind);
+                            float costot = Float.parseFloat(costo_tot);
+
                             final int[] numero2 = new int[1];
                             final CheckBox select = new CheckBox(getApplicationContext());
                             final EditText Descuento = new EditText(getApplicationContext());
@@ -384,9 +457,9 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                             LlenarTextView(uni_en, fila, 0);
                             LlenarTextView(uni_sa, fila, 0);
                             LlenarTextView(factor, fila, 0);
-                            Costo_Ind.setText(costo_ind);
-                            FormarEdit(Costo_Ind, fila, 0, "Des");
-                            LlenarTextView(costo_tot, fila, 0);
+                            Costo_Ind.setText("" + formato.format(costoi));
+                            FormarEdit(Costo_Ind, fila, 0, "Costo");
+                            LlenarTextView("" + formato.format(costot), fila, 0);
 
                             LlenarTextView("  ", fila, 1);
                             Descuento.setText("0");
@@ -457,6 +530,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                                     }
                                     Total[0] = (entrada * factor_uni * costo[0]);
                                     Totales.add(Total[0]);
+                                    a[6] = Costo_Ind.getText().toString();
                                     MostrarMontos();
                                 }
                             });
@@ -474,16 +548,23 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
 
                                 @Override
                                 public void afterTextChanged(Editable s) {
+                                    Totales.remove(Total[0]);
                                     if (Descuento.length() < 1) {
                                         numero2[0] = 0;
                                     }else{
                                         numero2[0] = Integer.parseInt(Descuento.getText().toString());
-                                        if (numero2[0] > 99){
+                                        if (numero2[0] > 99 || numero2[0] < 0){
                                             Descuento.setError("No válido");
                                             btnAgregarT.setVisibility(View.INVISIBLE);
-                                        }else{
+                                        }if (numero2[0] <= 99 && numero2[0] >= 0){
+                                            float nuevo = (float) (100 - numero2[0]) / 100;
+                                            costo[0] = Float.parseFloat(Costo_Ind.getText().toString());
+                                            costo[0] = nuevo * costo[0];
+                                            Total[0] = (entrada * factor_uni * costo[0]);
+                                            Totales.add(Total[0]);
                                             a[7] = Descuento.getText().toString();
                                             btnAgregarT.setVisibility(View.VISIBLE);
+                                            MostrarMontos();
                                         }
                                     }
                                 }
@@ -642,7 +723,10 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                 editText.setFocusable(false);
                 editText.setInputType(InputType.TYPE_DATETIME_VARIATION_DATE);
             }
-            else if(fondo == "Des"){
+            else if(fondo.equals("Des")){
+                editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+            }
+            else if(fondo.equals("Costo")){
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             }
         }else{
@@ -760,5 +844,46 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         lbMonto.setText("Monto: " + formato1.format(TotalMonto));
         lbIVATotal.setText("IVA Total: " + formato1.format(TotalMonto * 0.16));
         lbMontoTotal.setText("Monto Total: " + formato1.format(TotalMonto * 1.16));
+    }
+
+    private void DivProvee(final String proveedor, final String num_ped) {
+        StringRequest request = new StringRequest(Request.Method.POST,
+                "http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=17&tipo=1",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_SHORT).show();
+                        if (!response.equals("null")) {
+                            lbOrden.setVisibility(View.INVISIBLE);
+                            SOrden.setVisibility(View.INVISIBLE);
+
+                            String nprovee = provee.replace(" ", "%20").trim();
+                            nprovee = nprovee.replace("&", "%26");
+                            divisones = new ArrayList<>();
+                            divisones.add("-Seleccione-");
+                            divisones.add("NORMAL");
+                            CargarDatos("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=17&tipo=2&provee=" + nprovee
+                                    + "&orden=" + num_ped, "division", divisones);
+                            LlenarSpinners(divisones, SDivision);
+
+                            lbDivision.setVisibility(View.VISIBLE);
+                            SDivision.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("provee", proveedor);
+                parametros.put("num_pedido", num_ped);
+                return parametros;
+            }
+        };
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
     }
 }
