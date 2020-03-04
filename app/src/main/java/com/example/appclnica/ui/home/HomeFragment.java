@@ -42,10 +42,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     };
     private HomeViewModel homeViewModel;
     private RequestQueue requestQueue;
-    private String ID;
     private int total;
     public static int contador;
-    public static String filial;
+    public static String filial, ID;
     private static String Message;
     private NavigationView navigationView;
     private Spinner SUnidad;

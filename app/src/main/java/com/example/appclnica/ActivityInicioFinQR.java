@@ -3,10 +3,16 @@ package com.example.appclnica;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.Toast;
 
 
@@ -27,7 +33,8 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class ActivityInicioFinQR extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
-    String Tipo;
+    String Tipo, id_reac;
+    int cantidad, contador;
     ZXingScannerView scannerView;
 
     @Override
@@ -45,8 +52,14 @@ public class ActivityInicioFinQR extends AppCompatActivity implements ZXingScann
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             Tipo = bundle.getString("TipoUpdate");
+            if (Tipo == null) {
+                id_reac = bundle.getString("ID-Rea");
+                cantidad = Integer.parseInt(bundle.getString("Cantidad"));
+            }
         }
 
+        //zToast.makeText(getApplicationContext(), Tipo + ", " + id_reac + ", " + cantidad, Toast.LENGTH_SHORT).show();
+        contador = 0;
 
         Toolbar toolbar = findViewById(R.id.toolbar5);
         scannerView = findViewById(R.id.scannerIniFin);
@@ -62,7 +75,40 @@ public class ActivityInicioFinQR extends AppCompatActivity implements ZXingScann
         String uso = rawResult.toString();
         String id_seg = uso.substring(20);
         String id_rea = uso.substring(0, 11);
-        UpdateSeg(Tipo, id_seg, id_rea, HomeFragment.filial);
+        if (Tipo != null) {
+            UpdateSeg(Tipo, id_seg, id_rea, HomeFragment.filial, HomeFragment.ID);
+        }else{
+            if (id_reac.equals(id_rea)){
+                contador++;
+                if (contador == cantidad){
+                    new AlertDialog.Builder(this)
+                            .setTitle("Verificación")
+                            .setMessage("Ya ha completado el pedido")
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ActivityAlmacenS.QRPublic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.divider)));
+                                    ActivityAlmacenS.QRPublic.setEnabled(false);
+                                    onBackPressed();
+                                }
+                            })
+                            .setCancelable(false)
+                            .show();
+                }
+            }else{
+                new AlertDialog.Builder(this)
+                        .setTitle("Verificación")
+                        .setMessage("El producto no corresponde")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                onBackPressed();
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
+            }
+        }
         scannerView.setResultHandler(this);
         scannerView.startCamera();
     }
@@ -75,7 +121,7 @@ public class ActivityInicioFinQR extends AppCompatActivity implements ZXingScann
         return true;
     }
 
-    private void UpdateSeg(final String tipoupdate, final String id_seg, final String id_mat, final String unidad) {
+    private void UpdateSeg(final String tipoupdate, final String id_seg, final String id_mat, final String unidad, final String usuario) {
         StringRequest request = new StringRequest(Request.Method.POST,
                 "http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=16",
                 new Response.Listener<String>() {
@@ -96,6 +142,7 @@ public class ActivityInicioFinQR extends AppCompatActivity implements ZXingScann
                 parametros.put("id_seg", id_seg);
                 parametros.put("id_mat", id_mat);
                 parametros.put("unidad", unidad);
+                parametros.put("user", usuario);
 
                 return parametros;
             }

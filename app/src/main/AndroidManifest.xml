@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".ActivityContadorQR"></activity>
         <activity android:name=".ActivityAlmacenE">
+
         </activity>
         <activity android:name=".Mantenimientos" />
         <activity

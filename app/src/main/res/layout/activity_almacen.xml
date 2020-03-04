@@ -144,21 +144,49 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.046"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbFactura" />
+                app:layout_constraintTop_toBottomOf="@+id/lbTipoDoc" />
 
             <TextView
-                android:id="@+id/lbFactura"
+                android:id="@+id/lbTipoDoc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:fontFamily="@font/montserratlight"
-                android:text="Factura:"
                 android:textColor="@color/colorHTDSN"
                 android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbOrden" />
+                app:layout_constraintTop_toBottomOf="@+id/lbTiDoc" />
+
+            <EditText
+                android:id="@+id/txtTipoDoc"
+                android:layout_width="0dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/btnOrdenC"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/lbTipoDoc"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerTDoc" />
+
+            <Button
+                android:id="@+id/btnOrdenC"
+                android:layout_width="138dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/btn_uno"
+                android:backgroundTint="@color/boton"
+                android:gravity="center"
+                android:text="Agregar Orden Compra"
+                android:textColor="@color/icons"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerTDoc" />
 
             <TextView
                 android:id="@+id/lbOrden"
@@ -173,6 +201,20 @@
                 app:layout_constraintHorizontal_bias="0.061"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lbDivision" />
+
+            <TextView
+                android:id="@+id/lbTiDoc"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserratlight"
+                android:text="Tipo Documento:"
+                android:textColor="@color/colorHTDSN"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.065"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lbOrden" />
 
             <TextView
                 android:id="@+id/lbDivision"
@@ -210,9 +252,21 @@
                 android:background="@drawable/txt"
                 android:textColor="@color/colorHTDSN"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.251"
+                app:layout_constraintHorizontal_bias="0.191"
                 app:layout_constraintStart_toEndOf="@+id/lbOrden"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerDivision" />
+
+            <Spinner
+                android:id="@+id/spinnerTDoc"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/txt"
+                android:textColor="@color/colorHTDSN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.168"
+                app:layout_constraintStart_toEndOf="@+id/lbTiDoc"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerOrdenC" />
 
             <Spinner
                 android:id="@+id/spinnerDivision"
@@ -225,36 +279,6 @@
                 app:layout_constraintHorizontal_bias="0.136"
                 app:layout_constraintStart_toEndOf="@+id/lbDivision"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerProvee" />
-
-            <EditText
-                android:id="@+id/txtFactura"
-                android:layout_width="0dp"
-                android:layout_height="37dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:ems="10"
-                android:hint="Factura"
-                android:inputType="textPersonName"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/btnOrdenC"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/lbFactura"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerOrdenC" />
-
-            <Button
-                android:id="@+id/btnOrdenC"
-                android:layout_width="138dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/btn_uno"
-                android:backgroundTint="@color/boton"
-                android:gravity="center"
-                android:text="Agregar Orden Compra"
-                android:textColor="@color/icons"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerOrdenC" />
 
             <Button
                 android:id="@+id/btnAgregarT"
@@ -283,7 +307,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.032"
                 app:layout_constraintStart_toEndOf="@+id/lbIVA"
-                app:layout_constraintTop_toBottomOf="@+id/txtFactura" />
+                app:layout_constraintTop_toBottomOf="@+id/txtTipoDoc" />
 
             <HorizontalScrollView
                 android:id="@+id/HorizScroll"

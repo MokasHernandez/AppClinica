@@ -3,6 +3,8 @@ package com.example.appclnica;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -48,6 +50,7 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
     TableLayout tablaP;
     String unidada, orden, num_sal;
     Button btnAgT;
+    public static Button QRPublic;
     boolean bandera = true;
 
     @Override
@@ -267,10 +270,20 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
 
                             final EditText CanSurtir = new EditText(getApplicationContext());
                             final CheckBox select = new CheckBox(getApplicationContext());
+                            Button QRLectura = new Button(getApplicationContext());
+                            QRPublic = QRLectura;
 
                             select.setChecked(true);
                             fila.addView(select);
 
+                            QRLectura.setBackground(getResources().getDrawable(R.drawable.btn_uno));
+                            QRLectura.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.boton)));
+                            QRLectura.setTextColor(getResources().getColor(R.color.icons));
+                            QRLectura.setTextSize(14);
+                            QRLectura.setText("Leer QR");
+                            fila.addView(QRLectura);
+
+                            LlenarTextView(" ", fila, 1);
                             LlenarTextView(producto, fila, 2);
                             LlenarTextView("   ", fila, 1);
                             LlenarTextView(nombre, fila, 2);
@@ -319,6 +332,16 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
                                     }
                                 }
                             });
+
+                            QRLectura.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent nuevo = new Intent(getApplicationContext(), ActivityInicioFinQR.class);
+                                    nuevo.putExtra("ID-Rea", producto);
+                                    nuevo.putExtra("Cantidad" , CanSurtir.getText().toString());
+                                    startActivity(nuevo);
+                                }
+                            });
                         }
                     } catch (JSONException c) {
                         Toast.makeText(getApplicationContext(), c.getMessage(), Toast.LENGTH_SHORT).show();
@@ -364,6 +387,8 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         fila.setLayoutParams(lp);
 
+        LlenarTextView(" ", fila, 1);
+        LlenarTextView(" ", fila, 1);
         LlenarTextView(" ", fila, 1);
         LlenarTextView("Clave  ", fila, 1);
         LlenarTextView("   ", fila, 1);

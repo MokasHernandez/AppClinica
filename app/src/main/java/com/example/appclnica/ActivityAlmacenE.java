@@ -8,13 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -52,11 +50,11 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
 
     public static EditText lote2, cad;
     private RequestQueue requestQueue;
-    private TextView lbProvee, lbOrden, lbFactura, lbIVA, lbMonto, lbIVATotal, lbMontoTotal, lbDivision;
-    private EditText txtFactura, txtIVA;
+    private TextView lbProvee, lbOrden, lbFolioTiDoc, lbIVA, lbMonto, lbIVATotal, lbMontoTotal, lbDivision, lbTipoDoc;
+    private EditText txtFolioTiDoc, txtIVA;
     Button btnOrdenC, btnAgregarT;
-    Spinner SProveedor, SPedido, SOrden, SDivision;
-    ArrayList<String> folioPedidos, proveedores, ordenesC, status, divisones;
+    Spinner SProveedor, SPedido, SOrden, SDivision, STipoDoc;
+    ArrayList<String> folioPedidos, proveedores, ordenesC, status, divisones, tipodoc;
     ArrayList<String[]> nombres;
     ArrayList<Float> Totales;
     ArrayList<CheckBox> checkBoxes;
@@ -78,8 +76,8 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         SOrden = findViewById(R.id.spinnerOrdenC);
         Toolbar toolbar = findViewById(R.id.toolbarMenu1);
         tablaProductos = findViewById(R.id.tablaProductos);
-        lbFactura = findViewById(R.id.lbFactura);
-        txtFactura = findViewById(R.id.txtFactura);
+        lbFolioTiDoc = findViewById(R.id.lbTipoDoc);
+        txtFolioTiDoc = findViewById(R.id.txtTipoDoc);
         btnOrdenC = findViewById(R.id.btnOrdenC);
         lbIVA = findViewById(R.id.lbIVA);
         txtIVA = findViewById(R.id.txtIVA);
@@ -90,6 +88,8 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         lbMontoTotal = findViewById(R.id.lbMontoTotal);
         lbDivision = findViewById(R.id.lbDivision);
         SDivision = findViewById(R.id.spinnerDivision);
+        lbTipoDoc = findViewById(R.id.lbTiDoc);
+        STipoDoc = findViewById(R.id.spinnerTDoc);
 
         setSupportActionBar(toolbar);
 
@@ -100,8 +100,8 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         lbOrden.setVisibility(View.INVISIBLE);
         SOrden.setVisibility(View.INVISIBLE);
         tablaProductos.setVisibility(View.INVISIBLE);
-        lbFactura.setVisibility(View.INVISIBLE);
-        txtFactura.setVisibility(View.INVISIBLE);
+        lbFolioTiDoc.setVisibility(View.INVISIBLE);
+        txtFolioTiDoc.setVisibility(View.INVISIBLE);
         btnOrdenC.setVisibility(View.INVISIBLE);
         lbIVA.setVisibility(View.INVISIBLE);
         txtIVA.setVisibility(View.INVISIBLE);
@@ -111,6 +111,15 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         lbIVATotal.setVisibility(View.GONE);
         lbDivision.setVisibility(View.INVISIBLE);
         SDivision.setVisibility(View.INVISIBLE);
+        lbTipoDoc.setVisibility(View.INVISIBLE);
+        STipoDoc.setVisibility(View.INVISIBLE);
+
+        tipodoc = new ArrayList<>();
+        tipodoc.add("-Seleccione-");
+        tipodoc.add("FACTURA");
+        tipodoc.add("TICKET");
+        tipodoc.add("REMISION");
+        tipodoc.add("NOTA");
 
         status = new ArrayList<String>();
         status.add("Aprobado");
@@ -126,11 +135,11 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
             public void onClick(View v) {
 
                 tablaProductos.setVisibility(View.INVISIBLE);
-                if (!txtFactura.getText().toString().isEmpty()) {
+                if (!txtFolioTiDoc.getText().toString().isEmpty()) {
 
-                    InsertEntrada(txtFactura.getText().toString(), SOrden.getSelectedItem().toString(),
-                            SProveedor.getSelectedItem().toString(), SPedido.getSelectedItem().toString());
-                    txtFactura.setText("");
+                    InsertEntrada(txtFolioTiDoc.getText().toString(), SOrden.getSelectedItem().toString(),
+                            SProveedor.getSelectedItem().toString(), SPedido.getSelectedItem().toString(), STipoDoc.getSelectedItem().toString());
+                    txtFolioTiDoc.setText("");
 
                     TableRow fila = new TableRow(getApplicationContext());
                     TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
@@ -168,11 +177,11 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     lbIVATotal.setVisibility(View.VISIBLE);
                     btnAgregarT.setVisibility(View.VISIBLE);
                     btnOrdenC.setVisibility(View.GONE);
-                    txtFactura.setVisibility(View.GONE);
-                    lbFactura.setVisibility(View.GONE);
+                    txtFolioTiDoc.setVisibility(View.GONE);
+                    lbFolioTiDoc.setVisibility(View.GONE);
 
                 }else{
-                    txtFactura.setError("Favor de llenar éste campo");
+                    txtFolioTiDoc.setError("Favor de llenar éste campo");
                 }
             }
         });
@@ -195,6 +204,10 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     //Toast.makeText(getApplicationContext(), "" + materia, Toast.LENGTH_SHORT).show();
                     InsertDetalle_Orden(materia, num_ent, uni_ent, fact_entre, canti, lote, cadu, costo, desc,
                             txtIVA.getText().toString(), SPedido.getSelectedItem().toString(), cumple, segui, SProveedor.getSelectedItem().toString());
+
+                    /*Toast.makeText(getApplicationContext(), "" + materia + "," + num_ent + "," + uni_ent + "," + fact_entre + "," + canti + ","
+                            + lote + "," + cadu + "," + costo + "," + desc + "," + txtIVA.getText().toString() + "," + SPedido.getSelectedItem().toString() +
+                            "," + cumple + "," + segui + "," + SProveedor.getSelectedItem().toString(), Toast.LENGTH_LONG).show();*/
                 }
                 if (bandera == true){
                     Toast.makeText(getApplicationContext(), "Se registraron los datos con éxito", Toast.LENGTH_LONG).show();
@@ -230,7 +243,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         switch (parent.getId()) {
             case R.id.spinnerPedido: {
                 if (position != 0) {
-                    tablaProductos.removeAllViews();
                     orden = parent.getItemAtPosition(position).toString();
 
                     proveedores = new ArrayList<String>();
@@ -246,8 +258,8 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     lbOrden.setVisibility(View.INVISIBLE);
                     SOrden.setVisibility(View.INVISIBLE);
                     tablaProductos.setVisibility(View.INVISIBLE);
-                    lbFactura.setVisibility(View.INVISIBLE);
-                    txtFactura.setVisibility(View.INVISIBLE);
+                    lbFolioTiDoc.setVisibility(View.INVISIBLE);
+                    txtFolioTiDoc.setVisibility(View.INVISIBLE);
                     btnOrdenC.setVisibility(View.INVISIBLE);
                     lbIVA.setVisibility(View.INVISIBLE);
                     txtIVA.setVisibility(View.INVISIBLE);
@@ -257,6 +269,8 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     lbIVATotal.setVisibility(View.GONE);
                     lbDivision.setVisibility(View.INVISIBLE);
                     SDivision.setVisibility(View.INVISIBLE);
+                    lbTipoDoc.setVisibility(View.INVISIBLE);
+                    STipoDoc.setVisibility(View.INVISIBLE);
                 }
                 break;
             }
@@ -286,8 +300,8 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     lbOrden.setVisibility(View.INVISIBLE);
                     SOrden.setVisibility(View.INVISIBLE);
                     tablaProductos.setVisibility(View.INVISIBLE);
-                    lbFactura.setVisibility(View.INVISIBLE);
-                    txtFactura.setVisibility(View.INVISIBLE);
+                    lbFolioTiDoc.setVisibility(View.INVISIBLE);
+                    txtFolioTiDoc.setVisibility(View.INVISIBLE);
                     btnOrdenC.setVisibility(View.INVISIBLE);
                     lbIVA.setVisibility(View.INVISIBLE);
                     txtIVA.setVisibility(View.INVISIBLE);
@@ -295,38 +309,96 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     lbMontoTotal.setVisibility(View.GONE);
                     lbMonto.setVisibility(View.GONE);
                     lbIVATotal.setVisibility(View.GONE);
+                    lbTipoDoc.setVisibility(View.INVISIBLE);
+                    STipoDoc.setVisibility(View.INVISIBLE);
                 }
                 break;
             }
-            case R.id.spinnerDivision:{
-                if (position != 0){
-                    tablaProductos.removeAllViews();
-
+            case R.id.spinnerDivision: {
+                if (position != 0) {
                     String division = parent.getItemAtPosition(position).toString();
                     if (!division.equals("NORMAL")) {
                         division = division.replace(" ", "%20").trim();
                         division = division.replace("&", "%26");
-                    }else{
+                    } else {
                         division = "";
                     }
 
                     ordenesC = new ArrayList<String>();
                     ordenesC.add("-Seleccione-");
                     CargarDatos("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=2&tipo=2&orden=" + orden +
-                                    "&provee=" + provee + "&div=" + division, "folio_orden", ordenesC);
+                            "&provee=" + provee + "&div=" + division, "folio_orden", ordenesC);
                     LlenarSpinners(ordenesC, SOrden);
 
                     lbOrden.setVisibility(View.VISIBLE);
                     SOrden.setVisibility(View.VISIBLE);
-                }
-                else{
+                } else {
 
                     tablaProductos.removeAllViews();
                     lbOrden.setVisibility(View.INVISIBLE);
                     SOrden.setVisibility(View.INVISIBLE);
                     tablaProductos.setVisibility(View.INVISIBLE);
-                    lbFactura.setVisibility(View.INVISIBLE);
-                    txtFactura.setVisibility(View.INVISIBLE);
+                    lbFolioTiDoc.setVisibility(View.INVISIBLE);
+                    txtFolioTiDoc.setVisibility(View.INVISIBLE);
+                    btnOrdenC.setVisibility(View.INVISIBLE);
+                    lbIVA.setVisibility(View.INVISIBLE);
+                    txtIVA.setVisibility(View.INVISIBLE);
+                    btnAgregarT.setVisibility(View.INVISIBLE);
+                    lbMontoTotal.setVisibility(View.GONE);
+                    lbMonto.setVisibility(View.GONE);
+                    lbIVATotal.setVisibility(View.GONE);
+                    lbTipoDoc.setVisibility(View.INVISIBLE);
+                    STipoDoc.setVisibility(View.INVISIBLE);
+                }
+
+                break;
+            }
+
+            case R.id.spinnerOrdenC: {
+                if (position != 0) {
+                    String folio = parent.getItemAtPosition(position).toString();
+                    folioe = folio;
+
+                    LlenarSpinners(tipodoc, STipoDoc);
+                    lbTipoDoc.setVisibility(View.VISIBLE);
+                    STipoDoc.setVisibility(View.VISIBLE);
+
+                } else {
+                    tablaProductos.setVisibility(View.INVISIBLE);
+                    lbFolioTiDoc.setVisibility(View.INVISIBLE);
+                    txtFolioTiDoc.setVisibility(View.INVISIBLE);
+                    btnOrdenC.setVisibility(View.INVISIBLE);
+                    lbIVA.setVisibility(View.INVISIBLE);
+                    txtIVA.setVisibility(View.INVISIBLE);
+                    btnAgregarT.setVisibility(View.INVISIBLE);
+                    lbMontoTotal.setVisibility(View.GONE);
+                    lbMonto.setVisibility(View.GONE);
+                    lbIVATotal.setVisibility(View.GONE);
+                    lbTipoDoc.setVisibility(View.INVISIBLE);
+                    STipoDoc.setVisibility(View.INVISIBLE);
+                }
+                break;
+            }
+
+            case R.id.spinnerTDoc: {
+                if (position != 0){
+                    String folio = parent.getItemAtPosition(position).toString();
+
+                    folio = folio.substring(0,1) + folio.substring(1).toLowerCase();
+                    txtFolioTiDoc.setText("");
+                    txtFolioTiDoc.setHint(folio);
+                    lbFolioTiDoc.setText(folio + ":");
+                    lbFolioTiDoc.setVisibility(View.VISIBLE);
+                    txtFolioTiDoc.setVisibility(View.VISIBLE);
+                    btnOrdenC.setVisibility(View.VISIBLE);
+                    lbIVA.setVisibility(View.INVISIBLE);
+                    txtIVA.setVisibility(View.INVISIBLE);
+                    btnAgregarT.setVisibility(View.INVISIBLE);
+
+                } else {
+                    tablaProductos.setVisibility(View.INVISIBLE);
+                    lbFolioTiDoc.setVisibility(View.INVISIBLE);
+                    txtFolioTiDoc.setVisibility(View.INVISIBLE);
                     btnOrdenC.setVisibility(View.INVISIBLE);
                     lbIVA.setVisibility(View.INVISIBLE);
                     txtIVA.setVisibility(View.INVISIBLE);
@@ -335,32 +407,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     lbMonto.setVisibility(View.GONE);
                     lbIVATotal.setVisibility(View.GONE);
                 }
-
-                break;
-            }
-
-            case R.id.spinnerOrdenC:{
-            if (position != 0){
-                txtFactura.setText("");
-                lbFactura.setVisibility(View.VISIBLE);
-                txtFactura.setVisibility(View.VISIBLE);
-                btnOrdenC.setVisibility(View.VISIBLE);
-
-                String folio = parent.getItemAtPosition(position).toString();
-                folioe = folio;
-
-            }else{
-                tablaProductos.setVisibility(View.INVISIBLE);
-                lbFactura.setVisibility(View.INVISIBLE);
-                txtFactura.setVisibility(View.INVISIBLE);
-                btnOrdenC.setVisibility(View.INVISIBLE);
-                lbIVA.setVisibility(View.INVISIBLE);
-                txtIVA.setVisibility(View.INVISIBLE);
-                btnAgregarT.setVisibility(View.INVISIBLE);
-                lbMontoTotal.setVisibility(View.GONE);
-                lbMonto.setVisibility(View.GONE);
-                lbIVATotal.setVisibility(View.GONE);
-            }
                 break;
             }
         }
@@ -420,7 +466,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                             String costo_ind = obj.getString("costo_individual");
                             String costo_tot = obj.getString("costo_total");
                             String lote = obj.getString("lote");
-                            String QR = obj.getString("QR");
+                            //String QR = obj.getString("QR");
                             String seg = obj.getString("seguimiento");
 
                             final TableRow fila = new TableRow(getApplicationContext());
@@ -484,12 +530,12 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                                 LlenarTextView("  ", fila, 1);
                                 btnAgregarT.setVisibility(View.INVISIBLE);
 
-                                if (QR.equals("1")){
+                                /*if (QR.equals("1")){
                                     fila.addView(QRLectura);
                                     Lote.setEnabled(false);
                                     Cad.setEnabled(false);
                                     btnAgregarT.setVisibility(View.INVISIBLE);
-                                }
+                                }*/
 
                             }else{
                                 LlenarTextView("  ", fila, 1);
@@ -737,7 +783,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         fila.addView(editText);
     }
 
-    private void InsertEntrada(final String factura, final String folio, String proveedor, final String pedido) {
+    private void InsertEntrada(final String factura, final String folio, String proveedor, final String pedido, final String tipo_doc) {
         proveedor = proveedor.replace(" ", "%20").trim();
         StringRequest request = new StringRequest(Request.Method.POST,
                 "http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=4&provee=" + proveedor,
@@ -759,6 +805,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                 parametros.put("factura", factura);
                 parametros.put("folio_orden_compra", folio);
                 parametros.put("num_pedido", pedido);
+                parametros.put("tipo_doc", tipo_doc);
 
                 return parametros;
             }
@@ -774,6 +821,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        //Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_LONG).show();
                         bandera = true;
                     }
                 }, new Response.ErrorListener() {
