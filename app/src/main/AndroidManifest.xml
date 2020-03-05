@@ -47,16 +47,6 @@
             </intent-filter>
         </service>
 
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/notificacion" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/boton" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:resource="@string/default_notification_channel_id" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

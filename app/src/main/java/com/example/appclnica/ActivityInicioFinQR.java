@@ -3,6 +3,7 @@ package com.example.appclnica;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +26,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appclnica.ui.home.HomeFragment;
 import com.google.zxing.Result;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,7 +64,7 @@ public class ActivityInicioFinQR extends AppCompatActivity implements ZXingScann
             }
         }
 
-        //zToast.makeText(getApplicationContext(), Tipo + ", " + id_reac + ", " + cantidad, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), Tipo + ", " + id_reac + ", " + cantidad, Toast.LENGTH_SHORT).show();
         contador = 0;
 
         Toolbar toolbar = findViewById(R.id.toolbar5);
@@ -66,8 +72,27 @@ public class ActivityInicioFinQR extends AppCompatActivity implements ZXingScann
 
         setSupportActionBar(toolbar);
 
-        scannerView.setResultHandler(this);
-        scannerView.startCamera();
+        Dexter.withActivity( this )
+                .withPermission( Manifest.permission.CAMERA )
+                .withListener( new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        scannerView.setResultHandler(ActivityInicioFinQR.this);
+                        scannerView.startCamera();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(com.karumi.dexter.listener.PermissionRequest permission, PermissionToken token) {
+
+                    }
+
+                } )
+                .check();
     }
 
     @Override

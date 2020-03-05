@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
             filial = bundle.getString("filial");
         }
 
-        Consulta2("http://asesoresconsultoreslabs.com/asesores/App_Android/select.php?idt=1&id=" + ID + "");
+        Consulta2("http://asesoresconsultoreslabs.com/asesores/App_Android/CRUD.php?idt=1&id=" + ID + "");
 
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
             }
         });
 
-        Consulta("https://asesoresconsultoreslabs.com/asesores/App_Android/Notificacion_Corres.php?ID_Usuario=" + ID + "");
+        //Consulta("https://asesoresconsultoreslabs.com/asesores/App_Android/Notificacion_Corres.php?ID_Usuario=" + ID);
 
         carouselView.setPageCount(mImages.length);
         carouselView.setImageListener(new ImageListener() {

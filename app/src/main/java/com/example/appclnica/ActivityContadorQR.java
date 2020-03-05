@@ -3,6 +3,7 @@ package com.example.appclnica;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -37,8 +43,27 @@ public class ActivityContadorQR extends AppCompatActivity implements ZXingScanne
 
         setSupportActionBar(toolbar);
 
-        scannerView.startCamera();
-        scannerView.setResultHandler(this);
+        Dexter.withActivity( this )
+                .withPermission( Manifest.permission.CAMERA )
+                .withListener( new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        scannerView.setResultHandler(ActivityContadorQR.this);
+                        scannerView.startCamera();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(com.karumi.dexter.listener.PermissionRequest permission, PermissionToken token) {
+
+                    }
+
+                } )
+                .check();
 
         contador = Integer.parseInt(ActivityVerificacion.canti_recibida.getText().toString());
         lbContador.setText("Total: " + contador);

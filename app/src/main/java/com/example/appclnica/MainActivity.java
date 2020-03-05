@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     txtPassword.setError("Favor de llenar éste campo");
                 }
                 else if(!txtUsuario.getText().toString().isEmpty() && !txtPassword.getText().toString().isEmpty()) {
-                    Login("https://asesoresconsultoreslabs.com/asesores/App_Android/select.php?idt=0&id=" + txtUsuario.getText().toString().trim() + "&pass=" + txtPassword.getText() + "");
+                    Login("https://asesoresconsultoreslabs.com/asesores/App_Android/CRUD.php?idt=0&id=" + txtUsuario.getText().toString().trim() + "&pass=" + txtPassword.getText() + "");
                 }
             }
         });
