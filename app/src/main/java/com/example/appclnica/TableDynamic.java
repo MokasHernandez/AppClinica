@@ -2,7 +2,6 @@ package com.example.appclnica;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.fonts.FontFamily;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -10,7 +9,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.annotation.FontRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,8 +29,6 @@ public class TableDynamic extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_qrinfo);
-        Typeface font = Typeface.createFromAsset(getAssets(), "@font/montserratlight Regular.ttf");
-        txtcell.setTypeface(font);
 
 
 
@@ -51,6 +47,7 @@ public class TableDynamic extends AppCompatActivity {
     private void newRow(){ tableRow=new TableRow( context ); }
 
     private void newCell(){
+
         txtcell=new TextView(context);
         txtcell.setGravity( Gravity.LEFT );
         txtcell.setTextColor(Color.BLACK);
@@ -60,7 +57,7 @@ public class TableDynamic extends AppCompatActivity {
 
     }
 
-    private void createHeader(){
+      private void createHeader(){
      indexC=0;
      newRow();
      while(indexC<header.length) {
@@ -121,7 +118,6 @@ public class TableDynamic extends AppCompatActivity {
         TableRow.LayoutParams params=new TableRow.LayoutParams(  );
         params.setMargins( 5,5,1,1 );
         params.weight=1;
-
         return params;
     }
 

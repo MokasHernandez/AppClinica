@@ -20,6 +20,7 @@
             android:layout_width="300dp"
             android:layout_height="400dp"
             android:layout_gravity="center"
+            android:paddingBottom="20dp"
             android:background="@color/Constrain">
 
             <TextView
@@ -99,10 +100,11 @@
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/btn_uno"
                 android:backgroundTint="@color/boton"
+                android:textColor="@color/icons"
                 android:fontFamily="@font/montserratlight"
                 android:text="Registrar"
                 android:textAlignment="center"
-                android:textColor="@color/icons"
+
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

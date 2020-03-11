@@ -105,7 +105,7 @@ public class Mantenimientos extends AppCompatActivity {
                 {CheckCo.setVisibility( View.VISIBLE );}
             }
         } );
-
+        /*********EDITTEXT  DE FECHA*********/
         Calendar calendar=Calendar.getInstance();
         final int Year=calendar.get( Calendar.YEAR );
         final int Mont=calendar.get(Calendar.MONTH);
@@ -137,7 +137,7 @@ public class Mantenimientos extends AppCompatActivity {
                 datePickerDialog.show();
             }
         } );
-
+        /******************Botón Agregar****************/
         BTNADD.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +162,8 @@ public class Mantenimientos extends AppCompatActivity {
     }
 
     public void ADDMANT(String URL){
-        StringRequest stringRequest = new StringRequest( Request.Method.POST, URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, URL,
+                new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Toast.makeText( getApplicationContext(), "Inserción Exitosa", Toast.LENGTH_SHORT ).show();

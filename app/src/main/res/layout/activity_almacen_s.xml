@@ -102,17 +102,17 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTodos">
+        app:layout_constraintTop_toBottomOf="@+id/spinnerArea">
 
         <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -143,21 +143,6 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-    </ScrollView>
-
-    <Button
-        android:id="@+id/btnTodos"
-        android:layout_width="150dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/btn_uno"
-        android:backgroundTint="@color/boton"
-        android:gravity="center"
-        android:text="Agregar Todos"
-        android:textColor="@color/icons"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.923"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerArea" />>
+    </ScrollView>>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

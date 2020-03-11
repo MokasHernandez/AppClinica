@@ -19,10 +19,6 @@
                 android:icon="@drawable/almacen"
                 android:title="Almacén"/>
             <item
-                android:id="@+id/nav_unidadesa"
-                android:icon="@drawable/unidad"
-                android:title="@string/menu_trasuni"/>
-            <item
                 android:id="@+id/nav_salir"
                 android:icon="@drawable/salir"
                 android:title="Salir" />

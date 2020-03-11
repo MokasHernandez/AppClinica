@@ -59,12 +59,12 @@
                 android:text="Nombre:"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/desc"
+                app:layout_constraintBottom_toTopOf="@+id/TXT22"
                 app:layout_constraintStart_toEndOf="@+id/CIMAGE"
                 app:layout_constraintTop_toTopOf="@+id/CIMAGE" />
 
             <TextView
-                android:id="@+id/desc"
+                android:id="@+id/TXT22"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="80dp"
                 android:layout_height="25dp"
@@ -100,7 +100,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/desc">
+                app:layout_constraintTop_toBottomOf="@+id/TXT22">
 
                 <TextView
                     android:id="@+id/textView4"
@@ -208,7 +208,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                 <TextView
-                    android:id="@+id/TXTS"
+                    android:id="@+id/TXTS2"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -225,7 +225,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/TXTA"
+                    android:id="@+id/TXTA2"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -239,10 +239,10 @@
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTS" />
+                    app:layout_constraintTop_toBottomOf="@+id/TXTS2" />
 
                 <TextView
-                    android:id="@+id/TXTN"
+                    android:id="@+id/TXTN2"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -256,10 +256,10 @@
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTA" />
+                    app:layout_constraintTop_toBottomOf="@+id/TXTA2" />
 
                 <TextView
-                    android:id="@+id/TXTPO"
+                    android:id="@+id/TXTPO2"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -273,10 +273,10 @@
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTN" />
+                    app:layout_constraintTop_toBottomOf="@+id/TXTN2" />
 
                 <TextView
-                    android:id="@+id/TXTF"
+                    android:id="@+id/TXTF2"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -289,10 +289,10 @@
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/EDTEMPRE" />
+                    app:layout_constraintTop_toBottomOf="@+id/EDTEMPRE2" />
 
                 <TextView
-                    android:id="@+id/TXTC"
+                    android:id="@+id/TXTC2"
                     android:layout_width="150dp"
                     android:layout_height="17dp"
                     android:layout_marginTop="20dp"
@@ -306,10 +306,10 @@
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTF" />
+                    app:layout_constraintTop_toBottomOf="@+id/TXTF2" />
 
                 <EditText
-                    android:id="@+id/EDTEMPRE"
+                    android:id="@+id/EDTEMPRE2"
                     android:layout_width="150dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="5dp"
@@ -323,7 +323,7 @@
                     android:textColor="#000000"
                     android:textSize="11sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTPO" />
+                    app:layout_constraintTop_toBottomOf="@+id/TXTPO2" />
 
                 <View
                     android:id="@+id/divider"
@@ -332,8 +332,8 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginBottom="6dp"
                     android:background="?android:attr/listDivider"
-                    app:layout_constraintBottom_toTopOf="@+id/TXTA"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTS"
+                    app:layout_constraintBottom_toTopOf="@+id/TXTA2"
+                    app:layout_constraintTop_toBottomOf="@+id/TXTS2"
                     app:layout_constraintVertical_bias="1.0"
                     tools:layout_editor_absoluteX="0dp"
                     tools:ignore="MissingConstraints" />
@@ -345,8 +345,8 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginBottom="6dp"
                     android:background="@android:color/darker_gray"
-                    app:layout_constraintBottom_toTopOf="@+id/TXTA"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTS"
+                    app:layout_constraintBottom_toTopOf="@+id/TXTA2"
+                    app:layout_constraintTop_toBottomOf="@+id/TXTS2"
                     app:layout_constraintVertical_bias="1.0"
                     tools:layout_editor_absoluteX="0dp"
                     tools:ignore="MissingConstraints" />
@@ -358,8 +358,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:background="@android:color/darker_gray"
-                    app:layout_constraintBottom_toTopOf="@+id/TXTN"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTA"
+                    app:layout_constraintBottom_toTopOf="@+id/TXTN2"
+                    app:layout_constraintTop_toBottomOf="@+id/TXTA2"
                     tools:layout_editor_absoluteX="1dp"
                     tools:ignore="MissingConstraints" />
 
@@ -370,8 +370,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:background="@android:color/darker_gray"
-                    app:layout_constraintBottom_toTopOf="@+id/TXTPO"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTN"
+                    app:layout_constraintBottom_toTopOf="@+id/TXTPO2"
+                    app:layout_constraintTop_toBottomOf="@+id/TXTN2"
                     app:layout_constraintVertical_bias="0.0"
                     tools:layout_editor_absoluteX="0dp"
                     tools:ignore="MissingConstraints" />
@@ -383,8 +383,8 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:background="@android:color/darker_gray"
-                    app:layout_constraintBottom_toTopOf="@+id/EDTEMPRE"
-                    app:layout_constraintTop_toBottomOf="@+id/TXTPO"
+                    app:layout_constraintBottom_toTopOf="@+id/EDTEMPRE2"
+                    app:layout_constraintTop_toBottomOf="@+id/TXTPO2"
                     tools:layout_editor_absoluteX="1dp"
                     tools:ignore="MissingConstraints" />
 
@@ -395,7 +395,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:background="@android:color/darker_gray"
-                    app:layout_constraintBottom_toTopOf="@+id/TXTF"
+                    app:layout_constraintBottom_toTopOf="@+id/TXTF2"
                     app:layout_constraintTop_toBottomOf="@+id/textView6"
                     tools:layout_editor_absoluteX="1dp"
                     tools:ignore="MissingConstraints" />
@@ -446,7 +446,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/TXTMANTTIPO"
+                android:id="@+id/TXTMANTTIPO2"
                 android:layout_width="80dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="80dp"

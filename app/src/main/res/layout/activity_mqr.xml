@@ -7,20 +7,10 @@
     tools:context=".MainQR">
 
     <me.dm7.barcodescanner.zxing.ZXingScannerView
-        android:id="@+id/zxscanProductos"
-        android:layout_above="@+id/layout_result"
+        android:id="@+id/zxscan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-    <LinearLayout
-        android:id="@+id/layout_result"
-        android:layout_alignParentBottom="true"
-        android:padding="8dp"
-        android:background="@color/primary_dark"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-    </LinearLayout>
+
 
 </RelativeLayout>

@@ -8,17 +8,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     private Context ctx;
@@ -36,9 +45,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     }
     private View.OnClickListener listener;
 
-    public Adapter(Context ctx, List<MantConstructor> listMant) {
+    public Adapter(Context ctx, List<MantConstructor> LC) {
         this.ctx = ctx;
-        ListMant = listMant;
+        ListMant = LC;
     }
 
     @NonNull
@@ -49,6 +58,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
          cdw1=(CardView)view.findViewById( R. id.cardView);
          expandableView =view.findViewById( R.id.expandableView );
        btn= view.findViewById( R.id.BTNARROW );
+
         btn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,20 +110,23 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             super( itemView );
             /**************Texview 1*************************/
             name=itemView.findViewById( R.id.TXTNON);
-            tipo=itemView.findViewById( R.id.desc);
-            fecha=itemView.findViewById( R.id.TXTMANTTIPO);
+            tipo=itemView.findViewById( R.id.TXT22 );
+            fecha=itemView.findViewById( R.id.TXTMANTTIPO2 );
             /**************Textview 2*******************************/
-            N=itemView.findViewById( R.id.TXTN );
-            T=itemView.findViewById( R.id.TXTPO );
-            F=itemView.findViewById( R.id.TXTF );
-            empresa=itemView.findViewById( R.id.EDTEMPRE );
-            area=itemView.findViewById( R.id.TXTA );
-            sucursal=itemView.findViewById( R.id.TXTS );
-            mantenimiento=itemView.findViewById( R.id.TXTC );
+            N=itemView.findViewById( R.id.TXTN2 );
+            T=itemView.findViewById( R.id.TXTPO2 );
+            F=itemView.findViewById( R.id.TXTF2 );
+            empresa=itemView.findViewById( R.id.EDTEMPRE2 );
+            area=itemView.findViewById( R.id.TXTA2 );
+            sucursal=itemView.findViewById( R.id.TXTS2 );
+            mantenimiento=itemView.findViewById( R.id.TXTC2 );
         }
 
 
     }
+
+
+
 
 
 

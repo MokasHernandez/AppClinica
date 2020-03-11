@@ -21,6 +21,7 @@
             android:layout_width="300dp"
             android:layout_height="700dp"
             android:layout_gravity="center"
+            android:paddingBottom="20dp"
             android:background="@color/Constrain">
 
 
@@ -232,7 +233,7 @@
                 android:id="@+id/EDTRCF"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="25dp"
+                android:layout_marginEnd="5dp"
                 android:background="@drawable/txt"
                 android:ems="10"
                 android:gravity="center|center_horizontal"
@@ -248,7 +249,7 @@
                 android:id="@+id/EDTRCR"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="25dp"
+                android:layout_marginEnd="5dp"
                 android:background="@drawable/txt"
                 android:ems="10"
                 android:gravity="center|center_horizontal"
@@ -264,7 +265,7 @@
                 android:id="@+id/EDTRFPM"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="25dp"
+                android:layout_marginEnd="5dp"
                 android:background="@drawable/txt"
                 android:ems="10"
                 android:focusable="false"
@@ -292,7 +293,7 @@
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="25dp"
+                android:layout_marginEnd="5dp"
                 android:fontFamily="@font/montserratlight"
                 android:text="Hrs."
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"

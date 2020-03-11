@@ -4,26 +4,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
+import android.hardware.camera2.TotalCaptureResult;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ScrollView;
+import android.widget.GridView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -43,28 +45,30 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+
+import static android.widget.ArrayAdapter.createFromResource;
+import static androidx.constraintlayout.solver.widgets.ConstraintWidget.VISIBLE;
 
 public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public static EditText lote2, cad;
     private RequestQueue requestQueue;
-    private TextView lbProvee, lbOrden, lbFactura, lbIVA, lbMonto, lbIVATotal, lbMontoTotal;
+    private TextView lbProvee, lbOrden, lbFactura, lbIVA;
     private EditText txtFactura, txtIVA;
     Button btnOrdenC, btnAgregarT;
     Spinner SProveedor, SPedido, SOrden;
     ArrayList<String> folioPedidos, proveedores, ordenesC, status;
     ArrayList<String[]> nombres;
-    ArrayList<Float> Totales;
     ArrayList<CheckBox> checkBoxes;
     TableLayout tablaProductos;
     String orden, folioe, num_ent;
     Boolean bandera = true;
-    ScrollView scrollView;
-    float TotalMonto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +88,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         lbIVA = findViewById(R.id.lbIVA);
         txtIVA = findViewById(R.id.txtIVA);
         btnAgregarT = findViewById(R.id.btnAgregarT);
-        scrollView = findViewById(R.id.ScrollView1);
-        lbMonto = findViewById(R.id.lbMonto);
-        lbIVATotal = findViewById(R.id.lbIVATotal);
-        lbMontoTotal = findViewById(R.id.lbMontoTotal);
 
         setSupportActionBar(toolbar);
 
@@ -105,10 +105,8 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         btnOrdenC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 tablaProductos.setVisibility(View.INVISIBLE);
                 if (!txtFactura.getText().toString().isEmpty()) {
-
                     InsertEntrada(txtFactura.getText().toString(), SOrden.getSelectedItem().toString(),
                             SProveedor.getSelectedItem().toString(), SPedido.getSelectedItem().toString());
                     txtFactura.setText("");
@@ -118,8 +116,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     fila.setLayoutParams(lp);
 
                     LlenarTextView("", fila, 1);
-                    LlenarTextView("Clave", fila, 1);
-                    LlenarTextView("  ", fila, 1);
                     LlenarTextView("Nombre_Producto  ", fila, 1);
                     LlenarTextView("Cantidad Unidad  ", fila, 1);
                     LlenarTextView("Unidad Entrada  ", fila, 1);
@@ -130,27 +126,20 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     LlenarTextView("  ", fila, 1);
                     LlenarTextView(" Descuento ", fila, 1);
                     LlenarTextView(" ", fila, 1);
-                    LlenarTextView(" Estatus", fila, 1);
+                    LlenarTextView("     Status", fila, 1);
                     tablaProductos.addView(fila, 0);
 
                     nombres = new ArrayList<String[]>();
-                    Totales = new ArrayList<>();
                     checkBoxes = new ArrayList<CheckBox>();
                     CargarDatosTabla("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=3&folio=" + folioe);
 
-                    OcultarTeclado();
-
                     lbIVA.setVisibility(View.VISIBLE);
                     txtIVA.setVisibility(View.VISIBLE);
-                    lbMonto.setVisibility(View.VISIBLE);
                     tablaProductos.setVisibility(View.VISIBLE);
-                    lbMontoTotal.setVisibility(View.VISIBLE);
-                    lbMonto.setVisibility(View.VISIBLE);
-                    lbIVATotal.setVisibility(View.VISIBLE);
                     btnAgregarT.setVisibility(View.VISIBLE);
-                    btnOrdenC.setVisibility(View.GONE);
-                    txtFactura.setVisibility(View.GONE);
-                    lbFactura.setVisibility(View.GONE);
+                    btnOrdenC.setVisibility(View.INVISIBLE);
+                    txtFactura.setVisibility(View.INVISIBLE);
+                    lbFactura.setVisibility(View.INVISIBLE);
 
                 }else{
                     txtFactura.setError("Favor de llenar éste campo");
@@ -172,10 +161,8 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     String costo = a[6];
                     String desc = a[7];
                     String cumple = a[8];
-                    String segui = a[9];
-                    //Toast.makeText(getApplicationContext(), "" + materia, Toast.LENGTH_SHORT).show();
                     InsertDetalle_Orden(materia, num_ent, uni_ent, fact_entre, canti, lote, cadu, costo, desc,
-                            txtIVA.getText().toString(), SPedido.getSelectedItem().toString(), cumple, segui, SProveedor.getSelectedItem().toString());
+                            txtIVA.getText().toString(), SPedido.getSelectedItem().toString(), cumple);
                 }
                 if (bandera == true){
                     Toast.makeText(getApplicationContext(), "Se registraron los datos con éxito", Toast.LENGTH_LONG).show();
@@ -188,26 +175,8 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         });
     }
 
-    /*@Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-            View view = getCurrentFocus();
-            if (view != null && view instanceof EditText) {
-                Rect r = new Rect();
-                view.getGlobalVisibleRect(r);
-                int rawX = (int)ev.getRawX();
-                int rawY = (int)ev.getRawY();
-                if (!r.contains(rawX, rawY)) {
-                    view.clearFocus();
-                }
-            }
-        }
-        return super.dispatchTouchEvent(ev);
-    }*/
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        tablaProductos.removeAllViews();
         switch (parent.getId()) {
             case R.id.spinnerPedido: {
                 if (position != 0) {
@@ -233,9 +202,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     lbIVA.setVisibility(View.INVISIBLE);
                     txtIVA.setVisibility(View.INVISIBLE);
                     btnAgregarT.setVisibility(View.INVISIBLE);
-                    lbMontoTotal.setVisibility(View.GONE);
-                    lbMonto.setVisibility(View.GONE);
-                    lbIVATotal.setVisibility(View.GONE);
                 }
                 break;
             }
@@ -244,7 +210,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                 tablaProductos.removeAllViews();
                 String provee = parent.getItemAtPosition(position).toString();
                 provee = provee.replace(" ", "%20").trim();
-                provee = provee.replace("&", "%26");
 
                 ordenesC = new ArrayList<String>();
                 ordenesC.add("-Seleccione-");
@@ -265,9 +230,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                 lbIVA.setVisibility(View.INVISIBLE);
                 txtIVA.setVisibility(View.INVISIBLE);
                 btnAgregarT.setVisibility(View.INVISIBLE);
-                lbMontoTotal.setVisibility(View.GONE);
-                lbMonto.setVisibility(View.GONE);
-                lbIVATotal.setVisibility(View.GONE);
             }
                 break;
             }
@@ -289,9 +251,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                 lbIVA.setVisibility(View.INVISIBLE);
                 txtIVA.setVisibility(View.INVISIBLE);
                 btnAgregarT.setVisibility(View.INVISIBLE);
-                lbMontoTotal.setVisibility(View.GONE);
-                lbMonto.setVisibility(View.GONE);
-                lbIVATotal.setVisibility(View.GONE);
             }
                 break;
             }
@@ -333,7 +292,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
 
     private void CargarDatosTabla(String URL){
         JsonArrayRequest Array = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
-
             @Override
             public void onResponse(JSONArray response) {
                 JSONObject obj = null;
@@ -341,7 +299,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     try {
                         obj = response.getJSONObject(i);
                         if (obj != null) {
-                            String clave = obj.getString("clave");
                             final String m = obj.getString("nombre");
                             final String can = obj.getString("cantidad_unidad");
                             String uni_en = obj.getString("unidad_entrada");
@@ -350,46 +307,33 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                             String costo_ind = obj.getString("costo_individual");
                             String costo_tot = obj.getString("costo_total");
                             String lote = obj.getString("lote");
-                            String QR = obj.getString("QR");
-                            String seg = obj.getString("seguimiento");
 
-                            final TableRow fila = new TableRow(getApplicationContext());
+                            TableRow fila = new TableRow(getApplicationContext());
                             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                             fila.setLayoutParams(lp);
 
-                            final float[] Total = new float[1];
-                            final int entrada = Integer.parseInt(can);
-                            final int factor_uni = Integer.parseInt(factor);
-                            final float[] costo = {Float.parseFloat(costo_ind)};
-
-                            Total[0] = (entrada * factor_uni * costo[0]);
-                            Totales.add(Total[0]);
-
-                            final int[] numero2 = new int[1];
                             final CheckBox select = new CheckBox(getApplicationContext());
+                            TextView tv = new TextView(getApplicationContext());
                             final EditText Descuento = new EditText(getApplicationContext());
                             final Spinner Status = new Spinner(getApplicationContext());
                             final EditText Lote = new EditText(getApplicationContext());
                             final EditText Cad = new EditText(getApplicationContext());
-                            final EditText Costo_Ind = new EditText(getApplicationContext());
-                            Button QRLectura = new Button(getApplicationContext());
 
                             select.setChecked(true);
                             fila.addView(select);
 
-                            LlenarTextView(clave, fila, 2);
-                            LlenarTextView("  ", fila, 0);
-                            LlenarTextView(m, fila, 2);
+                            tv.setText(m + "  ");
+                            tv.setTextColor(Color.BLACK);
+                            fila.addView(tv);
+
                             LlenarTextView(can, fila, 0);
                             LlenarTextView(uni_en, fila, 0);
                             LlenarTextView(uni_sa, fila, 0);
                             LlenarTextView(factor, fila, 0);
-                            Costo_Ind.setText(costo_ind);
-                            FormarEdit(Costo_Ind, fila, 0, "Des");
+                            LlenarTextView(costo_ind, fila, 0);
                             LlenarTextView(costo_tot, fila, 0);
 
                             LlenarTextView("  ", fila, 1);
-                            Descuento.setText("0");
                             FormarEdit(Descuento, fila, 0, "Des");
                             LlenarTextView("  ", fila, 1);
 
@@ -398,68 +342,26 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                             fila.addView(Status);
                             LlenarTextView(" ", fila, 1);
 
-                            QRLectura.setBackground(getResources().getDrawable(R.drawable.btn_uno));
-                            QRLectura.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.boton)));
-                            QRLectura.setTextColor(getResources().getColor(R.color.icons));
-                            QRLectura.setTextSize(14);
-                            QRLectura.setText("Leer QR");
-
                             if (lote.length() > 0){
                                 FormarEdit(Lote, fila, 1, "  Lote  ");
                                 LlenarTextView("  ", fila, 1);
                                 FormarEdit(Cad, fila, 0, "  Caducidad  ");
                                 LlenarTextView("  ", fila, 1);
-                                btnAgregarT.setVisibility(View.INVISIBLE);
-
-                                if (QR.equals("1")){
-                                    fila.addView(QRLectura);
-                                    Lote.setEnabled(false);
-                                    Cad.setEnabled(false);
-                                    btnAgregarT.setVisibility(View.INVISIBLE);
-                                }
-
                             }else{
+
                                 LlenarTextView("  ", fila, 1);
                                 LlenarTextView("  ", fila, 1);
                                 LlenarTextView("  ", fila, 1);
                                 LlenarTextView("  ", fila, 1);
                             }
 
-                            lote2 = Lote;
-                            cad = Cad;
-
                             tablaProductos.addView(fila);
 
-                            final String[] a = new String[]{clave, uni_en, factor, can, "", "", costo_ind, Descuento.getText().toString(),
-                                    "SI", seg};
+                            final String[] a = new String[]{m, uni_en, factor, can, "", "", costo_ind, Descuento.getText().toString(),
+                                    "SI"};
                             nombres.add(a);
 
                             //checkBoxes.add(select);
-
-                            Costo_Ind.addTextChangedListener(new TextWatcher() {
-                                @Override
-                                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                                }
-
-                                @Override
-                                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                                }
-
-                                @Override
-                                public void afterTextChanged(Editable s) {
-                                    Totales.remove(Total[0]);
-                                    if (Costo_Ind.length() < 1) {
-                                        costo[0] = 0;
-                                    }else{
-                                        costo[0] = Float.parseFloat(Costo_Ind.getText().toString());
-                                    }
-                                    Total[0] = (entrada * factor_uni * costo[0]);
-                                    Totales.add(Total[0]);
-                                    MostrarMontos();
-                                }
-                            });
 
                             Descuento.addTextChangedListener(new TextWatcher() {
                                 @Override
@@ -474,18 +376,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
 
                                 @Override
                                 public void afterTextChanged(Editable s) {
-                                    if (Descuento.length() < 1) {
-                                        numero2[0] = 0;
-                                    }else{
-                                        numero2[0] = Integer.parseInt(Descuento.getText().toString());
-                                        if (numero2[0] > 99){
-                                            Descuento.setError("No válido");
-                                            btnAgregarT.setVisibility(View.INVISIBLE);
-                                        }else{
-                                            a[7] = Descuento.getText().toString();
-                                            btnAgregarT.setVisibility(View.VISIBLE);
-                                        }
-                                    }
+                                    a[7] = Descuento.getText().toString();
                                 }
                             });
 
@@ -497,17 +388,12 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
 
                                 @Override
                                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                                    a[4] = Lote.getText().toString();
                                 }
 
                                 @Override
                                 public void afterTextChanged(Editable s) {
-                                    if (Lote.length() < 1 || Cad.length() < 1) {
-                                        btnAgregarT.setVisibility(View.INVISIBLE);
-                                    }else{
-                                        btnAgregarT.setVisibility(View.VISIBLE);
-                                    }
-                                    a[4] = Lote.getText().toString();
+
                                 }
                             });
 
@@ -524,13 +410,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
 
                                 @Override
                                 public void afterTextChanged(Editable s) {
-                                    if (Cad.length() < 1 || Lote.length() < 1){
-                                        btnAgregarT.setVisibility(View.INVISIBLE);
-                                    }else{
-                                        btnAgregarT.setVisibility(View.VISIBLE);
-                                    }
                                     a[5] = Cad.getText().toString();
-
                                 }
                             });
 
@@ -566,26 +446,9 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                                 public void onClick(View v) {
                                     if(select.isChecked()){
                                         nombres.add(a);
-                                        Totales.add(Total[0]);
-                                        MostrarMontos();
-                                        btnAgregarT.setVisibility(View.VISIBLE);
                                     }else{
                                         nombres.remove(a);
-                                        Totales.remove(Total[0]);
-                                        MostrarMontos();
-
-                                        if (nombres.size() < 1){
-                                            btnAgregarT.setVisibility(View.INVISIBLE);
-                                        }
                                     }
-                                }
-                            });
-
-                            QRLectura.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent a = new Intent(getApplicationContext(), MainQR.class);
-                                    startActivity(a);
                                 }
                             });
                         }
@@ -593,7 +456,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                         Toast.makeText(getApplicationContext(), c.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-                MostrarMontos();
             }
         }, new Response.ErrorListener() {
 
@@ -616,16 +478,11 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
     private void LlenarTextView(String dato, TableRow fila, int tipodato){
         TextView uso = new TextView(getApplicationContext());
         uso.setText(dato);
-        uso.setTextColor(Color.BLACK);
-        if (tipodato == 0) {;
+        if (tipodato == 0) {
+            uso.setTextColor(Color.BLACK);
             uso.setGravity(Gravity.CENTER);
-        }
-        else if (tipodato == 2){
-            uso.setGravity(Gravity.LEFT);
-
         }else {
             uso.setTextColor(Color.GRAY);
-            uso.setGravity(Gravity.CENTER);
         }
         fila.addView(uso);
     }
@@ -643,6 +500,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                 editText.setInputType(InputType.TYPE_DATETIME_VARIATION_DATE);
             }
             else if(fondo == "Des"){
+                editText.setText("0");
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             }
         }else{
@@ -683,14 +541,16 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         queue.add(request);
     }
 
-    private void InsertDetalle_Orden(final String materia, final String no, final String entrada, final String factor, final String canti, final String lote
-    , final String caducidad, final String costo, final String desc, final String iva, final String pedido, final String cumple, final String segui, final String provee) {
+    private void InsertDetalle_Orden(String materia, final String no, final String entrada, final String factor, final String canti, final String lote
+    , final String caducidad, final String costo, final String desc, final String iva, final String pedido, final String cumple) {
+        materia = materia.replace(" ", "%20").trim();
         StringRequest request = new StringRequest(Request.Method.POST,
-                "http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=5",
+                "http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=5&nom_mat=" + materia,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         bandera = true;
+                        //Toast.makeText(getApplicationContext(), "Se registro con éxito", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -712,9 +572,6 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                 parametros.put("iva", iva);
                 parametros.put("num_pedido", pedido);
                 parametros.put("cumple", cumple);
-                parametros.put("segui", segui);
-                parametros.put("provee", provee);
-                parametros.put("id_mat", materia);
                 return parametros;
             }
         };
@@ -742,23 +599,5 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
         });
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
-
-    private void OcultarTeclado(){
-        View view = this.getCurrentFocus();
-
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
-    private void MostrarMontos(){
-        TotalMonto = 0;
-        for (int i = 0; i < Totales.size(); i++){
-            TotalMonto += Totales.get(i);
-        }
-        DecimalFormat formato1 = new DecimalFormat("#,###,##0.00");
-        lbMonto.setText("Monto: " + formato1.format(TotalMonto));
-        lbIVATotal.setText("IVA Total: " + formato1.format(TotalMonto * 0.16));
-        lbMontoTotal.setText("Monto Total: " + formato1.format(TotalMonto * 1.16));
     }
 }
