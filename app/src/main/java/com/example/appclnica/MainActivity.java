@@ -6,6 +6,8 @@ import androidx.core.app.NotificationManagerCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,6 +62,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        txtUsuario.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //RevisionToken(txtUsuario.getText().toString());
+            }
+        });
     }
 
     private void Login(String URL){
@@ -71,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         obj = response.getJSONObject(i);
                         if (obj != null) {
-                            Mensaje = obj.getString("nombre");
+                            Mensaje = obj.getString("Nombres");
                             Intent PasoPantalla = new Intent(MainActivity.this, NavigationActivity.class);
                             PasoPantalla.putExtra("Mensaje", Mensaje);
                             PasoPantalla.putExtra("ID", obj.getString("id"));
@@ -93,5 +112,31 @@ public class MainActivity extends AppCompatActivity {
         });
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(Array);
+    }
+
+    private void RevisionToken(final String token) {
+        StringRequest request = new StringRequest(Request.Method.POST,
+                "http://asesoresconsultoreslabs.com/asesores/App_Android/CRUD.php?idt=4",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("Token", token);
+
+                return parametros;
+            }
+        };
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
     }
 }

@@ -31,20 +31,15 @@ public class ActivityRegistro extends AppCompatActivity {
         final TextView txtUsuario = findViewById(R.id.editTextNom);
 
         Bundle bundle = getIntent().getExtras();
-        final String Message = bundle.getString("Token");
+        final String Token = bundle.getString("Token");
 
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!txtUsuario.getText().toString().isEmpty()) {
-                    enviarTokenToServer(Message, txtUsuario.getText().toString().trim());
-
-                    Intent Principal = new Intent(getApplicationContext(), MainActivity.class);
-                    Principal.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(Principal);
-                    finish();
+                    enviarTokenToServer(Token, txtUsuario.getText().toString().trim());
                 }else{
-                    Toast.makeText(getApplicationContext(),"No ha ingresado ningún nombre", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"No ha ingresado ningún usuario", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -63,11 +58,15 @@ public class ActivityRegistro extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(getApplicationContext(), "Se registro exitosamente", Toast.LENGTH_SHORT).show();
+                        Intent Principal = new Intent(getApplicationContext(), MainActivity.class);
+                        Principal.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(Principal);
+                        finish();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "El Usuario no existe, favor de verificar", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override

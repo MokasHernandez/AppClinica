@@ -18,9 +18,10 @@ public class AlmacenFragment extends Fragment {
     private TextView Prueba;
     private Button btnEntrada;
     private Button btnSalida;
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View root = inflater.inflate(R.layout.fragment_almacen, container, false);
 
         btnEntrada = root.findViewById(R.id.btnEntrada);

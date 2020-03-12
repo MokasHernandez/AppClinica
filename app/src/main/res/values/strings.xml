@@ -4,7 +4,7 @@
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">HTDS 2020</string>
+    <string name="nav_header_title">HTDS</string>
     <string name="nav_header_subtitle">asesores@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>

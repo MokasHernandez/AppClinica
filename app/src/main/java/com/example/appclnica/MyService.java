@@ -46,6 +46,9 @@ import java.util.Random;
 import static android.content.ContentValues.TAG;
 
 public class MyService extends FirebaseMessagingService {
+
+    public static String Token;
+
     public MyService() {
     }
 
@@ -163,10 +166,11 @@ public class MyService extends FirebaseMessagingService {
     public void onNewToken(String token) {
         Log.d(TAG,"Refreshed Token: " + token);
 
+        Token = token;
+
         Intent Registro = new Intent(getApplicationContext(), ActivityRegistro.class);
         Registro.putExtra("Token", token);
         Registro.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, Registro, PendingIntent.FLAG_UPDATE_CURRENT);
 
         startActivity(Registro);
 

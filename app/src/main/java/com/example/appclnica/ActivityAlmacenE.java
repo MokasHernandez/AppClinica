@@ -175,7 +175,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                     lbMontoTotal.setVisibility(View.VISIBLE);
                     lbMonto.setVisibility(View.VISIBLE);
                     lbIVATotal.setVisibility(View.VISIBLE);
-                    btnAgregarT.setVisibility(View.VISIBLE);
+                    btnAgregarT.setVisibility(View.INVISIBLE);
                     btnOrdenC.setVisibility(View.GONE);
                     txtFolioTiDoc.setVisibility(View.GONE);
                     lbFolioTiDoc.setVisibility(View.GONE);
@@ -479,7 +479,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                             final float[] costo = {Float.parseFloat(costo_ind)};
 
                             Total[0] = (entrada * factor_uni * costo[0]);
-                            Totales.add(Total[0]);
+                            //Totales.add(Total[0]);
 
                             float costoi = Float.parseFloat(costo_ind);
                             float costot = Float.parseFloat(costo_tot);
@@ -493,7 +493,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
                             final EditText Costo_Ind = new EditText(getApplicationContext());
                             Button QRLectura = new Button(getApplicationContext());
 
-                            select.setChecked(true);
+                            select.setChecked(false);
                             fila.addView(select);
 
                             LlenarTextView(clave, fila, 2);
@@ -551,7 +551,7 @@ public class ActivityAlmacenE extends AppCompatActivity implements AdapterView.O
 
                             final String[] a = new String[]{clave, uni_en, factor, can, "", "", costo_ind, Descuento.getText().toString(),
                                     "SI", seg};
-                            nombres.add(a);
+                            //nombres.add(a);
 
                             //checkBoxes.add(select);
 

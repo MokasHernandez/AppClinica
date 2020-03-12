@@ -15,29 +15,42 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityInicioFinQR">
+        <activity android:name=".Main2Activity">
 
         </activity>
-        <activity android:name=".ActivityVerificacion"></activity>
-        <activity android:name=".ActivityAlmacenS">
-
-        </activity>
-        <activity android:name=".ActivityContadorQR"></activity>
-        <activity android:name=".ActivityAlmacenE">
-
-        </activity>
-        <activity android:name=".Mantenimientos" />
+        <activity
+            android:name=".ActivityInicioFinQR"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityVerificacion"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityAlmacenS"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityContadorQR"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityAlmacenE"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Mantenimientos"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ActivityRegistro"
-            android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:taskAffinity="" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainQR" />
-        <activity android:name=".MainActivityTable" />
+        <activity
+            android:name=".MainQR"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivityTable"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".MyService"
@@ -47,7 +60,9 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
