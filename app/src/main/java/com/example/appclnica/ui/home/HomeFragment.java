@@ -68,9 +68,15 @@ public class HomeFragment extends Fragment {
                 hora =calendario.get(Calendar.HOUR_OF_DAY);
                 minutos = calendario.get(Calendar.MINUTE);
                 segundos = calendario.get(Calendar.SECOND);
-                if(hora >=0&&hora<=11){ A="Buenos Dias";textView.setText( A );}else
-                if(hora >=12&&hora<=18){ A="Buenas Tardes"; textView.setText( A );}else
-                if(hora >=19&&hora<=23){ A="Buenas Noches";textView.setText( A );}
+                if(hora>=00&&hora<=11)
+                { A="Buenos Dias";textView.setText( A );
+                }else
+                if(hora >=12&&hora<=18)
+                { A="Buenas Tardes"; textView.setText( A );
+                }else
+                if(hora >=19&&hora<=23)
+                { A="Buenas Noches";textView.setText( A );
+                }
 
                 textView.setText(A +" : "+ Message);
             }
