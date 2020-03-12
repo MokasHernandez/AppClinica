@@ -1,4 +1,4 @@
 # AppClinica
 Mi Proyecto Android Brandon
 
-Proyecto desde 28/02/2020 
+Proyecto desde 12/03/2020
