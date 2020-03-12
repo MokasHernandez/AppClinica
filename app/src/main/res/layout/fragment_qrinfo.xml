@@ -27,7 +27,7 @@
           android:layout_height="400dp"
           android:background="@color/Constrain">
       <TableLayout
-          android:id="@+id/Table"
+          android:id="@+id/tableter"
           android:background="@drawable/table"
           android:layout_width="match_parent"
           android:layout_height="350dp"

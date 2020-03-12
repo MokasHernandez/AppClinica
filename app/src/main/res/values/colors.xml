@@ -21,5 +21,9 @@
     <color name="colorHTDSN">#000000</color>
     <color name="Constrain">#FAFAFA</color>
     <color name="Constrai">#EFF8FB</color>
+
+    <color name="Arriba">#2AF598</color>
+    <color name="Abajo">#009EFD</color>
+
 </resources>
 

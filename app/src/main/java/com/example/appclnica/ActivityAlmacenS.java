@@ -12,7 +12,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -21,13 +20,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -35,8 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -44,11 +38,8 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
     TextView lbNum_Ped, lbUnidad, lbArea;
     Spinner SNum_P, SUdn, SArea;
     ArrayList<String> num_ped, unidad, areas;
-    ArrayList<String[]> salidas;
     TableLayout tablaP;
-    String unidada, orden, num_sal;
-    Button btnAgT;
-    boolean bandera = true;
+    String unidada, orden;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,21 +54,11 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
         SUdn = findViewById(R.id.spinnerUnidad);
         SArea = findViewById(R.id.spinnerArea);
         tablaP = findViewById(R.id.tblPro);
-        btnAgT = findViewById(R.id.btnTodos);
-
         setSupportActionBar(toolbar);
 
         num_ped = new ArrayList<String>();
-        CargarDatos("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=9", "folio_pedido", num_ped);
+        CargarDatos("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=0", "folio_pedido", num_ped);
         LlenarSpinners(num_ped, SNum_P);
-
-        btnAgT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InsertSalida(SArea.getSelectedItem().toString(), SUdn.getSelectedItem().toString(), SNum_P.getSelectedItem().toString());
-                SUdn.setSelection(0);
-            }
-        });
     }
 
     @Override
@@ -99,8 +80,6 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
                     lbArea.setVisibility(View.INVISIBLE);
                     SArea.setVisibility(View.INVISIBLE);
                     tablaP.setVisibility(View.INVISIBLE);
-                    btnAgT.setVisibility(View.INVISIBLE);
-                    tablaP.removeAllViews();
                 }
                 break;
             }
@@ -109,32 +88,28 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
                     unidada = parent.getItemAtPosition(position).toString();
                     tablaP.removeAllViews();
 
+                    Character a = unidada.charAt(unidada.length()-1);
+
                     areas = new ArrayList<String>();
-                    CargarDatos("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=7&orden=" + orden, "nombre", areas);
+                    CargarDatos("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=7&udn=" + unidada, "nombre", areas);
                     LlenarSpinners(areas, SArea);
 
-                    salidas = new ArrayList<>();
-
-                    if (unidada.equals("Matriz")) {
+                    if (a == 'z') {
                         lbArea.setVisibility(View.VISIBLE);
                         SArea.setVisibility(View.VISIBLE);
                         tablaP.setVisibility(View.INVISIBLE);
-                        btnAgT.setVisibility(View.INVISIBLE);
                     }else{
-                        lbArea.setVisibility(View.GONE);
-                        SArea.setVisibility(View.GONE);
+                        lbArea.setVisibility(View.INVISIBLE);
+                        SArea.setVisibility(View.INVISIBLE);
                         CrearEncabezado();
                         unidada = unidada.replace(" ", "%20").trim();
                         CargarDatosTabla("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=8&udn=" + unidada + "&area=" + "" + "&orden=" + orden);
                         tablaP.setVisibility(View.VISIBLE);
-                        btnAgT.setVisibility(View.VISIBLE);
                     }
                 }else {
                     lbArea.setVisibility(View.INVISIBLE);
                     SArea.setVisibility(View.INVISIBLE);
                     tablaP.setVisibility(View.INVISIBLE);
-                    btnAgT.setVisibility(View.INVISIBLE);
-                    tablaP.removeAllViews();
                 }
                 break;
             }
@@ -142,14 +117,11 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
                 if (position != 0){
                     String area = parent.getItemAtPosition(position).toString();
 
-                    salidas = new ArrayList<>();
-
                     tablaP.removeAllViews();
                     CrearEncabezado();
                     area = area.replace(" ", "%20").trim();
                     CargarDatosTabla("http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=8&udn=" + unidada + "&area=" + area + "&orden=" + orden);
                     tablaP.setVisibility(View.VISIBLE);
-                    btnAgT.setVisibility(View.VISIBLE);
                 }
             }
         }
@@ -158,52 +130,6 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-    }
-
-    public void InsertSalida(String area, final String udn, final String pedido) {
-        area = area.replace(" ", "%20").trim();
-        final String finalArea = area;
-        StringRequest request = new StringRequest(Request.Method.POST,
-                "http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=10&area=" + area,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        num_sal = response;
-                        for (int i = 0; i < salidas.size(); i++){
-                            String[] uso = salidas.get(i);
-                            String id = uso[0];
-                            String can_aut = uso[1];
-                            String can_surt = uso[2];
-                            String prod = uso [3];
-                            String segui = uso[4];
-                            InsertDetalleSalida(num_sal, id, can_aut, can_surt, prod, SNum_P.getSelectedItem().toString(), segui, finalArea, udn);
-                        }
-                        //Toast.makeText(getApplicationContext(), "Se registro exitosamente", Toast.LENGTH_SHORT).show();
-
-                        if (bandera){
-                            Toast.makeText(getApplicationContext(), "Se registraron los datos con éxito", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(), "Error en los registros ", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("unidad", udn);
-                parametros.put("pedido", pedido);
-
-                return parametros;
-            }
-        };
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
     }
 
     private void LlenarSpinners(ArrayList<String> list, Spinner spinner){
@@ -251,70 +177,49 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
                     try {
                         obj = response.getJSONObject(i);
                         if (obj != null) {
-                            final int numero1, numero3;
+                            final int numero1;
                             final int[] numero2 = new int[1];
-                            final String id = obj.getString("id");
                             final String producto = obj.getString("clave_producto");
-                            final String nombre = obj.getString("nombre");
                             final String cantidad = obj.getString("cantidad");
                             final String cantidad_autorizada = obj.getString("cantidad_autorizada");
-                            final String inventario = obj.getString("cant_inv");
-                            final String seguimiento = obj.getString("seguimiento");
 
                             TableRow fila = new TableRow(getApplicationContext());
                             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                             fila.setLayoutParams(lp);
 
                             final EditText CanSurtir = new EditText(getApplicationContext());
-                            final CheckBox select = new CheckBox(getApplicationContext());
 
-                            select.setChecked(true);
-                            fila.addView(select);
-
-                            LlenarTextView(producto, fila, 2);
-                            LlenarTextView("   ", fila, 1);
-                            LlenarTextView(nombre, fila, 2);
+                            LlenarTextView(producto, fila, 0);
                             LlenarTextView(cantidad, fila, 0);
                             LlenarTextView(cantidad_autorizada, fila, 0);
-                            LlenarTextView(inventario, fila, 0);
-                            numero1 = Integer.parseInt(cantidad_autorizada);
-                            numero3 = Integer.parseInt(inventario);
+                            numero1 = Integer.parseInt(cantidad);
 
                             LlenarTextView(" ", fila, 0);
                             FormarEdit(CanSurtir, fila);
-                            LlenarTextView(" ", fila, 1);
 
                             tablaP.addView(fila);
 
                             numero2[0] = Integer.parseInt(CanSurtir.getText().toString());
 
-                            if (numero1 < numero3){
-                                CanSurtir.setText("" + numero1);
-                            }
-                            if (numero3 < numero1){
-                                CanSurtir.setText("" + numero3);
-                            }
-                            if (numero1 == numero3){
-                                CanSurtir.setText("" + numero3);
-                            }
-
-                            final String[] salida = new String[]{id, cantidad_autorizada, CanSurtir.getText().toString(), producto,seguimiento};
-                            salidas.add(salida);
-
-                            CanSurtir.setFocusable(false);
-
-                            select.setOnClickListener(new View.OnClickListener() {
+                            CanSurtir.addTextChangedListener(new TextWatcher() {
                                 @Override
-                                public void onClick(View v) {
-                                    if(select.isChecked()){
-                                        salidas.add(salida);
-                                        if (salidas.size() > 0){
-                                            btnAgT.setVisibility(View.VISIBLE);
-                                        }
+                                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                                }
+
+                                @Override
+                                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                                }
+
+                                @Override
+                                public void afterTextChanged(Editable s) {
+                                    if (CanSurtir.length()<1) {
+                                        numero2[0] = 0;
                                     }else{
-                                        salidas.remove(salida);
-                                        if (salidas.size() < 1){
-                                            btnAgT.setVisibility(View.INVISIBLE);
+                                        numero2[0] = Integer.parseInt(CanSurtir.getText().toString());
+                                        if (numero2[0] > numero1){
+                                            CanSurtir.setError("Cant. mayor a la autorizada");
                                         }
                                     }
                                 }
@@ -344,17 +249,11 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
     private void LlenarTextView(String dato, TableRow fila, int tipodato){
         TextView uso = new TextView(getApplicationContext());
         uso.setText(dato);
+        uso.setGravity(Gravity.CENTER);
         if (tipodato == 0) {
             uso.setTextColor(Color.BLACK);
-            uso.setGravity(Gravity.CENTER);
-        }
-        else if (tipodato == 2){
-            uso.setTextColor(Color.BLACK);
-            uso.setGravity(Gravity.LEFT);
-
         }else {
             uso.setTextColor(Color.GRAY);
-            uso.setGravity(Gravity.CENTER);
         }
         fila.addView(uso);
     }
@@ -364,16 +263,11 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         fila.setLayoutParams(lp);
 
-        LlenarTextView(" ", fila, 1);
-        LlenarTextView("Clave  ", fila, 1);
-        LlenarTextView("   ", fila, 1);
-        LlenarTextView("Nombre ", fila, 1);
+        LlenarTextView("Producto  ", fila, 1);
         LlenarTextView("Cantidad ", fila, 1);
         LlenarTextView("Cantidad \n Autorizada ", fila, 1);
-        LlenarTextView("Cantidad \n Inventario ", fila, 1);
         LlenarTextView(" ", fila, 0);
         LlenarTextView("Cantidad \n Surtir", fila, 1);
-        LlenarTextView(" ", fila, 1);
         tablaP.addView(fila, 0);
     }
 
@@ -385,42 +279,5 @@ public class ActivityAlmacenS extends AppCompatActivity implements AdapterView.O
         editText.setBackground(getResources().getDrawable(R.drawable.txt));
         editText.setInputType(InputType.TYPE_CLASS_NUMBER);
         fila.addView(editText);
-    }
-
-    private void InsertDetalleSalida(final String folio, final String id, final String cant_auto, final String cant_surt, final String id_mat,
-                                     final String pedido_salida, final String seguimiento, final String area, final String udn) {
-        StringRequest request = new StringRequest(Request.Method.POST,
-                "http://asesoresconsultoreslabs.com/asesores/App_Android/Almacen.php?id=11",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(getApplicationContext(), " " + response, Toast.LENGTH_LONG).show();
-                        bandera = true;
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //Toast.makeText(getApplicationContext(), " " + error, Toast.LENGTH_SHORT).show();
-                bandera = false;
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("folio_salida", folio);
-                parametros.put("id_ped", id);
-                parametros.put("id_mat", id_mat);
-                parametros.put("cant_auto", cant_auto);
-                parametros.put("cant_surt", cant_surt);
-                parametros.put("ped_sal", pedido_salida);
-                parametros.put("segui", seguimiento);
-                parametros.put("are", area);
-                parametros.put("unidad", udn);
-
-                return parametros;
-            }
-        };
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
     }
 }

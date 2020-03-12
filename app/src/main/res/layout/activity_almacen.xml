@@ -7,9 +7,47 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo2"
     android:fitsSystemWindows="true"
-    android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true"
     tools:context=".ActivityAlmacenE">
+
+    <TextView
+        android:id="@+id/txtPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:fontFamily="@font/montserratlight"
+        android:text="Número de pedido:"
+        android:textColor="@color/colorHTDSN"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMenu1"
+        app:layout_constraintVertical_bias="0.047" />
+
+    <Spinner
+        android:id="@+id/spinnerPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:background="@drawable/txt"
+        android:textColor="@color/colorHTDSN"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toEndOf="@+id/txtPedido"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMenu1"
+        app:layout_constraintVertical_bias="0.046" />
+
+    <Spinner
+        android:id="@+id/spinnerOrdenC"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/txt"
+        android:textColor="@color/colorHTDSN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.626"
+        app:layout_constraintStart_toEndOf="@+id/lbOrden"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerProvee" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarMenu1"
@@ -24,284 +62,181 @@
         app:title="Entrada Producto"
         app:titleTextColor="@color/icons" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:orientation="horizontal"
+    <Spinner
+        android:id="@+id/spinnerProvee"
+        android:layout_width="217dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/txt"
+        android:textColor="@color/colorHTDSN"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.354"
+        app:layout_constraintStart_toEndOf="@+id/lbProvee"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPedido" />
+
+    <TextView
+        android:id="@+id/lbProvee"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserratlight"
+        android:text="Proveedor:"
+        android:textColor="@color/colorHTDSN"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarMenu1">
+        app:layout_constraintTop_toBottomOf="@+id/txtPedido" />
 
-        <TextView
-            android:id="@+id/lbMonto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/colorHTDSN"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/lbIVATotal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/colorHTDSN"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/lbMontoTotal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/colorHTDSN"
-            android:textSize="15sp" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/lbOrden"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserratlight"
+        android:text="Orden de compra:"
+        android:textColor="@color/colorHTDSN"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbProvee" />
 
     <ScrollView
-        android:id="@+id/ScrollView1"
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:fillViewport="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:descendantFocusability="beforeDescendants"
-        android:focusableInTouchMode="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/txtIVA"
+        app:layout_constraintVertical_bias="0.015">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ConsLay2"
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarMenu1">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/lbIVA"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/montserratlight"
-                android:text="IVA:"
-                android:textColor="@color/colorHTDSN"
-                android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.094"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbFactura" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/spinnerPedido"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/txt"
-                android:textColor="@color/colorHTDSN"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.69"
-                app:layout_constraintStart_toEndOf="@+id/txtPedido"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TableLayout
+                    android:id="@+id/tablaProductos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <Spinner
-                android:id="@+id/spinnerOrdenC"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/txt"
-                android:textColor="@color/colorHTDSN"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.626"
-                app:layout_constraintStart_toEndOf="@+id/lbOrden"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerProvee" />
-
-            <Spinner
-                android:id="@+id/spinnerProvee"
-                android:layout_width="217dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/txt"
-                android:textColor="@color/colorHTDSN"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.354"
-                app:layout_constraintStart_toEndOf="@+id/lbProvee"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerPedido" />
-
-            <TextView
-                android:id="@+id/txtPedido"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/montserratlight"
-                android:text="Número de pedido:"
-                android:textColor="@color/colorHTDSN"
-                android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.132"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/lbProvee"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserratlight"
-                android:text="Proveedor:"
-                android:textColor="@color/colorHTDSN"
-                android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.108"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPedido" />
-
-            <TextView
-                android:id="@+id/lbOrden"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserratlight"
-                android:text="Orden de compra:"
-                android:textColor="@color/colorHTDSN"
-                android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.129"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbProvee" />
-
-            <TextView
-                android:id="@+id/lbFactura"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:fontFamily="@font/montserratlight"
-                android:text="Factura:"
-                android:textColor="@color/colorHTDSN"
-                android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.102"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbOrden" />
-
-            <EditText
-                android:id="@+id/txtFactura"
-                android:layout_width="0dp"
-                android:layout_height="37dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:ems="10"
-                android:hint="Factura"
-                android:inputType="textPersonName"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/btnOrdenC"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/lbFactura"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerOrdenC" />
-
-            <Button
-                android:id="@+id/btnOrdenC"
-                android:layout_width="138dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/btn_uno"
-                android:backgroundTint="@color/boton"
-                android:gravity="center"
-                android:text="Agregar Orden Compra"
-                android:textColor="@color/icons"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerOrdenC" />
-
-            <Button
-                android:id="@+id/btnAgregarT"
-                android:layout_width="105dp"
-                android:layout_height="43dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/btn_uno"
-                android:backgroundTint="@color/boton"
-                android:gravity="center"
-                android:text="Agregar Todos"
-                android:textColor="@color/icons"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.605"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnOrdenC" />
-
-            <EditText
-                android:id="@+id/txtIVA"
-                android:layout_width="40dp"
-                android:layout_height="37dp"
-                android:layout_marginTop="20dp"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                android:text="16"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.032"
-                app:layout_constraintStart_toEndOf="@+id/lbIVA"
-                app:layout_constraintTop_toBottomOf="@+id/txtFactura" />
-
-            <HorizontalScrollView
-                android:id="@+id/HorizScroll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="15dp"
-                android:focusableInTouchMode="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtIVA"
-                app:layout_constraintVertical_bias="0.054">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TableLayout
-                        android:id="@+id/tablaProductos"
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:focusableInTouchMode="true">
+                        android:layout_height="match_parent" />
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-                    </TableLayout>
-                </LinearLayout>
-            </HorizontalScrollView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </TableLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/lbFactura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/montserratlight"
+        android:text="Factura:"
+        android:textColor="@color/colorHTDSN"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbOrden" />
+
+    <TextView
+        android:id="@+id/lbIVA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/montserratlight"
+        android:text="IVA:"
+        android:textColor="@color/colorHTDSN"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbFactura" />
+
+    <EditText
+        android:id="@+id/txtFactura"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:ems="10"
+        android:hint="Factura"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnOrdenC"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/lbFactura"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerOrdenC" />
+
+    <Button
+        android:id="@+id/btnOrdenC"
+        android:layout_width="138dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/btn_uno"
+        android:backgroundTint="@color/boton"
+        android:gravity="center"
+        android:text="Agregar Orden Compra"
+        android:textColor="@color/icons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerOrdenC" />
+
+    <EditText
+        android:id="@+id/txtIVA"
+        android:layout_width="40dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="16"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toEndOf="@+id/lbIVA"
+        app:layout_constraintTop_toBottomOf="@+id/txtFactura" />
+
+    <Button
+        android:id="@+id/btnAgregarT"
+        android:layout_width="105dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/btn_uno"
+        android:backgroundTint="@color/boton"
+        android:gravity="center"
+        android:text="Agregar Todos"
+        android:textColor="@color/icons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnOrdenC" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

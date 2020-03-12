@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -59,7 +58,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.UUID;
 
@@ -67,13 +65,10 @@ public class Reportes extends AppCompatActivity {
 
     EditText EDTRINGE,EDTRHORA,EDTRDF,EDTRCF,EDTRFPM,EDTRCR,EDTNREPORT;
     Spinner ComboBox;
-    String KEY_NOMBRE = "nombre";
     DatePickerDialog.OnDateSetListener setListener;
     Button BTNFILE,BTNREPORT;
     String opt="ok";
-    private Uri filePath;
     public static final String UPLOAD_URL = "https://asesoresconsultoreslabs.com/asesores/App_Android/UPLOAD.php";
-    RequestQueue requestQueue;
     public static final int PICKFILE_RESULT_CODE = 1;
     public static String IDQReport="";
 
@@ -164,7 +159,7 @@ public class Reportes extends AppCompatActivity {
                 }
                 if( !EDTRINGE.getText().toString().isEmpty()&&!EDTRHORA.getText().toString().isEmpty()&& !EDTRDF.getText().toString().isEmpty() && !EDTRCF.getText().toString().isEmpty()&&!EDTRFPM.getText().toString().isEmpty()&&!EDTRCR.getText().toString().isEmpty() &&!EDTRFPM.getText().toString().isEmpty()&&!EDTNREPORT.getText().toString().isEmpty()) {
                     ADDREPORT( "https://asesoresconsultoreslabs.com/asesores/App_Android/AddReport.php" );
-                    uploadImage();
+
 
                 }
                 BTNFILE.requestFocus();
@@ -242,36 +237,7 @@ public class Reportes extends AppCompatActivity {
     }
     /**********UPLOADED PDF TO SERVER *****************/
 
-    public void uploadImage() {
-        final ProgressDialog
-                loading = ProgressDialog.show(
-                this, "Subiendo...", "Espere por favor" );
-        StringRequest stringRequest =
-                new StringRequest( Request.Method.POST, UPLOAD_URL,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                loading.dismiss();
-                                Toast.makeText( getApplicationContext(), response, Toast.LENGTH_LONG ).show();
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        loading.dismiss();
-                        Toast.makeText( getApplicationContext(), error.getMessage().toString(), Toast.LENGTH_LONG ).show();
-                    }
-                } ) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        String nombre = EDTNREPORT.getText().toString();
-                        Map<String, String> params = new Hashtable<String, String>();
-                        params.put( KEY_NOMBRE, nombre );
-                        return params;
-                    }
-                };
-        RequestQueue requestQueue = Volley.newRequestQueue( this );
-        requestQueue.add( stringRequest );
-    }
+
 
 
 

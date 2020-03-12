@@ -1,7 +1,6 @@
 package com.example.appclnica;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,25 +25,20 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.IdentityHashMap;
 import java.util.List;
 
 public class MantenimientoFragment extends Fragment {
 
     QRInfoFragment qrInfoFragment =new QRInfoFragment();
     String D=qrInfoFragment.IDQR;
-
     List<MantConstructor> ListMant;
     RecyclerView RCV;
     AlertDialog InfoMant;
@@ -61,13 +55,13 @@ public class MantenimientoFragment extends Fragment {
         setHasOptionsMenu(true);
         final View view= inflater.inflate(R.layout.fragment_mantenimiento, container, false);
         RCV=(RecyclerView)view.findViewById( R.id.rcv );
-        txtA=(TextView)view.findViewById( R.id.TXTN );
-        txtB=(TextView)view.findViewById( R.id.TXTS );
-        txtC=(TextView)view.findViewById( R.id.TXTA );
-        txtD=(TextView)view.findViewById( R.id.TXTN );
-        txtE=(TextView)view.findViewById( R.id.TXTPO );
-        txtF=(TextView)view.findViewById( R.id.EDTEMPRE);
-        txtG=(TextView)view.findViewById( R.id.TXTC );
+        txtA=(TextView)view.findViewById( R.id.TXTN2 );
+        txtB=(TextView)view.findViewById( R.id.TXTS2 );
+        txtC=(TextView)view.findViewById( R.id.TXTA2 );
+        txtD=(TextView)view.findViewById( R.id.TXTN2 );
+        txtE=(TextView)view.findViewById( R.id.TXTPO2 );
+        txtF=(TextView)view.findViewById( R.id.EDTEMPRE2 );
+        txtG=(TextView)view.findViewById( R.id.TXTC2 );
         RCV.setHasFixedSize( true );
         RCV.setLayoutManager( new LinearLayoutManager( getContext(),LinearLayoutManager.VERTICAL,false ) );
         ListMant=new ArrayList<>(  );
@@ -96,7 +90,7 @@ public class MantenimientoFragment extends Fragment {
                                 ) );
                                 /*Toast.makeText( getActivity().getApplicationContext(),mants.getString( "id_equipo" ),Toast.LENGTH_SHORT ).show();*/
                             }
-                            Adapter adapterData=new Adapter( getActivity().getApplicationContext(),ListMant );
+                            Adapter adapterData=new Adapter( getActivity().getApplicationContext(),ListMant);
                             RCV.setAdapter( adapterData);
                         }catch (JSONException e){
                             e.printStackTrace();

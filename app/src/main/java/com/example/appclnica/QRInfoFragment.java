@@ -29,9 +29,9 @@ import java.util.ArrayList;
 public class QRInfoFragment extends Fragment {
 
     private TableLayout tableLayout;
+    RequestQueue requestQueue;
     private String[] header = {"DATOS"," ", "INFORMACIÓN","","","","","","","","","","","","","","","","","",""};
     private ArrayList<String[]> rows = new ArrayList<>();
-    RequestQueue requestQueue;
     public static String IDQR="";
 
     @Override
@@ -43,8 +43,7 @@ public class QRInfoFragment extends Fragment {
          IDQR = bundle.getString( "ID" );
 
         TraerEquipo( "https://asesoresconsultoreslabs.com/asesores/App_Android/ConsultaB.php?id=" + IDQR + "");
-        tableLayout = view.findViewById( R.id.Table );
-
+        tableLayout = view.findViewById( R.id.tableter );
         return  view;
     }
 
@@ -136,6 +135,11 @@ public class QRInfoFragment extends Fragment {
         requestQueue = Volley.newRequestQueue( getActivity().getApplicationContext() );
         requestQueue.add( jsonArrayRequest );
     }
+
+
+
+
+
 
 }
 
